@@ -31,10 +31,11 @@
 *.out
 *.app
 
+/.vs/**
+
 **/x64/**/*
 **/Debug/**/*
 **/Release/**/*
 
-**/*.vcxproj
 **/*.filters
 *.VC.db
