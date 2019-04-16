@@ -30,3 +30,4 @@ void RandomFactory::getRandomMatrix(Matrix& output, size_t dimension)
 }
 
 
+
