@@ -1,15 +1,15 @@
 #pragma once
 #include "Matrix.h"
 
+template <class _T>
 class RandomFactory
 {
 public:
 
 	// возвращает строку матрицы заданной длиныы
-	static void getRandomRow(Row& output, size_t length);
+	void getRandomRow(Row<_T>& output, size_t length);
 
 	// возвращает квадратную обратимую матрицу
-	static void getRandomMatrix(Matrix& output, size_t dimension);
-
+	void getRandomMatrix(Matrix <_T>& output, size_t dimension);
 
 };

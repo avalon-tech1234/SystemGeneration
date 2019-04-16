@@ -3,38 +3,57 @@
 #include "BOOL.h"
 #include <iostream>
 
-// Данный класс описывает строку матрицы, состоящую из 0 и 1. Наследуется от vector<BOOL>.
-class Row : public std::vector<BOOL>
+
+// Данный класс описывает строку матрицы, состоящую из 0 и 1
+template <class _T>
+class Row : private std::vector<_T>
 {
-public:
 
-	Row(int length) : std::vector<BOOL>(length, FALSE) {}
-	Row() {}
-
-};
-
-// Данный класс описывает квадратную матрицу, состоящую из 0 и 1. Наследуется от vector<Row>.
-class Matrix
-{
 private:
-	std::vector<Row> data;
+	Row() = delete;
 
 public:
 
-	Matrix() {}
+	Row(size_t length) : std::vector<_T>(length) {};
 
-	// возвращает квадратную матрицу dimension*dimension, заполненную нулями
-	Matrix(size_t dimension)
+	_T& element(size_t index)
 	{
-		Row row = Row(dimension);
-		data = std::vector<Row>(dimension);
-		for (int i = 0; i < dimension; i++)
-		{
-			data[i] = row;
-			if (i % 500 == 0)
-				std::cout << i << std::endl;
-		}
+		return (_T&)operator[](index);
 	}
 
 };
+
+// Данный класс описывает квадратную матрицу, состоящую из 0 и 1
+// Допускается создание только Matrix<bool> и Matrix<BOOL>
+template <class _T>
+class Matrix
+{
+	typedef _T t_vattype;
+private:
+	std::vector<Row <_T> *> data;
+
+public:
+	~Matrix()
+	{
+		for (size_t i = 0; i < data.size(); i++)
+		{
+			delete data[i];
+		}
+
+		data.clear();
+	}
+
+	Matrix() : data() { }
+
+	Matrix(Matrix && mat) : data(std::move(mat.data)) {}
+
+	BOOL Init(size_t dimension);
+
+	inline Row <t_vattype>* row(size_t n)
+	{
+		return data[n];
+	}
+
+};
+
 
