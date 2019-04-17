@@ -13,8 +13,6 @@ using namespace std;
 using namespace chrono;
 
 
-// Сравнение скорости выделения памяти и обращения к данным показывает, что использование int вместо bool позволяет сократить расходы по времени примерно на 20-30%
-
 void Testing::test()
 {
 	cout << "Hello!" << endl;
@@ -57,7 +55,7 @@ void Testing::test()
 
 void Testing::test2()
 {
-	size_t sz = 10000;
+	size_t sz = 3000;
 
 	/////////////////////////////////////////////////
 	LARGE_INTEGER ST1, ET1, EMls1;
@@ -74,7 +72,8 @@ void Testing::test2()
 	QueryPerformanceCounter(&ST1);
 
 	Matrix <BOOL> matr_BOOL;
-	RandomFactory<BOOL>().getRandomMatrix(matr_BOOL, sz); // сами строки матрицы были битые - что видно при попытке доступа к ним
+	matr_BOOL.Init(sz);
+	RandomFactory<BOOL>().getRandomMatrix(matr_BOOL);
 
 	QueryPerformanceCounter(&ET1);
 	EMls1.QuadPart = ET1.QuadPart - ST1.QuadPart;
@@ -87,7 +86,8 @@ void Testing::test2()
 	QueryPerformanceCounter(&ST2);
 
 	Matrix <bool> matr_bool;
-	RandomFactory<bool>().getRandomMatrix(matr_bool, sz); // сами строки матрицы были битые - что видно при попытке доступа к ним
+	matr_bool.Init(sz);
+	RandomFactory<bool>().getRandomMatrix(matr_bool);
 
 	QueryPerformanceCounter(&ET2);
 	EMls2.QuadPart = ET2.QuadPart - ST2.QuadPart;

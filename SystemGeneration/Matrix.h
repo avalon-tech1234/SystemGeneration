@@ -1,27 +1,5 @@
 #pragma once
-#include <vector>
-#include "BOOL.h"
-#include <iostream>
-
-
-// Данный класс описывает строку матрицы, состоящую из 0 и 1
-template <class _T>
-class Row : private std::vector<_T>
-{
-
-private:
-	Row() = delete;
-
-public:
-
-	Row(size_t length) : std::vector<_T>(length) {};
-
-	_T& element(size_t index)
-	{
-		return (_T&)operator[](index);
-	}
-
-};
+#include "Row.h"
 
 // Данный класс описывает квадратную матрицу, состоящую из 0 и 1
 // Допускается создание только Matrix<bool> и Matrix<BOOL>
@@ -53,6 +31,27 @@ public:
 	{
 		return data[n];
 	}
+
+	inline const Row <t_vattype>* const const_row(size_t n) const
+	{
+		return data[n];
+	}
+
+	inline void swap(size_t index1, size_t index2)
+	{
+		Row<t_vattype> save = *data[index1];
+		delete data[index1];
+		data[index1] = data[index2];
+		data[index2] = new Row<t_vattype>(save);
+	}
+
+	// Возвращает количество строк (оно же количество столбцов) в матрице
+	inline size_t size() const
+	{
+		return data.size();
+	}
+
+	
 
 };
 

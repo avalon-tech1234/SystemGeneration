@@ -7,9 +7,10 @@ class RandomFactory
 public:
 
 	// возвращает строку матрицы заданной длиныы
-	void getRandomRow(Row<_T>& output, size_t length);
+	void getRandomRow(Row<_T>* output);
 
-	// возвращает квадратную обратимую матрицу
-	void getRandomMatrix(Matrix <_T>& output, size_t dimension);
+	// принимает квадратную матрицу , заполненную нулями
+	// на выходе матрица заполнена случайными числами. Гарантируется, что она обратима
+	void getRandomMatrix(Matrix <_T>& output);
 
 };
