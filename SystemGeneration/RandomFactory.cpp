@@ -1,25 +1,28 @@
 #include "RandomFactory.h"
-#include <cstdlib> // for random
-#include <ctime> // for random time
+#include <ctime>
 
 template <class _T>
-void RandomFactory<_T>::getRandomRow(Row<_T>* output)
+RandomFactory<_T>::RandomFactory()
 {
-	srand((int)time(NULL)); // initialize random seed
+	gen.seed(time(0));
+}
 
-	size_t sz = output->size();
+template <class _T>
+void RandomFactory<_T>::getRandomRow(Row<_T>& output)
+{
+
+	size_t sz = output.size();
 	for (size_t i = 0; i < sz; i++)
 	{
-		output->element(i) = rand() % 2;
+		output.element(i) = gen() % 2;
 	}
 }
 
 template <class _T>
-void RandomFactory<_T>::getRandomMatrix(Matrix <_T>& output) {
+void RandomFactory<_T>::getRandomMatrix(Matrix <_T>& output, size_t dimension) {
 
-	srand((int)time(NULL)); // initialize random seed
+	output.Init(dimension);
 
-	size_t dimension = output.size();
 	Row <_T>* cur_row;
 	for (size_t i = 0; i < dimension; i++)
 	{
@@ -32,22 +35,22 @@ void RandomFactory<_T>::getRandomMatrix(Matrix <_T>& output) {
 		cur_row->element(i) = 1;
 		for (size_t j = i + 1; j < dimension; j++)
 		{
-			cur_row->element(j) = rand() % 2;
+			cur_row->element(j) = gen() % 2;
 		}
 	}
 
 	for (size_t i = 0; i < dimension; i++)
 	{
-		Row<_T>* r1 = output.row(rand() % dimension);
-		Row<_T>* r2 = output.row(rand() % dimension);
+		Row<_T>* r1 = output.row(gen() % dimension);
+		Row<_T>* r2 = output.row(gen() % dimension);
 		if (r1 != r2)
 			r1-> xor (r2);
 	}
 
 	for (size_t i = 0; i < dimension; i++)
 	{
-		int i1 = rand() % dimension;
-		int i2 = rand() % dimension;
+		int i1 = gen() % dimension;
+		int i2 = gen() % dimension;
 		if (i1 != i2)
 			output.swap(i1, i2);
 	}

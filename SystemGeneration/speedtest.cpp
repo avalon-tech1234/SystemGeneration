@@ -72,8 +72,7 @@ void Testing::test2()
 	QueryPerformanceCounter(&ST1);
 
 	Matrix <BOOL> matr_BOOL;
-	matr_BOOL.Init(sz);
-	RandomFactory<BOOL>().getRandomMatrix(matr_BOOL);
+	RandomFactory<BOOL>().getRandomMatrix(matr_BOOL, sz);
 
 	QueryPerformanceCounter(&ET1);
 	EMls1.QuadPart = ET1.QuadPart - ST1.QuadPart;
@@ -86,8 +85,7 @@ void Testing::test2()
 	QueryPerformanceCounter(&ST2);
 
 	Matrix <bool> matr_bool;
-	matr_bool.Init(sz);
-	RandomFactory<bool>().getRandomMatrix(matr_bool);
+	RandomFactory<bool>().getRandomMatrix(matr_bool, sz);
 
 	QueryPerformanceCounter(&ET2);
 	EMls2.QuadPart = ET2.QuadPart - ST2.QuadPart;

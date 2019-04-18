@@ -30,7 +30,7 @@ string Writer::createFolder()
 	return foldername;
 }
 
-void Writer::printMatrix(const Matrix<BOOL>& matr, std::string filename)
+void Writer::printMatrix(const MatrixB& matr, std::string filename)
 {
 
 	ofstream out(filename);

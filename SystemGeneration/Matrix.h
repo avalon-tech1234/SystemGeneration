@@ -11,6 +11,14 @@ private:
 	std::vector<Row <_T> *> data;
 
 public:
+
+	Matrix() : data() { }
+
+	Matrix(Matrix && mat) : data(std::move(mat.data)) {}
+
+	BOOL Init(size_t dimension);
+
+
 	~Matrix()
 	{
 		for (size_t i = 0; i < data.size(); i++)
@@ -21,11 +29,6 @@ public:
 		data.clear();
 	}
 
-	Matrix() : data() { }
-
-	Matrix(Matrix && mat) : data(std::move(mat.data)) {}
-
-	BOOL Init(size_t dimension);
 
 	inline Row <t_vattype>* row(size_t n)
 	{
@@ -54,5 +57,8 @@ public:
 	
 
 };
+
+typedef Matrix<BOOL> MatrixB;
+typedef Row<BOOL> RowB;
 
 

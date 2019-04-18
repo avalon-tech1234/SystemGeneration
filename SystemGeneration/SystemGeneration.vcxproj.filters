@@ -39,6 +39,9 @@
     <ClInclude Include="Row.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="Writer.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Matrix.cpp">
@@ -52,6 +55,12 @@
     </ClCompile>
     <ClCompile Include="speedtest.cpp">
       <Filter>Файлы исходного кода\service</Filter>
+    </ClCompile>
+    <ClCompile Include="Writer.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Row.cpp">
+      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
