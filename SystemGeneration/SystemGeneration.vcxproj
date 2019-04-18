@@ -114,6 +114,8 @@
     <ClInclude Include="Array.h" />
     <ClInclude Include="BOOL.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="Monomial.h" />
+    <ClInclude Include="Polynomial.h" />
     <ClInclude Include="RandomFactory.h" />
     <ClInclude Include="Row.h" />
     <ClInclude Include="speedtest.h" />
@@ -123,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="Monomial.cpp" />
     <ClCompile Include="RandomFactory.cpp" />
     <ClCompile Include="Row.cpp" />
     <ClCompile Include="speedtest.cpp" />

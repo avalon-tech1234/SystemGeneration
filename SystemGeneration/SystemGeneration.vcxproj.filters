@@ -16,37 +16,55 @@
     <Filter Include="Файлы исходного кода\service">
       <UniqueIdentifier>{664f6bb8-0541-4f44-a213-1e323eec203d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Заголовочные файлы\service">
+      <UniqueIdentifier>{a47cd4dc-11c2-42b9-9223-c4cabc26252f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\matrix">
+      <UniqueIdentifier>{4b42ee8a-47c3-45ba-9c37-6378069e7759}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\matrix">
+      <UniqueIdentifier>{88b19b88-5c32-4385-83ca-e2948bfb1950}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\polynomials">
+      <UniqueIdentifier>{12e1421f-3cd4-4a02-b763-0b61118289e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\polynomials">
+      <UniqueIdentifier>{cdf8bb72-63c7-4748-815d-06c0a1d8424c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="BOOL.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="RandomFactory.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="Array.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="speedtest.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="Row.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
     <ClInclude Include="Writer.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="Array.h">
+      <Filter>Заголовочные файлы\service</Filter>
+    </ClInclude>
+    <ClInclude Include="BOOL.h">
+      <Filter>Заголовочные файлы\service</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Заголовочные файлы\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="Row.h">
+      <Filter>Заголовочные файлы\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="speedtest.h">
+      <Filter>Заголовочные файлы\service</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Заголовочные файлы\service</Filter>
+    </ClInclude>
+    <ClInclude Include="Monomial.h">
+      <Filter>Заголовочные файлы\polynomials</Filter>
+    </ClInclude>
+    <ClInclude Include="Polynomial.h">
+      <Filter>Заголовочные файлы\polynomials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Matrix.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="RandomFactory.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
@@ -59,8 +77,14 @@
     <ClCompile Include="Writer.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="Matrix.cpp">
+      <Filter>Файлы исходного кода\matrix</Filter>
+    </ClCompile>
     <ClCompile Include="Row.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>Файлы исходного кода\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="Monomial.cpp">
+      <Filter>Файлы исходного кода\polynomials</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
