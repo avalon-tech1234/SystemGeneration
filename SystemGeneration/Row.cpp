@@ -1,5 +1,7 @@
 #include "Row.h"
 
+using namespace matrixes;
+
 template <class _T>
 void Row<_T>::toString(
 	std::string& output,

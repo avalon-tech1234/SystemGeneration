@@ -1,16 +1,17 @@
 #include "RandomFactory.h"
 #include <ctime>
 
+using namespace matrixes;
+
 template <class _T>
 RandomFactory<_T>::RandomFactory()
 {
-	gen.seed(time(0));
+	gen.seed((unsigned int)time(0));
 }
 
 template <class _T>
 void RandomFactory<_T>::getRandomRow(Row<_T>& output)
 {
-
 	size_t sz = output.size();
 	for (size_t i = 0; i < sz; i++)
 	{

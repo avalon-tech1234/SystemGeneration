@@ -1,5 +1,4 @@
 #include "Writer.h"
-#include <fstream>
 #include <iostream>
 #include <ctime>
 #include <sys/types.h>
@@ -8,9 +7,9 @@
 
 using namespace std;
 
-string Writer::createFolder()
+Writer::Writer()
 {
-	string foldername = "../results/";
+	foldername = "../results/";
 
 	time_t t = time(0);
 	struct tm now;
@@ -25,15 +24,14 @@ string Writer::createFolder()
 		+ (now.tm_sec < 10 ? "0" + to_string(now.tm_sec) : to_string(now.tm_sec));
 
 	wstring ws(foldername.begin(), foldername.end());
-
 	_wmkdir(&ws[0]);
-	return foldername;
+
+	foldername += "/";
 }
 
-void Writer::printMatrix(const MatrixB& matr, std::string filename)
+void Writer::printMatrix(const matrixes::MatrixB& matr, std::string filename)
 {
-
-	ofstream out(filename);
+	out.open(foldername + filename);
 	size_t sz = matr.size();
 	string cur;
 	for (size_t i = 0; i < sz - 1; i++)
@@ -43,5 +41,18 @@ void Writer::printMatrix(const MatrixB& matr, std::string filename)
 	}
 	matr.const_row(sz - 1)->toString(cur, " {", ", ", "}");
 	out << cur << endl;
+	out.close();
+}
+
+void Writer::printAffineTransformation(const transformations::AffineTransformation& trans, std::string filename)
+{
+	out.open(foldername + filename);
+	size_t sz = trans.size();
+	string cur;
+	for (size_t i = 0; i < sz; i++)
+	{
+		trans[i].toString(cur);
+		out << "y" << i << " =" << cur << endl;
+	}
 	out.close();
 }

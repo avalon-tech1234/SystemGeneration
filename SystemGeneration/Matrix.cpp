@@ -2,6 +2,7 @@
 #include <iostream>
 
 using namespace std;
+using namespace matrixes;
 
 
 // возвращает квадратную матрицу dimension*dimension, заполненную нулями

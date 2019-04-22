@@ -1,13 +1,16 @@
 #include "RandomFactory.h"
 #include "Writer.h"
+#include "AffineTransformation.h"
 #include <iostream>
 
 using namespace std;
+using namespace matrixes;
+using namespace transformations;
 
 int main()
 {
 
-	size_t n = 3;
+	size_t n = 2;
 	RandomFactory<BOOL> factory;
 
 	MatrixB m1, m2;
@@ -18,14 +21,14 @@ int main()
 	factory.getRandomRow(v1);
 	factory.getRandomRow(v2);
 
-	string s1 = v1.toString();
-	string s2 = v2.toString();
+	AffineTransformation S = AffineTransformation(m1, v1);
+	AffineTransformation T = AffineTransformation(m2, v2);
 
-	system("pause");
-	/*
-	string foldername = Writer::createFolder();
-	Writer::printMatrix(m1, foldername + "/M1.txt");
-	Writer::printMatrix(m2, foldername + "/M2.txt");
-	*/
+	Writer writer;
+	writer.printMatrix(m1, "M1.txt");
+	writer.printMatrix(m2, "M2.txt");
+	writer.printAffineTransformation(S, "S.txt");
+	writer.printAffineTransformation(T, "T.txt");
+
 
 }

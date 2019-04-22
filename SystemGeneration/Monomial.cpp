@@ -9,13 +9,10 @@ namespace polynomials
 	Monomial::Monomial(vector<int> in_grades)
 	{
 		sort(in_grades.begin(), in_grades.end());
-		size_t s = in_grades.size();
-		for (size_t i = 0; i < s; i++)
-		{
-			push_back(in_grades[i]);
-		}
+		vars = in_grades;
 	}
 
+	/*
 	// 0 равны, 1 первый больше, -1 второй больше
 	int compare(const Monomial& m1, const Monomial& m2)
 	{
@@ -30,8 +27,9 @@ namespace polynomials
 		if (i2 < i2_max) return -1;
 		return 0;
 	}
+	*/
 
-	BOOL Monomial::substitute(const vector<BOOL> values)
+	BOOL Monomial::substitute(const vector<BOOL> values) const
 	{
 		size_t s = size();
 		for (size_t i = 0; i < s; i++)

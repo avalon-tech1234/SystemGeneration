@@ -31,11 +31,14 @@
     <Filter Include="Файлы исходного кода\polynomials">
       <UniqueIdentifier>{cdf8bb72-63c7-4748-815d-06c0a1d8424c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Заголовочные файлы\transformations">
+      <UniqueIdentifier>{7bb7e997-862a-48cb-bddf-a4ec8a3a3c4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\transformations">
+      <UniqueIdentifier>{25607a3b-5a52-40b6-812d-6ae67a45785a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RandomFactory.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="Writer.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
@@ -63,11 +66,23 @@
     <ClInclude Include="Polynomial.h">
       <Filter>Заголовочные файлы\polynomials</Filter>
     </ClInclude>
+    <ClInclude Include="RandomFactory.h">
+      <Filter>Заголовочные файлы\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="Transformation.h">
+      <Filter>Заголовочные файлы\transformations</Filter>
+    </ClInclude>
+    <ClInclude Include="AffineTransformation.h">
+      <Filter>Заголовочные файлы\transformations</Filter>
+    </ClInclude>
+    <ClInclude Include="PolynomialBuilder.h">
+      <Filter>Заголовочные файлы\polynomials</Filter>
+    </ClInclude>
+    <ClInclude Include="MonomialBuilder.h">
+      <Filter>Заголовочные файлы\polynomials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RandomFactory.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
@@ -85,6 +100,12 @@
     </ClCompile>
     <ClCompile Include="Monomial.cpp">
       <Filter>Файлы исходного кода\polynomials</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomFactory.cpp">
+      <Filter>Файлы исходного кода\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="AffineTransformation.cpp">
+      <Filter>Файлы исходного кода\transformations</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,21 +2,26 @@
 #include "Matrix.h"
 #include <random> 
 
-template <class _T>
-class RandomFactory
+namespace matrixes
 {
-public:
 
-	std::mt19937 gen; // генерит случайные числа
+	template <class _T>
+	class RandomFactory
+	{
+	public:
 
-	// принимает строку матрицы, заполненную нулями
-	// на выходе строка заполнена случайными числами (0 и 1)
-	void getRandomRow(Row<_T>& output);
+		std::mt19937 gen; // генерит случайные числа
 
-	// принимает квадратную матрицу , заполненную нулями
-	// на выходе матрица заполнена случайными числами (0 и 1). Гарантируется, что она обратима
-	void getRandomMatrix(Matrix <_T>& output, size_t dimension);
+		// принимает строку матрицы, заполненную нулями
+		// на выходе строка заполнена случайными числами (0 и 1)
+		void getRandomRow(Row<_T>& output);
 
-	RandomFactory();
+		// принимает квадратную матрицу , заполненную нулями
+		// на выходе матрица заполнена случайными числами (0 и 1). Гарантируется, что она обратима
+		void getRandomMatrix(Matrix <_T>& output, size_t dimension);
 
-};
+		RandomFactory();
+
+	};
+
+}
