@@ -46,10 +46,7 @@ void RandomFactory<_T>::getRandomMatrix(Matrix <_T>& output, size_t dimension) {
 		Row<_T>* r2 = output.row(gen() % dimension);
 		if (r1 != r2)
 			r1-> xor (r2);
-	}
 
-	for (size_t i = 0; i < dimension; i++)
-	{
 		int i1 = gen() % dimension;
 		int i2 = gen() % dimension;
 		if (i1 != i2)

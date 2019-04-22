@@ -47,9 +47,9 @@ namespace matrixes
 		inline void swap(size_t index1, size_t index2)
 		{
 			Row<t_vattype> save = *data[index1];
-			delete data[index1];
+			delete data[index1];					// ????????????????????????????????
 			data[index1] = data[index2];
-			data[index2] = new Row<t_vattype>(save);
+			data[index2] = new Row<t_vattype>(std::move(save));
 		}
 
 		// Возвращает количество строк (оно же количество столбцов) в матрице

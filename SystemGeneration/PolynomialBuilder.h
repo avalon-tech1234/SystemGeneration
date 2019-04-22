@@ -22,7 +22,7 @@ namespace polynomials
 		const Polynomial& createPolynomial()
 		{
 			pol = Polynomial(monomials);
-			std::vector<Monomial>().swap(monomials);
+			std::vector<Monomial>().swap(monomials);		// ??? monomials.clear();
 			return pol;
 		}
 	};
