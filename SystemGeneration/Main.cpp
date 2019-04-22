@@ -7,10 +7,24 @@ using namespace std;
 using namespace matrixes;
 using namespace transformations;
 
+#define _CRTDBG_MAP_ALLOC
+
+#include <stdlib.h>
+#include <crtdbg.h>
+
+static class __init__ {
+public: __init__() { /*_CrtSetBreakAlloc(520);*/
+}
+public: ~__init__() {
+	_CrtDumpMemoryLeaks();
+}
+} gl_init;
+
+
 int main()
 {
 
-	size_t n = 2;
+	size_t n = 10;
 	RandomFactory<BOOL> factory;
 
 	MatrixB m1, m2;
