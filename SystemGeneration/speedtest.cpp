@@ -7,6 +7,7 @@
 
 #include "RandomFactory.h"
 #include "Windows.h"
+#include "conio.h"
 #include "Array.h"
 
 using namespace std;
@@ -142,3 +143,22 @@ void Testing::test2()
 	system("pause");
 }
 
+void Testing::test3()
+{
+	LARGE_INTEGER ticks;
+	std::mt19937 gen;
+
+	QueryPerformanceCounter(&ticks);
+
+	gen.seed(ticks.LowPart ^ ticks.HighPart);
+
+	size_t cnZero = 0;
+	size_t sz = 100000ui64;
+	for (size_t i = 0;i < sz; i++) {
+		if (gen() % 2)
+			cnZero++;
+	}
+
+	std::cout << "Probability zero = " << ((cnZero / 100000.0) / (sz / 100000.0)) << std::endl;
+	_getch();
+}

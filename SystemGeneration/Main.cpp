@@ -2,6 +2,7 @@
 #include "Writer.h"
 #include "AffineTransformation.h"
 #include <iostream>
+#include "speedtest.h"
 
 using namespace std;
 using namespace matrixes;
