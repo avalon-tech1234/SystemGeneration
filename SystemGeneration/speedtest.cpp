@@ -4,7 +4,7 @@
 #include <iostream>
 #include <chrono>
 #include "BOOL.h"
-#include "Random.h"
+#include "RandomEngine.h"
 #include "RandomMatrixFactory.h"
 #include "Windows.h"
 #include "conio.h"
@@ -60,7 +60,7 @@ void Testing::test()
 void Testing::test2()
 {
 	size_t sz = 3000;
-	std::mt19937 gen = Random().getRandomEngine();
+	std::mt19937 gen = RandomEngine().getRandomEngine();
 
 
 	/////////////////////////////////////////////////

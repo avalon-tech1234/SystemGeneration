@@ -1,6 +1,6 @@
 #include "RandomMatrixFactory.h"
 #include "RandomPolynomialFactory.h"
-#include "Random.h"
+#include "RandomEngine.h"
 #include "AffineTransformation.h"
 #include "TransformationBuilder.h"
 #include "speedtest.h"
@@ -18,7 +18,7 @@ using namespace polynomials;
 int main()
 {
 	size_t n = 3;
-	std::mt19937 gen = Random().getRandomEngine();
+	std::mt19937 gen = RandomEngine().getRandomEngine();
 	RandomMatrixFactory<BOOL> matr_factory(gen);
 	RandomPolynomialFactory pol_factory(gen);
 
@@ -42,10 +42,6 @@ int main()
 	}
 	Transformation F;
 	builder.createTransformation(F);
-
-
-
-
 
 
 	Writer writer;

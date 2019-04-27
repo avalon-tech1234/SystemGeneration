@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include <string>
 #include "BOOL.h"
 
 namespace polynomials {
@@ -12,7 +11,7 @@ namespace polynomials {
 
 		// Список номеров индексов переменных монома, отсортированный по возрастанию
 		// Например, для монома х1х4х2 vars={1,2,4}
-		std::vector<size_t> vars; 
+		std::vector<size_t> vars;
 
 	public:
 
@@ -25,13 +24,13 @@ namespace polynomials {
 
 		BOOL substitute(const std::vector<BOOL> values) const;
 
-		size_t size() const
+		inline size_t size() const
 		{
 			return vars.size();
 		}
 
 		// получение (но не изменение) номера i-ой переменной монома
-		int operator[](size_t i) const
+		inline int operator[](size_t i) const
 		{
 			return vars[i];
 		}
@@ -50,34 +49,29 @@ namespace polynomials {
 			return true;
 		}
 
-		void toString(std::string& out) const
-		{
-			size_t size_beg = out.size();
-			for (auto it = vars.begin(); it != vars.end(); it++)
-			{
-				out += "x" + std::to_string(*it);
-			}
-			if (out.size() == size_beg)
-				out += "1";
+		void toString(std::string& out) const;
+
+
+
+
+		bool operator<(const Monomial& m2) const;
+
+		bool operator> (const Monomial& m2) const {
+			return m2 < *this;
+		}
+		bool operator== (const Monomial& m2) const {
+			return !(m2 < *this) && !(m2 > *this);
+		}
+		bool operator!= (const Monomial& m2) const {
+			return !(m2 == *this);
+		}
+		bool operator<= (const Monomial& m2) const {
+			return !(*this > m2);
+		}
+		bool operator>= (const Monomial& m2) const {
+			return !(*this < m2);
 		}
 
 
-
-
-		friend bool compare(const Monomial& m1, const Monomial& m2);
-
-		/*
-		int compareTo(const Monomial& m2) const
-		{
-			return compare(*this, m2);
-		}
-		friend bool operator == (const Monomial& m1, const Monomial& m2) { return compare(m1, m2) == 0; }
-		friend bool operator != (const Monomial& m1, const Monomial& m2) { return compare(m1, m2) != 0; }
-		friend bool operator < (const Monomial& m1, const Monomial& m2) { return compare(m1, m2) == -1; }
-		friend bool operator > (const Monomial& m1, const Monomial& m2) { return compare(m1, m2) == 1; }
-		friend bool operator <= (const Monomial& m1, const Monomial& m2) { return compare(m1, m2) <= 0; }
-		friend bool operator >= (const Monomial& m1, const Monomial& m2) { return compare(m1, m2) >= 0; }
-		
-		*/
 	};
 }

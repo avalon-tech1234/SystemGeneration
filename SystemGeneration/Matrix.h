@@ -1,6 +1,5 @@
 #pragma once
 #include "Row.h"
-#include <algorithm>
 
 namespace matrixes
 {

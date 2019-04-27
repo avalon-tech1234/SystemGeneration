@@ -1,5 +1,6 @@
 #include "Matrix.h"
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 using namespace matrixes;

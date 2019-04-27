@@ -1,7 +1,6 @@
 #pragma once
 #include "Transformation.h"
 #include "Matrix.h"
-#include "Polynomial.h"
 
 namespace transformations
 {
@@ -11,7 +10,6 @@ namespace transformations
 	public:
 
 		AffineTransformation(const matrixes::MatrixB& M, const matrixes::RowB& v);
-
 
 	};
 }

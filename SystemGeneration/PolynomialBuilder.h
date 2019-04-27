@@ -15,7 +15,7 @@ namespace polynomials
 		void pushMonomial()
 		{
 			Monomial m;
-			MonomialBuilder::createMonomial(m);
+			createMonomial(m);
 			monomials.push_back(m);
 		}
 

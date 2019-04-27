@@ -96,11 +96,11 @@
     <ClInclude Include="RandomPolynomialFactory.h">
       <Filter>Заголовочные файлы\random</Filter>
     </ClInclude>
-    <ClInclude Include="Random.h">
-      <Filter>Заголовочные файлы\random</Filter>
-    </ClInclude>
     <ClInclude Include="TransformationBuilder.h">
       <Filter>Заголовочные файлы\transformations</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomEngine.h">
+      <Filter>Заголовочные файлы\random</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -131,7 +131,10 @@
     <ClCompile Include="RandomPolynomialFactory.cpp">
       <Filter>Файлы исходного кода\random</Filter>
     </ClCompile>
-    <ClCompile Include="Random.cpp">
+    <ClCompile Include="Polynomial.cpp">
+      <Filter>Файлы исходного кода\polynomials</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomEngine.cpp">
       <Filter>Файлы исходного кода\random</Filter>
     </ClCompile>
   </ItemGroup>

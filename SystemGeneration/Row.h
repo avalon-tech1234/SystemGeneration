@@ -19,6 +19,10 @@ namespace matrixes
 
 		void xor(Row<_T>* second)
 		{
+			if (size() != second->size())
+			{
+				throw std::exception("For operation XOR vectors must have same dimension");
+			}
 			size_t s = size();
 			for (size_t i = 0; i < s; i++)
 			{
