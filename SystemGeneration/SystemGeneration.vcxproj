@@ -119,11 +119,14 @@
     <ClInclude Include="MonomialBuilder.h" />
     <ClInclude Include="Polynomial.h" />
     <ClInclude Include="PolynomialBuilder.h" />
-    <ClInclude Include="RandomFactory.h" />
+    <ClInclude Include="Random.h" />
+    <ClInclude Include="RandomMatrixFactory.h" />
+    <ClInclude Include="RandomPolynomialFactory.h" />
     <ClInclude Include="Row.h" />
     <ClInclude Include="speedtest.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Transformation.h" />
+    <ClInclude Include="TransformationBuilder.h" />
     <ClInclude Include="Writer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -131,7 +134,9 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Monomial.cpp" />
-    <ClCompile Include="RandomFactory.cpp" />
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="RandomMatrixFactory.cpp" />
+    <ClCompile Include="RandomPolynomialFactory.cpp" />
     <ClCompile Include="Row.cpp" />
     <ClCompile Include="speedtest.cpp" />
     <ClCompile Include="Writer.cpp" />

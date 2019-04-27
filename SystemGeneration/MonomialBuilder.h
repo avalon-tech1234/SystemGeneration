@@ -8,21 +8,24 @@ namespace polynomials
 	class MonomialBuilder
 	{
 	private:
-		std::vector<int> gr; // номера переменных в мономе
-		Monomial mon;
+		std::vector<size_t> gr; // номера переменных в мономе
+
 	protected:
 
 		virtual const void createMonomial(Monomial& m)
 		{
-			mon = Monomial(gr);
-			m = mon;
-			std::vector<int>().swap(gr);
+			m = Monomial(gr);
+			gr.clear();
 		}
 
 	public:
-		virtual void addGrade(int grade)
+		virtual void addGrade(size_t grade)
 		{
 			gr.push_back(grade);
+		}
+		virtual void addGrades(std::vector<size_t> new_grades)
+		{
+			gr.insert(gr.end(), new_grades.begin(), new_grades.end());
 		}
 	};
 

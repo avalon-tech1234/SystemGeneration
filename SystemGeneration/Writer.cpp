@@ -6,6 +6,7 @@
 #include <string>
 
 using namespace std;
+using namespace IO;
 
 Writer::Writer()
 {
@@ -32,6 +33,7 @@ Writer::Writer()
 void Writer::printMatrix(const matrixes::MatrixB& matr, std::string filename)
 {
 	out.open(foldername + filename);
+
 	size_t sz = matr.size();
 	string cur;
 	for (size_t i = 0; i < sz - 1; i++)
@@ -41,12 +43,14 @@ void Writer::printMatrix(const matrixes::MatrixB& matr, std::string filename)
 	}
 	matr.const_row(sz - 1)->toString(cur, " {", ", ", "}");
 	out << cur << endl;
+
 	out.close();
 }
 
-void Writer::printAffineTransformation(const transformations::AffineTransformation& trans, std::string filename)
+void Writer::printTransformation(const transformations::Transformation& trans, std::string filename)
 {
 	out.open(foldername + filename);
+
 	size_t sz = trans.size();
 	string cur;
 	for (size_t i = 0; i < sz; i++)
@@ -54,5 +58,6 @@ void Writer::printAffineTransformation(const transformations::AffineTransformati
 		trans[i].toString(cur);
 		out << "y" << i << " =" << cur << endl;
 	}
+
 	out.close();
 }

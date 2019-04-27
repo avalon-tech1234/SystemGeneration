@@ -1,11 +1,11 @@
 #pragma once
 #include "Monomial.h"
-
+#include <algorithm>
 
 namespace polynomials {
 
 
-	class Polynomial : public std::vector <Monomial>
+	class Polynomial : private std::vector <Monomial>
 	{
 	private:
 		//Monomial leadingMonomial;
@@ -13,7 +13,16 @@ namespace polynomials {
 		//void refreshLeadingMonomial() { leadingMonomial = getLeadingMonomial(); };
 
 	public:
-		Polynomial(std::vector <Monomial> in_monomials) : std::vector <Monomial>(in_monomials) {};
+		Polynomial(std::vector <Monomial> in_monomials)
+			: std::vector <Monomial>(in_monomials)
+		{
+			simplify();
+		}
+
+		Polynomial(Monomial m)
+		{
+			push_back(m);
+		}
 
 		Polynomial() {}
 
@@ -41,6 +50,36 @@ namespace polynomials {
 				else
 					out += " + ";
 				it->toString(out);
+			}
+			if (out == "") out = " 0";
+		}
+
+		Polynomial& operator+(Polynomial& p2)
+		{
+			insert(end(), p2.begin(), p2.end());
+			simplify();
+			return *this;
+		}
+
+		void operator+=(Polynomial& p2)
+		{
+			insert(end(), p2.begin(), p2.end());
+			simplify();
+		}
+
+		void simplify()
+		{
+			std::sort(begin(), end(), compare);
+
+			size_t i = 0;
+			while (i + 1 < size())
+			{
+				if (operator[](i) == operator[](i + 1))
+				{
+					erase(begin() + i);
+					erase(begin() + i);
+				}
+				i++;
 			}
 		}
 

@@ -8,16 +8,16 @@ using namespace transformations;
 
 AffineTransformation::AffineTransformation(const MatrixB& M, const RowB& v)
 {
-	int n = M.size();
+	size_t n = M.size();
 	if (v.size() != n)
 		throw exception("Matrix M and vector v for affine transformation must be commensurate");
 
-	PolynomialBilder builder;
+	PolynomialBuilder builder;
 	RowB* cur_vec;
-	for (int i = 0; i < n; i++)
+	for (size_t i = 0; i < n; i++)
 	{
 		cur_vec = M.const_row(i);
-		for (int j = 0; j < n; j++)
+		for (size_t j = 0; j < n; j++)
 		{
 			if (cur_vec->value(j) == TRUE)
 			{

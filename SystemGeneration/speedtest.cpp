@@ -4,17 +4,18 @@
 #include <iostream>
 #include <chrono>
 #include "BOOL.h"
-
-#include "RandomFactory.h"
+#include "Random.h"
+#include "RandomMatrixFactory.h"
 #include "Windows.h"
 #include "conio.h"
 #include "Array.h"
+#include <stdlib.h>
+#include <crtdbg.h>
 
 using namespace std;
 using namespace chrono;
-
 using namespace matrixes;
-
+using namespace random;
 
 void Testing::test()
 {
@@ -59,6 +60,8 @@ void Testing::test()
 void Testing::test2()
 {
 	size_t sz = 3000;
+	std::mt19937 gen = Random().getRandomEngine();
+
 
 	/////////////////////////////////////////////////
 	LARGE_INTEGER ST1, ET1, EMls1;
@@ -75,7 +78,7 @@ void Testing::test2()
 	QueryPerformanceCounter(&ST1);
 
 	Matrix <BOOL> matr_BOOL;
-	RandomFactory<BOOL>().getRandomMatrix(matr_BOOL, sz);
+	RandomMatrixFactory<BOOL>(gen).getRandomMatrix(matr_BOOL, sz);
 
 	QueryPerformanceCounter(&ET1);
 	EMls1.QuadPart = ET1.QuadPart - ST1.QuadPart;
@@ -88,7 +91,7 @@ void Testing::test2()
 	QueryPerformanceCounter(&ST2);
 
 	Matrix <bool> matr_bool;
-	RandomFactory<bool>().getRandomMatrix(matr_bool, sz);
+	RandomMatrixFactory<bool>(gen).getRandomMatrix(matr_bool, sz);
 
 	QueryPerformanceCounter(&ET2);
 	EMls2.QuadPart = ET2.QuadPart - ST2.QuadPart;
@@ -161,4 +164,19 @@ void Testing::test3()
 
 	std::cout << "Probability zero = " << ((cnZero / 100000.0) / (sz / 100000.0)) << std::endl;
 	_getch();
+}
+
+#define _CRTDBG_MAP_ALLOC
+
+
+void Testing::test_memory_leaks()
+{
+	static class __init__ {
+	public: __init__() { /*_CrtSetBreakAlloc(520);*/
+	}
+	public: ~__init__() {
+		_CrtDumpMemoryLeaks();
+	}
+	} gl_init;
+
 }

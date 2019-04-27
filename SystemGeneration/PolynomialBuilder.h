@@ -4,7 +4,7 @@
 
 namespace polynomials
 {
-	class PolynomialBilder : public MonomialBuilder
+	class PolynomialBuilder : public MonomialBuilder
 	{
 	private:
 		std::vector <Monomial> monomials;
@@ -19,11 +19,18 @@ namespace polynomials
 			monomials.push_back(m);
 		}
 
-		const Polynomial& createPolynomial()
+		Polynomial& createPolynomial()
 		{
 			pol = Polynomial(monomials);
-			std::vector<Monomial>().swap(monomials);		// ??? monomials.clear();
+			monomials.clear();
 			return pol;
 		}
+
+		~PolynomialBuilder()
+		{
+			monomials.clear();
+			monomials.shrink_to_fit();
+		}
+
 	};
 }

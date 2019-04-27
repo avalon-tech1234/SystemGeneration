@@ -12,12 +12,16 @@ namespace polynomials {
 
 		// —писок номеров индексов переменных монома, отсортированный по возрастанию
 		// Ќапример, дл€ монома х1х4х2 vars={1,2,4}
-		std::vector<int> vars; 
+		std::vector<size_t> vars; 
 
 	public:
 
-		Monomial(std::vector<int> vars);
+		Monomial(std::vector<size_t> vars);
 		Monomial() {};
+		Monomial(size_t num)
+		{
+			vars.push_back(num);
+		}
 
 		BOOL substitute(const std::vector<BOOL> values) const;
 
@@ -30,6 +34,20 @@ namespace polynomials {
 		int operator[](size_t i) const
 		{
 			return vars[i];
+		}
+
+		bool operator==(Monomial& p2)
+		{
+			if (size() != p2.size())
+				return false;
+
+			for (size_t i = 0; i < size(); i++)
+			{
+				if (operator[](i) != p2[i])
+					return false;
+			}
+
+			return true;
 		}
 
 		void toString(std::string& out) const
@@ -46,12 +64,9 @@ namespace polynomials {
 
 
 
+		friend bool compare(const Monomial& m1, const Monomial& m2);
+
 		/*
-
-		¬ данном блоке определ€етс€ логика сравнени€ двух мономов.
-		ѕока не удал€ю, возможно пригодитс€
-
-		friend int compare(const Monomial& m1, const Monomial& m2);
 		int compareTo(const Monomial& m2) const
 		{
 			return compare(*this, m2);
@@ -62,7 +77,7 @@ namespace polynomials {
 		friend bool operator > (const Monomial& m1, const Monomial& m2) { return compare(m1, m2) == 1; }
 		friend bool operator <= (const Monomial& m1, const Monomial& m2) { return compare(m1, m2) <= 0; }
 		friend bool operator >= (const Monomial& m1, const Monomial& m2) { return compare(m1, m2) >= 0; }
+		
 		*/
-
 	};
 }

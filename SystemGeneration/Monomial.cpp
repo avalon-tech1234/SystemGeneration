@@ -6,35 +6,51 @@ using namespace std;
 
 namespace polynomials
 {
-	Monomial::Monomial(vector<int> in_grades)
+	Monomial::Monomial(vector<size_t> in_grades)
 	{
 		sort(in_grades.begin(), in_grades.end());
-		vars = in_grades;
+		vars = std::move(in_grades);
+
+		/*
+		vector<size_t>::iterator it, itprev = vars.begin();
+		for (it = vars.begin() + 1; it != vars.end(); it++)
+		{
+			if (*itprev == *it)
+				it = --vars.erase(it);
+			itprev = it;
+		}
+		*/
+		size_t i = 0;
+		while (i + 1 < vars.size())
+		{
+			if (vars[i] = vars[i+1])
+				vars.erase(vars.begin()+i);
+			i++;
+		}
+		int kek = 0;
 	}
 
-	/*
+
 	// 0 равны, 1 первый больше, -1 второй больше
-	int compare(const Monomial& m1, const Monomial& m2)
+	bool compare(const Monomial& m1, const Monomial& m2)
 	{
-		size_t i1 = 0, i2 = 0;
-		size_t i1_max = m1.size(), i2_max = m1.size();
-		while (i1 < i1_max, i2 < i2_max)
+		if (m1.size() > m2.size()) return true;
+		if (m1.size() < m2.size()) return false;
+		for (size_t i = 0; i < m1.size(); i++)
 		{
-			if (m1[i1] > m2[i2]) return -1;
-			if (m1[i1] < m2[i2]) return 1;
+			if (m1[i] > m2[i]) return false;
+			if (m1[i] < m2[i]) return true;
 		}
-		if (i1 < i1_max) return 1;
-		if (i2 < i2_max) return -1;
-		return 0;
+		return false;
 	}
-	*/
+
 
 	BOOL Monomial::substitute(const vector<BOOL> values) const
 	{
 		size_t s = size();
 		for (size_t i = 0; i < s; i++)
 		{
-			if (values[operator[](i)]== FALSE) return FALSE;
+			if (values[operator[](i)] == FALSE) return FALSE;
 		}
 		return TRUE;
 	}

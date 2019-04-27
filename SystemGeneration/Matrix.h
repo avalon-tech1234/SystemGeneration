@@ -1,5 +1,6 @@
 #pragma once
 #include "Row.h"
+#include <algorithm>
 
 namespace matrixes
 {
@@ -29,7 +30,6 @@ namespace matrixes
 			{
 				delete data[i];
 			}
-
 			data.clear();
 		}
 
@@ -44,13 +44,7 @@ namespace matrixes
 			return data[n];
 		}
 
-		inline void swap(size_t index1, size_t index2)
-		{
-			Row<t_vattype> save = *data[index1];
-			delete data[index1];					// ????????????????????????????????
-			data[index1] = data[index2];
-			data[index2] = new Row<t_vattype>(std::move(save));
-		}
+		inline void swap(size_t index1, size_t index2);
 
 		// Возвращает количество строк (оно же количество столбцов) в матрице
 		inline size_t size() const

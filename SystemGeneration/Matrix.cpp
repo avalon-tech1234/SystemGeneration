@@ -36,6 +36,11 @@ BOOL Matrix<t_vattype>::Init(size_t dimension)
 	return TRUE;
 }
 
+template <typename t_vattype>
+inline void Matrix<t_vattype>::swap(size_t index1, size_t index2)
+{
+	std::swap(data[index1], data[index2]);
+}
 
 
 template class Matrix<bool>;
