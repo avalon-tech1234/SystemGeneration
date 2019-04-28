@@ -17,7 +17,8 @@ using namespace polynomials;
 
 int main()
 {
-	size_t n = 3;
+
+	size_t n = 5;
 	std::mt19937 gen = RandomEngine().getRandomEngine();
 	RandomMatrixFactory<BOOL> matr_factory(gen);
 	RandomPolynomialFactory pol_factory(gen);
@@ -36,8 +37,8 @@ int main()
 	Polynomial cur;
 	for (size_t i = 0; i < n; i++)
 	{
-		cur = Polynomial(Monomial(i));
-		pol_factory.addQuadraticPolynomial(cur, i);
+		pol_factory.getQuadraticPolynomial(cur, i);
+		cur += Monomial(i);
 		builder.addPolynomial(cur);
 	}
 	Transformation F;

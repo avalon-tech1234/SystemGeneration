@@ -23,7 +23,7 @@ void RandomMatrixFactory<_T>::getRandomMatrix(Matrix <_T>& output, size_t dimens
 	Row <_T>* cur_row;
 	for (size_t i = 0; i < dimension; i++)
 	{
-		cur_row = output.row(i);
+		cur_row = output.get(i);
 
 		for (size_t j = 0; j < i; j++)
 		{
@@ -38,18 +38,18 @@ void RandomMatrixFactory<_T>::getRandomMatrix(Matrix <_T>& output, size_t dimens
 
 	for (size_t i = 0; i < dimension; i++)
 	{
-		Row<_T>* r1 = output.row(gen() % dimension);
-		Row<_T>* r2 = output.row(gen() % dimension);
-		if (r1 != r2)
-			r1-> xor (r2);
-	}
+		size_t i1 = gen() % dimension;
+		size_t i2 = gen() % dimension;
 
-	for (size_t i = 0; i < dimension; i++)
-	{
-		int i1 = gen() % dimension;
-		int i2 = gen() % dimension;
+		Row<_T>* r1 = output[i1];
+		Row<_T>* r2 = output[i2];
+
 		if (i1 != i2)
+		{
+			r1->operator^=(r2);
+
 			output.swap(i1, i2);
+		}
 	}
 }
 

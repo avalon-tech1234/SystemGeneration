@@ -32,13 +32,12 @@ namespace matrixes
 			data.clear();
 		}
 
-
-		inline Row <t_vattype>* row(size_t n)
+		inline Row <t_vattype>* get(size_t n)
 		{
 			return data[n];
 		}
 
-		inline Row <t_vattype>* const const_row(size_t n) const
+		inline Row <t_vattype>* const operator[](size_t n) const
 		{
 			return data[n];
 		}

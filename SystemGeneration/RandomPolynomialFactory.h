@@ -13,7 +13,7 @@ namespace random
 
 		// прибавляет к полиному случайный квадратичный полином
 		// принимает количество переменных
-		void addQuadraticPolynomial(polynomials::Polynomial&, int n);
+		void getQuadraticPolynomial(polynomials::Polynomial&, size_t n);
 
 		RandomPolynomialFactory(const std::mt19937& gen) : gen(gen) {}
 

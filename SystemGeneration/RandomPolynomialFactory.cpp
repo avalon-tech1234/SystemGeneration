@@ -3,9 +3,9 @@
 
 using namespace random;
 using namespace polynomials;
+using namespace std;
 
-
-void RandomPolynomialFactory::addQuadraticPolynomial(Polynomial& out, int n)
+void RandomPolynomialFactory::getQuadraticPolynomial(Polynomial& out, size_t n)
 {
 	PolynomialBuilder builder;
 
@@ -36,5 +36,5 @@ void RandomPolynomialFactory::addQuadraticPolynomial(Polynomial& out, int n)
 		builder.pushMonomial();
 	}
 
-	out += builder.createPolynomial();
+	builder.createPolynomial(out);
 }

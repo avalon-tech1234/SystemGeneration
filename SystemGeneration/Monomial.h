@@ -15,7 +15,7 @@ namespace polynomials {
 
 	public:
 
-		Monomial(std::vector<size_t> vars);
+		Monomial(std::vector<size_t>& in_grades);
 		Monomial() {};
 		Monomial(size_t num)
 		{
@@ -23,6 +23,7 @@ namespace polynomials {
 		}
 
 		BOOL substitute(const std::vector<BOOL> values) const;
+		void toString(std::string& out) const;
 
 		inline size_t size() const
 		{
@@ -30,29 +31,10 @@ namespace polynomials {
 		}
 
 		// получение (но не изменение) номера i-ой переменной монома
-		inline int operator[](size_t i) const
+		inline size_t operator[](size_t i) const
 		{
 			return vars[i];
 		}
-
-		bool operator==(Monomial& p2)
-		{
-			if (size() != p2.size())
-				return false;
-
-			for (size_t i = 0; i < size(); i++)
-			{
-				if (operator[](i) != p2[i])
-					return false;
-			}
-
-			return true;
-		}
-
-		void toString(std::string& out) const;
-
-
-
 
 		bool operator<(const Monomial& m2) const;
 

@@ -5,26 +5,29 @@
 using namespace std;
 using namespace polynomials;
 
-Monomial::Monomial(vector<size_t> in_grades)
+Monomial::Monomial(vector<size_t>& in_grades)
 {
 	sort(in_grades.begin(), in_grades.end());
-	vars = move(in_grades);
 
-	size_t i = 0;
-	while (i + 1 < vars.size())
-	{
-		if (vars[i] = vars[i + 1])
-			vars.erase(vars.begin() + i);
-		i++;
+	vars.clear();
+	if (!in_grades.empty()) {
+		vars.push_back(in_grades[0]);
+		size_t i = 1;
+		while (i < in_grades.size())
+		{
+			if (in_grades[i] != in_grades[i - 1])
+				vars.push_back(in_grades[i]);
+			i++;
+		}
 	}
-	int kek = 0;
+
 }
 
 
 bool Monomial::operator<(const Monomial& m2) const
 {
-	if (size() > size()) return true;
-	if (size() < size()) return false;
+	if (size() > m2.size()) return true;
+	if (size() < m2.size()) return false;
 	for (size_t i = 0; i < size(); i++)
 	{
 		if (operator[](i) > m2[i]) return false;
@@ -39,7 +42,7 @@ BOOL Monomial::substitute(const vector<BOOL> values) const
 	size_t s = size();
 	for (size_t i = 0; i < s; i++)
 	{
-		if (values[operator[](i)] == FALSE) 
+		if (values[operator[](i)] == FALSE)
 			return FALSE;
 	}
 	return TRUE;

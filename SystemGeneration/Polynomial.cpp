@@ -6,17 +6,17 @@ using namespace polynomials;
 
 void Polynomial::toString(string& out) const
 {
-	out = "";
-	string cur;
-	for (auto it = begin(); it != end(); it++)
-	{
-		if (it == begin())
-			out += " ";
-		else
+	out.clear();
+	if (terms.empty()) out = "0";
+	else {
+		auto it = terms.begin(), end = terms.end();
+		(it++)->toString(out);
+		while (it < end)
+		{
 			out += " + ";
-		it->toString(out);
+			(it++)->toString(out);
+		}
 	}
-	if (out == "") out = " 0";
 }
 
 BOOL Polynomial::substitute(const vector<BOOL> values) const
@@ -32,8 +32,8 @@ BOOL Polynomial::substitute(const vector<BOOL> values) const
 
 void Polynomial::simplify()
 {
-	std::sort(begin(), end());
 
+	/*
 	size_t i = 0;
 	while (i + 1 < size())
 	{
@@ -43,6 +43,26 @@ void Polynomial::simplify()
 			erase(begin() + i);
 		}
 		i++;
+	}
+	*/
+
+	if (!terms.empty())
+	{
+		vector<Monomial> temp = move(terms);
+		sort(temp.begin(), temp.end());
+
+		size_t i = 0;
+		while (i + 1 < temp.size())
+		{
+			if (temp[i] != temp[i + 1])
+				terms.push_back(temp[i++]);
+			else
+				i += 2;
+		}
+		if (!terms.empty() && temp.back() != terms.back())
+			terms.push_back(temp.back());
+
+		terms = move(temp);
 	}
 }
 

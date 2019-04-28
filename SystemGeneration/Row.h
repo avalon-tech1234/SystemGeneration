@@ -2,47 +2,50 @@
 #include <vector>
 #include "BOOL.h"
 
+	// Данный класс описывает строку матрицы, состоящую из 0 и 1
+
 namespace matrixes
 {
 
-	// Данный класс описывает строку матрицы, состоящую из 0 и 1
 	template <class _T>
-	class Row : private std::vector<_T>
+	class Row
 	{
 
 	private:
+		std::vector<_T> elements;
 		Row() = delete;
 
 	public:
 
-		Row(size_t length) : std::vector<_T>(length) {};
+		Row(size_t length) : elements(length) {};
 
-		void xor(Row<_T>* second)
+		void operator^=(const Row<_T>* second)
 		{
-			if (size() != second->size())
+			size_t sz = size();
+			if (sz != second->size())
 			{
 				throw std::exception("For operation XOR vectors must have same dimension");
 			}
-			size_t s = size();
-			for (size_t i = 0; i < s; i++)
+			for (size_t i = 0; i < sz; i++)
 			{
-				operator[](i) = operator[](i) ^ second->value(i);
+				_T res = elements[i] ^ (*second)[i];
+				elements[i] = res;
 			}
 		}
 
 		inline _T& element(size_t index)
 		{
-			return (_T&)operator[](index);
+			return (_T&)elements[index];
 		}
 
-		inline _T value(size_t index) const
+		inline _T operator[](size_t index) const
 		{
-			return (_T)operator[](index);
+			return (_T)elements[index];
 		}
 
 		inline size_t size() const
 		{
-			return std::vector<_T>::size();
+			return elements.size();
 		}
 
 		void Row::toString(

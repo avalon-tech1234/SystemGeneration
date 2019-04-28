@@ -40,7 +40,8 @@ BOOL Matrix<t_vattype>::Init(size_t dimension)
 template <typename t_vattype>
 inline void Matrix<t_vattype>::swap(size_t index1, size_t index2)
 {
-	std::swap(data[index1], data[index2]);
+	auto it1 = data.begin() + index1, it2 = data.begin() + index2;
+	iter_swap(it1, it2);
 }
 
 

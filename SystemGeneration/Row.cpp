@@ -10,18 +10,24 @@ void Row<_T>::toString(
 	std::string right_border = "}")
 	const
 {
-	size_t res_size = (cend() - cbegin()) *
-		(1 + delimiter.length()) + left_border.length() + right_border.length();
+
+	size_t res_size = size() * (1 + delimiter.length()) + left_border.length() + right_border.length();
 	output = left_border;
 	output.reserve(res_size);
 
-	for (auto it = begin(); it != end(); it++)
+	if (!elements.empty())
 	{
-		if (it != begin())
-			output += delimiter;
+		auto it = elements.begin(), end = elements.end();
 
-		if (*it) output += '1';
+		if (*it++ == TRUE) output += '1';
 		else output += '0';
+		while (it < end)
+		{
+
+			output += delimiter;
+			if (*it++ == TRUE) output += '1';
+			else output += '0';
+		}
 	}
 	output += right_border;
 }

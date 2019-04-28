@@ -8,7 +8,6 @@ namespace polynomials
 	{
 	private:
 		std::vector <Monomial> monomials;
-		Polynomial pol;
 
 	public:
 
@@ -19,11 +18,10 @@ namespace polynomials
 			monomials.push_back(m);
 		}
 
-		Polynomial& createPolynomial()
+		void createPolynomial(Polynomial& out)
 		{
-			pol = Polynomial(monomials);
+			out = Polynomial(monomials);
 			monomials.clear();
-			return pol;
 		}
 
 		~PolynomialBuilder()

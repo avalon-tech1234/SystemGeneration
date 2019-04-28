@@ -14,20 +14,23 @@ AffineTransformation::AffineTransformation(const MatrixB& M, const RowB& v)
 
 	PolynomialBuilder builder;
 	RowB* cur_vec;
+	Polynomial cur;
 	for (size_t i = 0; i < n; i++)
 	{
-		cur_vec = M.const_row(i);
+		cur_vec = M[i];
 		for (size_t j = 0; j < n; j++)
 		{
-			if (cur_vec->value(j) == TRUE)
+			if ((*cur_vec)[j] == TRUE)
 			{
 				builder.addGrade(j);
 				builder.pushMonomial();
 			}
 		}
-		if (v.value(i) == TRUE)
+		if (v[i] == TRUE)
 			builder.pushMonomial();
-		coordinates.push_back(builder.createPolynomial());
+
+		builder.createPolynomial(cur); /// ??????
+		coordinates.push_back(cur);
 	}
 
 }
