@@ -13,11 +13,15 @@ void Monomial::simplify()
 		sort(temp.begin(), temp.end());
 
 		vars.push_back(temp[0]);
-		for (size_t i = 1; i < temp.size(); i++)
+		size_t i = 1, sz = temp.size();
+		while (i < sz)
 		{
-			if (temp[i] != vars.back()) 
+			if (temp[i] != vars.back())
 				vars.push_back(temp[i]);
+			i++;
 		}
+
+		temp.clear();
 
 	}
 

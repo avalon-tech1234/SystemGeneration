@@ -38,14 +38,14 @@ namespace polynomials {
 			return *this;
 		}
 
-		void operator+=(const Polynomial& p2)
+		inline Polynomial& operator*(const Polynomial& p2)
 		{
-			size_t sz = p2.size(), i = 0;
-			while (i < sz)
-				terms.push_back(p2[i++]);
-
-			simplify();
+			operator*=(Polynomial(p2));
+			return *this;
 		}
+
+		void operator+=(const Polynomial& p2);
+		void operator*=(const Polynomial& p2);
 
 		inline const Monomial& operator[](size_t i) const
 		{

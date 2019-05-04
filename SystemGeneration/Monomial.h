@@ -43,6 +43,12 @@ namespace polynomials {
 			return vars[i];
 		}
 		
+		inline Monomial& operator*(const Monomial& p2)
+		{
+			operator*=(Monomial(p2));
+			return *this;
+		}
+
 		void operator*= (const Monomial& m2)
 		{
 			size_t sz = m2.size(), i = 0;
