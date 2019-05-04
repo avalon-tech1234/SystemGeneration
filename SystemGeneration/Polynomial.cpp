@@ -51,16 +51,14 @@ void Polynomial::simplify()
 		vector<Monomial> temp = move(terms);
 		sort(temp.begin(), temp.end());
 
-		size_t i = 0;
-		while (i + 1 < temp.size())
+		terms.push_back(temp[0]);
+		for (size_t i = 1; i < temp.size(); i++)
 		{
-			if (temp[i] != temp[i + 1])
-				terms.push_back(temp[i++]);
-			else
-				i += 2;
+			if (temp[i] == terms.back()) 
+				terms.pop_back();
+			else 
+				terms.push_back(temp[i]);
 		}
-		if (!terms.empty() && temp.back() != terms.back())
-			terms.push_back(temp.back());
 
 		// terms = move(temp); - вроде эта строка здесь неспроста, но зачем?..
 	}

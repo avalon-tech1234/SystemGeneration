@@ -12,14 +12,13 @@ void Monomial::simplify()
 		vector<size_t> temp = move(vars);
 		sort(temp.begin(), temp.end());
 
-		size_t i = 0;
 		vars.push_back(temp[0]);
-
-		while ((++i) < temp.size())
+		for (size_t i = 1; i < temp.size(); i++)
 		{
-			if (temp[i] != temp[i - 1])
+			if (temp[i] != vars.back()) 
 				vars.push_back(temp[i]);
 		}
+
 	}
 
 }

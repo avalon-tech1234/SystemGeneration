@@ -7,6 +7,7 @@
 #include "Writer.h"
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 using namespace matrixes;
@@ -15,12 +16,10 @@ using namespace IO;
 using namespace random;
 using namespace polynomials;
 
-// код проверки на утечки памяти вынесена в speedtest
+// код проверки на утечки памяти вынесен в speedtest
 
 int main()
 {
-
-	int a = 0;
 
 	cout << "Performing preparations... ";
 
@@ -39,25 +38,34 @@ int main()
 	matr_factory.getRandomRow(v1);
 	matr_factory.getRandomRow(v2);
 
-	cout << "finished" << endl << "Generating affine transformations S and T... ";
+	cout << "finished" << endl << "Generating affine transformation S... ";
 
 	AffineTransformation S = AffineTransformation(m1, v1);
+	cout << " finished" << endl << "Generating affine transformation T... ";
 	AffineTransformation T = AffineTransformation(m2, v2);
 
-	cout << "finished" << endl << "Generating random transformation F... ";
+	cout << " finished" << endl << "Generating random transformation F... ";
 
 	TransformationBuilder builder;
 	Polynomial cur;
+	size_t prev_num = 0;
 	for (size_t i = 0; i < n; i++)
 	{
 		pol_factory.getQuadraticPolynomial(cur, i);
 		cur += Monomial(i);
 		builder.addPolynomial(cur);
+		if (i % 10 == 0)
+		{
+			for (int i = 0; i < prev_num; i++) cout << '\b';
+			cout << i << '/' << n;
+			prev_num = to_string(i).length() + to_string(n).length() + 1;
+		}
 	}
+	for (int i = 0; i < prev_num; i++) cout << '\b';
 	Transformation F;
 	builder.createTransformation(F);
 
-	cout << "finished" << endl << "Printing into file... ";
+	cout << "finished" << endl << "Printing into files... ";
 
 	Writer writer;
 	writer.printMatrix(m1, "M1.txt");
