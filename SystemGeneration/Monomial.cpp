@@ -1,23 +1,24 @@
-#include <algorithm>
 #include "Monomial.h"
+#include <algorithm>
 #include <string>
 
 using namespace std;
 using namespace polynomials;
 
-Monomial::Monomial(vector<size_t>& in_grades)
+void Monomial::simplify()
 {
-	sort(in_grades.begin(), in_grades.end());
+	if (!vars.empty())
+	{
+		vector<size_t> temp = move(vars);
+		sort(temp.begin(), temp.end());
 
-	vars.clear();
-	if (!in_grades.empty()) {
-		vars.push_back(in_grades[0]);
-		size_t i = 1;
-		while (i < in_grades.size())
+		size_t i = 0;
+		vars.push_back(temp[0]);
+
+		while ((++i) < temp.size())
 		{
-			if (in_grades[i] != in_grades[i - 1])
-				vars.push_back(in_grades[i]);
-			i++;
+			if (temp[i] != temp[i - 1])
+				vars.push_back(temp[i]);
 		}
 	}
 

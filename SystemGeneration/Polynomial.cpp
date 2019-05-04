@@ -62,7 +62,7 @@ void Polynomial::simplify()
 		if (!terms.empty() && temp.back() != terms.back())
 			terms.push_back(temp.back());
 
-		terms = move(temp);
+		// terms = move(temp); - вроде эта строка здесь неспроста, но зачем?..
 	}
 }
 

@@ -9,13 +9,20 @@ namespace polynomials {
 
 	private:
 
-		// Список номеров индексов переменных монома, отсортированный по возрастанию
+		// Список номеров индексов переменных терма, отсортированный по возрастанию
+		// Очевидно, в терме каждая переменная встречается не более, чем 1 раз
 		// Например, для монома х1х4х2 vars={1,2,4}
 		std::vector<size_t> vars;
 
+		void simplify();
+
 	public:
 
-		Monomial(std::vector<size_t>& in_grades);
+		Monomial(std::vector<size_t>& in_grades)
+		{
+			vars = std::move(in_grades);
+			simplify();
+		}
 		Monomial() {};
 		Monomial(size_t num)
 		{
@@ -35,22 +42,32 @@ namespace polynomials {
 		{
 			return vars[i];
 		}
+		
+		void operator*= (const Monomial& m2)
+		{
+			size_t sz = m2.size(), i = 0;
+			while (i < sz)
+				vars.push_back(m2[i++]);
 
-		bool operator<(const Monomial& m2) const;
+			simplify();
+		}
 
-		bool operator> (const Monomial& m2) const {
+
+		bool Monomial::operator<(const Monomial& m2) const;
+
+		inline bool operator> (const Monomial& m2) const {
 			return m2 < *this;
 		}
-		bool operator== (const Monomial& m2) const {
+		inline bool operator== (const Monomial& m2) const {
 			return !(m2 < *this) && !(m2 > *this);
 		}
-		bool operator!= (const Monomial& m2) const {
+		inline bool operator!= (const Monomial& m2) const {
 			return !(m2 == *this);
 		}
-		bool operator<= (const Monomial& m2) const {
+		inline bool operator<= (const Monomial& m2) const {
 			return !(*this > m2);
 		}
-		bool operator>= (const Monomial& m2) const {
+		inline bool operator>= (const Monomial& m2) const {
 			return !(*this < m2);
 		}
 

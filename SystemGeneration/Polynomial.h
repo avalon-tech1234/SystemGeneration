@@ -9,6 +9,8 @@ namespace polynomials {
 	private:
 
 		std::vector <Monomial> terms;
+		void simplify();
+
 
 	public:
 		Polynomial(const std::vector <Monomial>& in_monomials)
@@ -24,21 +26,16 @@ namespace polynomials {
 
 		Polynomial() {}
 
-		Polynomial& operator+(const Polynomial& p2)
+		inline Polynomial& operator+(const Polynomial& p2)
 		{
 			operator+=(p2);
 			return *this;
 		}
 
-		Polynomial& operator+(const Monomial& p2)
+		inline Polynomial& operator+(const Monomial& p2)
 		{
 			operator+=(Polynomial(p2));
 			return *this;
-		}
-
-		const Monomial& operator[](size_t i) const
-		{
-			return terms[i];
 		}
 
 		void operator+=(const Polynomial& p2)
@@ -50,12 +47,15 @@ namespace polynomials {
 			simplify();
 		}
 
+		inline const Monomial& operator[](size_t i) const
+		{
+			return terms[i];
+		}
+
 		inline size_t size() const
 		{
 			return terms.size();
 		}
-
-		void simplify();
 
 		BOOL substitute(const std::vector<BOOL> values) const;
 
