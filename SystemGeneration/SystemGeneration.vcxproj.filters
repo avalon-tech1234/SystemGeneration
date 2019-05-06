@@ -105,6 +105,9 @@
     <ClInclude Include="DNFBuilder.h">
       <Filter>Заголовочные файлы\polynomials</Filter>
     </ClInclude>
+    <ClInclude Include="Environment.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -142,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="Transformation.cpp">
       <Filter>Файлы исходного кода\transformations</Filter>
+    </ClCompile>
+    <ClCompile Include="Environment.cpp">
+      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
