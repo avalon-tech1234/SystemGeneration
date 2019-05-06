@@ -5,7 +5,7 @@
 Debug/
 x64/
 SystemGeneration/Debug/
-SystemGeneration/x64
+SystemGeneration/x64/
 
 # Compiled Object files
 *.slo
