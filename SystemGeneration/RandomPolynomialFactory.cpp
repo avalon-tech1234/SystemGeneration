@@ -15,9 +15,9 @@ void RandomPolynomialFactory::getQuadraticPolynomial(Polynomial& out, size_t n)
 		{
 			if (gen() % 2 == TRUE)
 			{
-				builder.addGrade(i);
-				builder.addGrade(j);
-				builder.pushMonomial();
+				builder << i;
+				builder << j;
+				builder.push();
 			}
 		}
 	}
@@ -26,15 +26,15 @@ void RandomPolynomialFactory::getQuadraticPolynomial(Polynomial& out, size_t n)
 	{
 		if (gen() % 2 == TRUE)
 		{
-			builder.addGrade(i);
-			builder.pushMonomial();
+			builder << i;
+			builder.push();
 		}
 	}
 
 	if (gen() % 2 == TRUE)
 	{
-		builder.pushMonomial();
+		builder.push();
 	}
 
-	builder.createPolynomial(out);
+	builder >> out;
 }

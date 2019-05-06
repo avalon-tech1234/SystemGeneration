@@ -21,14 +21,28 @@ using namespace polynomials;
 int main()
 {
 
+	Polynomial y1(vector<Monomial>{ 0 });
+	Polynomial y2({ 0, 1, FREE_MEMBER });
+	Polynomial y3({ { 2 },{ 0, 1 } });
+
+	Polynomial t1({ 0, 1, 2, FREE_MEMBER });
+	Polynomial t2({ 0, 2, FREE_MEMBER });
+	Polynomial t3(vector<Monomial>{ 1, 2 });
+
+	Transformation FF(vector<Polynomial>{ y1, y2, y3 });
+	Transformation TT(vector<Polynomial>{ t1, t2, t3 });
+	Transformation RES;
+
+	FF(TT, RES);
+
 	cout << "Performing preparations... ";
 
-	size_t n = 5;
+	size_t n = 100;
 	std::mt19937 gen = RandomEngine().getRandomEngine();
 	RandomMatrixFactory<BOOL> matr_factory(gen);
 	RandomPolynomialFactory pol_factory(gen);
 
-	cout << "finished" << endl 
+	cout << "finished" << endl
 		<< "Generating random matrixes M1 and M2 and random vectors v1 and v2... ";
 
 	MatrixB m1, m2;
@@ -53,7 +67,7 @@ int main()
 	{
 		pol_factory.getQuadraticPolynomial(cur, i);
 		cur += Monomial(i);
-		builder.addPolynomial(cur);
+		builder << cur;
 		if (i % 10 == 0)
 		{
 			for (int i = 0; i < prev_num; i++) cout << '\b';
@@ -63,7 +77,7 @@ int main()
 	}
 	for (int i = 0; i < prev_num; i++) cout << '\b';
 	Transformation F;
-	builder.createTransformation(F);
+	builder >> F;
 
 	cout << "finished" << endl << "Printing into files... ";
 

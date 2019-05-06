@@ -25,14 +25,14 @@ AffineTransformation::AffineTransformation(const MatrixB& M, const RowB& v)
 		{
 			if (cur_vec->operator[](j) == TRUE)
 			{
-				builder.addGrade(j);
-				builder.pushMonomial();
+				builder << j;
+				builder.push();
 			}
 		}
 		if (v[i] == TRUE)
-			builder.pushMonomial();
+			builder.push();
 
-		builder.createPolynomial(cur); /// ??????
+		builder >> cur;
 		coordinates.push_back(cur);
 
 		if (i % 50 == 0)

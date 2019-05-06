@@ -6,19 +6,20 @@ namespace polynomials
 {
 	class PolynomialBuilder : public MonomialBuilder
 	{
-	private:
+	protected:
 		std::vector <Monomial> monomials;
 
 	public:
 
-		void pushMonomial()
+		// Хранившиеся индексы добавляются в моном, а он добавляется в полином в качестве слагаемого
+		void push()
 		{
 			Monomial m;
-			createMonomial(m);
+			create(m);
 			monomials.push_back(m);
 		}
 
-		void createPolynomial(Polynomial& out)
+		void operator>>(Polynomial& out)
 		{
 			out = Polynomial(monomials);
 			monomials.clear();

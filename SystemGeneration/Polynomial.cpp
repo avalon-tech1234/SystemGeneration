@@ -25,7 +25,7 @@ BOOL Polynomial::substitute(const vector<BOOL> values) const
 	size_t s = size();
 	for (size_t i = 0; i < s; i++)
 	{
-		result ^= operator[](i).substitute(values);
+		result ^= terms[i].substitute(values);
 	}
 	return result;
 }
@@ -55,9 +55,9 @@ void Polynomial::simplify()
 		size_t i = 1, sz = temp.size();
 		while (i < sz)
 		{
-			if (!terms.empty() && temp[i] == terms.back()) 
+			if (!terms.empty() && temp[i] == terms.back())
 				terms.pop_back();
-			else 
+			else
 				terms.push_back(temp[i]);
 			i++;
 		}
@@ -71,13 +71,20 @@ void Polynomial::simplify()
 void Polynomial::operator*=(const Polynomial& p2)
 {
 	std::vector<Monomial> temp = move(terms);
-	size_t sz1 = temp.size(), sz2 = p2.size();
-	for (size_t i = 0; i < sz1; i++)
+	size_t sz1 = temp.size(), sz2 = p2.size(), i, j;
+	Monomial cur;
+
+	i = 0;
+	while (i < sz1)
 	{
-		for (size_t j = 0; j < sz2; j++)
+		j = 0;
+		while (j < sz2)
 		{
-			terms.push_back(temp[i] * p2[j]);
+			cur = temp[i];
+			cur *= p2[j++];
+			terms.push_back(cur);
 		}
+		i++;
 	}
 
 	simplify();

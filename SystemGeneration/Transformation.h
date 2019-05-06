@@ -11,9 +11,9 @@ namespace transformations
 
 	public:
 
-		Transformation(std::vector<polynomials::Polynomial>& coordinates) : coordinates(coordinates) {}
+		Transformation(std::vector<polynomials::Polynomial>& coordinates)
+			: coordinates(coordinates) {}
 		Transformation() {}
-
 
 		inline const polynomials::Polynomial& operator[] (size_t i) const
 		{
@@ -25,7 +25,10 @@ namespace transformations
 			return coordinates.size();
 		}
 
+		// вычисление композиции отображений GoF = G(F(x))
+		void operator()(const Transformation& F_inner, Transformation& G_result) const;
 	};
+
 
 }
 

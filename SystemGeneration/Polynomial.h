@@ -19,6 +19,17 @@ namespace polynomials {
 			simplify();
 		}
 
+		// для тестирования
+		Polynomial(const std::vector <std::vector <size_t>> input)
+		{
+			for (size_t i = 0; i < input.size(); i++)
+			{
+				std::vector <size_t> cur = input[i];
+				terms.push_back(Monomial(cur));
+			}
+			simplify();
+		}
+
 		Polynomial(const Monomial& m)
 		{
 			terms.push_back(m);
@@ -26,22 +37,10 @@ namespace polynomials {
 
 		Polynomial() {}
 
-		inline Polynomial& operator+(const Polynomial& p2)
+		inline void clear()
 		{
-			operator+=(p2);
-			return *this;
-		}
-
-		inline Polynomial& operator+(const Monomial& p2)
-		{
-			operator+=(Polynomial(p2));
-			return *this;
-		}
-
-		inline Polynomial& operator*(const Polynomial& p2)
-		{
-			operator*=(Polynomial(p2));
-			return *this;
+			terms.clear();
+			terms.shrink_to_fit();
 		}
 
 		void operator+=(const Polynomial& p2);

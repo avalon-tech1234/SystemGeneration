@@ -114,6 +114,7 @@
     <ClInclude Include="AffineTransformation.h" />
     <ClInclude Include="Array.h" />
     <ClInclude Include="BOOL.h" />
+    <ClInclude Include="DNFBuilder.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Monomial.h" />
     <ClInclude Include="MonomialBuilder.h" />
@@ -140,6 +141,7 @@
     <ClCompile Include="RandomPolynomialFactory.cpp" />
     <ClCompile Include="Row.cpp" />
     <ClCompile Include="speedtest.cpp" />
+    <ClCompile Include="Transformation.cpp" />
     <ClCompile Include="Writer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

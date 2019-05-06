@@ -34,8 +34,8 @@ bool Monomial::operator<(const Monomial& m2) const
 	if (size() < m2.size()) return false;
 	for (size_t i = 0; i < size(); i++)
 	{
-		if (operator[](i) > m2[i]) return false;
-		if (operator[](i) < m2[i]) return true;
+		if (vars[i] > m2[i]) return false;
+		if (vars[i] < m2[i]) return true;
 	}
 	return false;
 }
@@ -46,7 +46,7 @@ BOOL Monomial::substitute(const vector<BOOL> values) const
 	size_t s = size();
 	for (size_t i = 0; i < s; i++)
 	{
-		if (values[operator[](i)] == FALSE)
+		if (values[vars[i]] == FALSE)
 			return FALSE;
 	}
 	return TRUE;

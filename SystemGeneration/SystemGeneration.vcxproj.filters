@@ -102,6 +102,9 @@
     <ClInclude Include="RandomEngine.h">
       <Filter>Заголовочные файлы\random</Filter>
     </ClInclude>
+    <ClInclude Include="DNFBuilder.h">
+      <Filter>Заголовочные файлы\polynomials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -136,6 +139,9 @@
     </ClCompile>
     <ClCompile Include="RandomEngine.cpp">
       <Filter>Файлы исходного кода\random</Filter>
+    </ClCompile>
+    <ClCompile Include="Transformation.cpp">
+      <Filter>Файлы исходного кода\transformations</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -13,8 +13,8 @@ namespace polynomials {
 		// ќчевидно, в терме кажда€ переменна€ встречаетс€ не более, чем 1 раз
 		// Ќапример, дл€ монома х1х4х2 vars={1,2,4}
 		std::vector<size_t> vars;
-
 		void simplify();
+
 
 	public:
 
@@ -43,12 +43,6 @@ namespace polynomials {
 			return vars[i];
 		}
 		
-		inline Monomial& operator*(const Monomial& p2)
-		{
-			operator*=(Monomial(p2));
-			return *this;
-		}
-
 		void operator*= (const Monomial& m2)
 		{
 			size_t sz = m2.size(), i = 0;
@@ -57,7 +51,6 @@ namespace polynomials {
 
 			simplify();
 		}
-
 
 		bool Monomial::operator<(const Monomial& m2) const;
 
@@ -79,4 +72,7 @@ namespace polynomials {
 
 
 	};
+
+	#define FREE_MEMBER (Monomial())
+
 }

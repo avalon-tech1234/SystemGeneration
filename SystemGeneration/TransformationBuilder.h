@@ -1,7 +1,8 @@
 #pragma once
 #include "Transformation.h"
 
-namespace transformations 
+
+namespace transformations
 {
 	class TransformationBuilder
 	{
@@ -10,12 +11,12 @@ namespace transformations
 		
 	public:
 
-		void addPolynomial(const polynomials::Polynomial& pol)
+		void operator<<(const polynomials::Polynomial& pol)
 		{
 			coords.push_back(pol);
 		}
 
-		void createTransformation(Transformation& out)
+		void operator>>(Transformation& out)
 		{
 			out = Transformation(coords);
 			coords.clear();
@@ -29,3 +30,4 @@ namespace transformations
 
 	};
 }
+
