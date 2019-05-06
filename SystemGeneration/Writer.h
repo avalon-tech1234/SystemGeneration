@@ -4,7 +4,10 @@
 #include <fstream>
 
 namespace IO {
-	class Writer
+
+	// Данный класс отвечает за вывод в файл
+
+	class Writer 
 	{
 	private:
 		std::string foldername;

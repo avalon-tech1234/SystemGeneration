@@ -1,19 +1,13 @@
 #include "Row.h"
 
 using namespace matrixes;
+using namespace std;
 
 template <class _T>
-void Row<_T>::toString(
-	std::string& output,
-	std::string left_border = " {",
-	std::string delimiter = ",",
-	std::string right_border = "}")
-	const
+void Row<_T>::toString(string& output, string left_border = " {", string delimiter = ",", string right_border = "}") const
 {
-
-	size_t res_size = size() * (1 + delimiter.length()) + left_border.length() + right_border.length();
 	output = left_border;
-	output.reserve(res_size);
+	output.reserve(size() * (1 + delimiter.length()) + left_border.length() + right_border.length());
 
 	if (!elements.empty())
 	{
@@ -29,6 +23,7 @@ void Row<_T>::toString(
 			else output += '0';
 		}
 	}
+
 	output += right_border;
 }
 

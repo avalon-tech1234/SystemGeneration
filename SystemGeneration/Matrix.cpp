@@ -7,19 +7,19 @@ using namespace matrixes;
 
 
 // возвращает квадратную матрицу dimension*dimension, заполненную нулями
-template <typename t_vattype>
-BOOL Matrix<t_vattype>::Init(size_t dimension)
+template <typename _T>
+BOOL Matrix<_T>::Init(size_t dimension)
 {
 	data.clear();
 	data.reserve(dimension);
 
-	Row <t_vattype> * row;
-	data = std::vector<Row <t_vattype> *>(dimension);
+	Row <_T> * row;
+	data = std::vector<Row <_T> *>(dimension);
 
 	for (size_t i = 0; i < dimension; i++)
 	{
 		try {
-			row = new Row<t_vattype>(dimension);
+			row = new Row<_T>(dimension);
 		}
 		catch (const std::exception&) {
 			std::cout << "Ooooppps!";
@@ -37,8 +37,8 @@ BOOL Matrix<t_vattype>::Init(size_t dimension)
 	return TRUE;
 }
 
-template <typename t_vattype>
-inline void Matrix<t_vattype>::swap(size_t index1, size_t index2)
+template <typename _T>
+inline void Matrix<_T>::swap(size_t index1, size_t index2)
 {
 	auto it1 = data.begin() + index1, it2 = data.begin() + index2;
 	iter_swap(it1, it2);

@@ -4,13 +4,11 @@
 namespace matrixes
 {
 
-
 	// Данный класс описывает квадратную матрицу, состоящую из 0 и 1
 	// Допускается создание только Matrix<bool> и Matrix<BOOL>
 	template <class _T>
 	class Matrix
 	{
-		typedef _T t_vattype;
 	private:
 		std::vector<Row <_T> *> data;
 
@@ -26,18 +24,17 @@ namespace matrixes
 		~Matrix()
 		{
 			for (size_t i = 0; i < data.size(); i++)
-			{
 				delete data[i];
-			}
+
 			data.clear();
 		}
 
-		inline Row <t_vattype>* get(size_t n)
+		inline Row <_T>* get(size_t n)
 		{
 			return data[n];
 		}
 
-		inline Row <t_vattype>* const operator[](size_t n) const
+		inline Row <_T>* const operator[](size_t n) const
 		{
 			return data[n];
 		}

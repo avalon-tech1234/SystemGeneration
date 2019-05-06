@@ -21,23 +21,9 @@ using namespace polynomials;
 int main()
 {
 
-	Polynomial y1(vector<Monomial>{ 0 });
-	Polynomial y2({ 0, 1, FREE_MEMBER });
-	Polynomial y3({ { 2 },{ 0, 1 } });
-
-	Polynomial t1({ 0, 1, 2, FREE_MEMBER });
-	Polynomial t2({ 0, 2, FREE_MEMBER });
-	Polynomial t3(vector<Monomial>{ 1, 2 });
-
-	Transformation FF(vector<Polynomial>{ y1, y2, y3 });
-	Transformation TT(vector<Polynomial>{ t1, t2, t3 });
-	Transformation RES;
-
-	FF(TT, RES);
-
 	cout << "Performing preparations... ";
 
-	size_t n = 100;
+	size_t n = 5;
 	std::mt19937 gen = RandomEngine().getRandomEngine();
 	RandomMatrixFactory<BOOL> matr_factory(gen);
 	RandomPolynomialFactory pol_factory(gen);

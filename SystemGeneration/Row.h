@@ -2,10 +2,11 @@
 #include <vector>
 #include "BOOL.h"
 
-	// Данный класс описывает строку матрицы, состоящую из 0 и 1
-
 namespace matrixes
 {
+
+	// Данный класс описывает строку матрицы, состоящую из 0 и 1
+	// Допускается создание только Row<bool> и Row<BOOL>
 
 	template <class _T>
 	class Row
@@ -23,9 +24,8 @@ namespace matrixes
 		{
 			size_t sz = size();
 			if (sz != second->size())
-			{
 				throw std::exception("For operation XOR vectors must have same dimension");
-			}
+
 			for (size_t i = 0; i < sz; i++)
 			{
 				_T res = elements[i] ^ (*second)[i];

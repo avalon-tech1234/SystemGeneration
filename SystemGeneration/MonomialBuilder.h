@@ -1,7 +1,7 @@
 #pragma once
 #include "Monomial.h"
 
-// Класс, используемый при построчном парсинге файла с полиномами. Используется как база для наследования классом PolynomialBuilder
+// Используется как база для наследования классом PolynomialBuilder
 
 namespace polynomials
 {
