@@ -3,6 +3,8 @@
 
 int main()
 {
-	Environment().run(5);
+	Environment env(5);
+
+	env.run();
 
 }

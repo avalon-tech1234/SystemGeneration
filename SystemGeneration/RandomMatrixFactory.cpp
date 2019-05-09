@@ -18,7 +18,7 @@ template <class _T>
 void RandomMatrixFactory<_T>::getRandomMatrix(Matrix <_T>& output, size_t dimension)
 {
 
-	output.Init(dimension);
+	output.init_zeros(dimension);
 
 	Row <_T>* cur_row;
 	for (size_t i = 0; i < dimension; i++)

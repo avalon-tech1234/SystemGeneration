@@ -6,9 +6,8 @@ using namespace std;
 using namespace matrixes;
 
 
-// возвращает квадратную матрицу dimension*dimension, заполненную нулями
 template <typename _T>
-BOOL Matrix<_T>::Init(size_t dimension)
+BOOL Matrix<_T>::init_zeros(size_t dimension, size_t dimension2)
 {
 	data.clear();
 	data.reserve(dimension);
@@ -19,7 +18,7 @@ BOOL Matrix<_T>::Init(size_t dimension)
 	for (size_t i = 0; i < dimension; i++)
 	{
 		try {
-			row = new Row<_T>(dimension);
+			row = new Row<_T>(dimension2);
 		}
 		catch (const std::exception&) {
 			std::cout << "Ooooppps!";
@@ -43,6 +42,30 @@ inline void Matrix<_T>::swap(size_t index1, size_t index2)
 	auto it1 = data.begin() + index1, it2 = data.begin() + index2;
 	iter_swap(it1, it2);
 }
+
+template <typename _T>
+void Matrix<_T>::initInverse(const Matrix<_T>& matrix)
+{
+	// TODO
+
+
+	int n = matrix.size();
+
+	init_zeros(n, 2 * n);
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			
+		}
+
+	}
+}
+
+
+
+
 
 
 template class Matrix<bool>;

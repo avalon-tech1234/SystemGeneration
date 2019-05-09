@@ -12,13 +12,24 @@ namespace matrixes
 	private:
 		std::vector<Row <_T> *> data;
 
+		// эта функция используется при построении обратной матрицы, извне матрица всегда квадратная 
+		BOOL init_zeros(size_t dimension, size_t dimension2);
+
 	public:
 
 		Matrix() : data() { }
 
 		Matrix(Matrix && mat) : data(std::move(mat.data)) {}
 
-		BOOL Init(size_t dimension);
+		// устанавливает размеры матрицы как dimension*dimension и заполняет её нулями
+		BOOL init_zeros(size_t dimension)
+		{
+			return init_zeros(dimension, dimension);
+		}
+
+		// инициализирует матрицу как матрицу, обратную к матрице, переданной в качестве параметра
+		// обратимость матрицы должна проверяться клиентом
+		void initInverse(const Matrix<_T>& matrix);
 
 
 		~Matrix()

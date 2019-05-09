@@ -22,7 +22,7 @@ using namespace polynomials;
 
 
 
-void Environment::run(size_t n)
+void Environment::run() const
 {
 	cout << "Performing preparations... ";
 
