@@ -9,9 +9,7 @@ void RandomMatrixFactory<_T>::getRandomRow(Row<_T>& output)
 {
 	size_t sz = output.size();
 	for (size_t i = 0; i < sz; i++)
-	{
-		output.element(i) = gen() % 2;
-	}
+		output.set(i, gen() % 2);
 }
 
 template <class _T>
@@ -25,14 +23,11 @@ void RandomMatrixFactory<_T>::getRandomMatrix(Matrix <_T>& output, size_t dimens
 	{
 		cur_row = output.get(i);
 
-		for (size_t j = 0; j < i; j++)
+		for (size_t j = 0; j < dimension; j++)
 		{
-			cur_row->element(j) = 0;
-		}
-		cur_row->element(i) = 1;
-		for (size_t j = i + 1; j < dimension; j++)
-		{
-			cur_row->element(j) = gen() % 2;
+			if (j < i) cur_row->set(j, 0);
+			if (j == i) cur_row->set(i, 1);
+			if (j > i) cur_row->set(j, gen() % 2);
 		}
 	}
 

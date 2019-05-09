@@ -19,6 +19,7 @@ namespace matrixes
 	public:
 
 		Row(size_t length) : elements(length) {};
+		Row(std::vector<_T> v) : elements(v) {};
 
 		void operator^=(const Row<_T>* second)
 		{
@@ -28,25 +29,38 @@ namespace matrixes
 
 			for (size_t i = 0; i < sz; i++)
 			{
-				_T res = elements[i] ^ (*second)[i];
+				_T res = elements[i] ^ second->get(i);
 				elements[i] = res;
 			}
 		}
 
-		inline _T& element(size_t index)
+		inline void set(size_t index, _T value)
 		{
-			return (_T&)elements[index];
+			elements[index] = value;
 		}
 
-		inline _T operator[](size_t index) const
+		inline _T get(size_t index) const
 		{
-			return (_T)elements[index];
+			//return (_T)elements[index];
+			return elements[index];
 		}
 
 		inline size_t size() const
 		{
 			return elements.size();
 		}
+
+		auto begin() const
+		{
+			return elements.begin();
+		}
+
+		auto end() const
+		{
+			return elements.end();
+		}
+
+
 
 		void Row::toString(
 			std::string& output,

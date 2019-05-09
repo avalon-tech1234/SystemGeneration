@@ -23,13 +23,13 @@ AffineTransformation::AffineTransformation(const MatrixB& M, const RowB& v)
 		cur_vec = M[i];
 		for (size_t j = 0; j < n; j++)
 		{
-			if (cur_vec->operator[](j) == TRUE)
+			if (cur_vec->get(j) == TRUE)
 			{
 				builder << j;
 				builder.push();
 			}
 		}
-		if (v[i] == TRUE)
+		if (v.get(i) == TRUE)
 			builder.push();
 
 		builder >> cur;
