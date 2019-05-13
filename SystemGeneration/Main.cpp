@@ -1,23 +1,21 @@
 #include "Environment.h"
+#include <cstdlib>
 
-#include "Matrix.h"
-#include "RandomMatrixFactory.h"
-#include "RandomEngine.h"
+#include "Reader.h"
 
-using namespace matrixes;
-using namespace random;
+using namespace std;
 
 int main()
 {
 	int n = 5;
 	Environment env(n);
+	string str = env.run();
 
-	std::mt19937 gen = RandomEngine().getRandomEngine();
-	RandomMatrixFactory<BOOL> matr_factory(gen);
-	MatrixB matr, matr2;
-	matr_factory.getRandomMatrix(matr, n);
+	IO::Reader rw(str);
 
-	matr2.initInverse(matr);
+	matrixes::MatrixB m;
+	rw.read(m, "M1.txt");
+	m.print();
 
 	system("pause");
 

@@ -21,6 +21,27 @@ namespace matrixes
 
 		Matrix(Matrix && mat) : data(std::move(mat.data)) {}
 
+		//Matrix(Matrix& mat) : data(std::move(mat.data)) {}
+
+		Matrix& operator=(Matrix&& other)
+		{
+			if (this != &other)
+			{
+				data.clear();
+				data = std::move(other.data);
+			}
+			return *this;
+		}
+
+
+		/*
+		Matrix(std::vector<Row*> dat) : data(std::move(dat))
+		{
+			if (data.size() != data[0]->size())
+				data.clear();
+		}
+		*/
+
 		// устанавливает размеры матрицы как dimension*dimension и заполняет её нулями
 		BOOL init_zeros(size_t dimension)
 		{

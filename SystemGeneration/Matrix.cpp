@@ -115,7 +115,7 @@ void Matrix<_T>::initInverse(const Matrix<_T>& matrix)
 		*data[i] = Row<_T>(vector<_T>(data[i]->begin() + n, data[i]->end()));
 	}
 
-	//print();
+	print();
 
 }
 
@@ -126,7 +126,7 @@ void Matrix<_T>::print() const
 		size_t n = size();
 		size_t n2 = data[0]->size(); // в процессе построения обратной матрицы n может быть не равно n2
 
-		cout << "      ";
+		cout << endl << "      ";
 		for (size_t i = 0; i < n; i++)
 			cout << i << "  ";
 		cout << endl << endl;
@@ -141,7 +141,6 @@ void Matrix<_T>::print() const
 		cout << endl;
 	}
 }
-
 
 
 

@@ -116,7 +116,9 @@
     <ClInclude Include="BOOL.h" />
     <ClInclude Include="DNFBuilder.h" />
     <ClInclude Include="Environment.h" />
+    <ClInclude Include="MainTesting.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="MatrixBuilder.h" />
     <ClInclude Include="Monomial.h" />
     <ClInclude Include="MonomialBuilder.h" />
     <ClInclude Include="Polynomial.h" />
@@ -124,23 +126,27 @@
     <ClInclude Include="RandomEngine.h" />
     <ClInclude Include="RandomMatrixFactory.h" />
     <ClInclude Include="RandomPolynomialFactory.h" />
+    <ClInclude Include="Reader.h" />
     <ClInclude Include="Row.h" />
     <ClInclude Include="speedtest.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Transformation.h" />
     <ClInclude Include="TransformationBuilder.h" />
+    <ClInclude Include="Utility.h" />
     <ClInclude Include="Writer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AffineTransformation.cpp" />
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainTesting.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Monomial.cpp" />
     <ClCompile Include="Polynomial.cpp" />
     <ClCompile Include="RandomEngine.cpp" />
     <ClCompile Include="RandomMatrixFactory.cpp" />
     <ClCompile Include="RandomPolynomialFactory.cpp" />
+    <ClCompile Include="Reader.cpp" />
     <ClCompile Include="Row.cpp" />
     <ClCompile Include="speedtest.cpp" />
     <ClCompile Include="Transformation.cpp" />

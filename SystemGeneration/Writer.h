@@ -17,9 +17,15 @@ namespace IO {
 
 		Writer();
 
-		void printMatrix(const matrixes::MatrixB& matr, std::string filename);
+		void print(const matrixes::MatrixB& matr, std::string filename);
 
-		void printTransformation(const transformations::Transformation& trans, std::string filename);
+		void print(const transformations::Transformation& trans, std::string filename);
+
+		std::string getFoldername()
+		{
+			return foldername;
+		}
+
 
 
 	};

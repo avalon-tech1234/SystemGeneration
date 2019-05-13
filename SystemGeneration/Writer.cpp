@@ -27,7 +27,7 @@ Writer::Writer()
 	foldername += "/";
 }
 
-void Writer::printMatrix(const matrixes::MatrixB& matr, std::string filename)
+void Writer::print(const matrixes::MatrixB& matr, std::string filename)
 {
 	out.open(foldername + filename);
 
@@ -44,7 +44,7 @@ void Writer::printMatrix(const matrixes::MatrixB& matr, std::string filename)
 	out.close();
 }
 
-void Writer::printTransformation(const transformations::Transformation& trans, std::string filename)
+void Writer::print(const transformations::Transformation& trans, std::string filename)
 {
 	out.open(foldername + filename);
 

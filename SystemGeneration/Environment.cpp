@@ -22,8 +22,14 @@ using namespace polynomials;
 
 
 
-void Environment::run() const
+string Environment::run() const
 {
+	if (n == 0)
+	{
+		cout << "Attempt to create equation system with 0 equations. Forbidden" << endl;
+		return "";
+	}
+
 	cout << "Performing preparations... ";
 
 	std::mt19937 gen = RandomEngine().getRandomEngine();
@@ -67,7 +73,7 @@ void Environment::run() const
 	Transformation F;
 	builder >> F;
 
-	cout << "finished" << endl << "Bulding composition SoFoT... ";
+	cout << "finished" << endl << "Building composition SoFoT... ";
 
 	Transformation FT;
 	F(T, FT);
@@ -78,16 +84,18 @@ void Environment::run() const
 	cout << "finished" << endl << "Printing into files... ";
 
 	Writer writer;
-	writer.printMatrix(m1, "M1.txt");
-	writer.printMatrix(m2, "M2.txt");
-	writer.printTransformation(S, "S.txt");
-	writer.printTransformation(T, "T.txt");
-	writer.printTransformation(F, "F.txt");
-	writer.printTransformation(FT, "FoT.txt");
-	writer.printTransformation(P, "P as SoFoT.txt");
+	writer.print(m1, "M1.txt");
+	writer.print(m2, "M2.txt");
+	writer.print(S, "S.txt");
+	writer.print(T, "T.txt");
+	writer.print(F, "F.txt");
+	writer.print(FT, "FoT.txt");
+	writer.print(P, "P as SoFoT.txt");
 
 	cout << "finished" << endl;
 
-	system("pause");
+	m1.print();
+
+	return writer.getFoldername();
 
 }

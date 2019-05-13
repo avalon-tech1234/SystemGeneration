@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+
 
 class Environment
 {
@@ -6,7 +8,7 @@ private:
 	size_t n;
 
 public:
-	void run() const;
+	std::string run() const;
 
 	Environment(size_t n) : n(n) {}
 
