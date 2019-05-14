@@ -31,7 +31,7 @@ namespace polynomials {
 			vars.push_back(num);
 		}
 
-		BOOL substitute(const std::vector<BOOL> values) const;
+		BOOL substitute(const std::vector<BOOL>& values) const;
 		void toString(std::string& out) const;
 
 		inline size_t size() const

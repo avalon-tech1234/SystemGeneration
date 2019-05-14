@@ -27,6 +27,8 @@ namespace transformations
 
 		// вычисление композиции отображений GoF = G(F(x))
 		void operator()(const Transformation& F_inner, Transformation& G_result) const;
+
+		void substitute(const std::vector<BOOL>& in, std::vector<BOOL>& out);
 	};
 
 

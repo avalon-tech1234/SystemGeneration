@@ -8,10 +8,10 @@ namespace random
 	template <class _T>
 	class RandomMatrixFactory
 	{
-	public:
-
+	private:
 		std::mt19937 gen; // генерит случайные числа
 
+	public:
 		// принимает строку матрицы, заполненную нулями
 		// на выходе строка заполнена случайными числами (0 и 1)
 		void getRandomRow(matrixes::Row<_T>& output);

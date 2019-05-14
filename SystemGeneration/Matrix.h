@@ -33,14 +33,17 @@ namespace matrixes
 			return *this;
 		}
 
-
-		/*
-		Matrix(std::vector<Row*> dat) : data(std::move(dat))
+		bool operator==(Matrix& other)
 		{
-			if (data.size() != data[0]->size())
-				data.clear();
+			size_t n = size();
+			if (n != other.size()) return false;
+
+			for (int i = 0; i < n; i++)
+				for (int j = 0; j < n; j++)
+					if (get(i)->get(j) != other.get(i)->get(j)) return false;
+
+			return true;
 		}
-		*/
 
 		// устанавливает размеры матрицы как dimension*dimension и заполняет её нулями
 		BOOL init_zeros(size_t dimension)
@@ -59,6 +62,22 @@ namespace matrixes
 				delete data[i];
 
 			data.clear();
+		}
+
+		void multiply(const Row<_T>& r, Row<_T>& result)
+		{
+			size_t n = size();
+			if (n != r.size()) return;
+
+			result = Row<_T>(n);
+			BOOL b;
+			for (size_t i = 0; i < n; i++)
+			{
+				b = 0;
+				for (size_t j = 0; j < n; j++)
+					b += get(i)->get(j) * r.get(j);
+				result.set(i, b);
+			}
 		}
 
 		inline Row <_T>* get(size_t n)

@@ -64,7 +64,7 @@ namespace polynomials {
 			return terms.size();
 		}
 
-		BOOL substitute(const std::vector<BOOL> values) const;
+		BOOL substitute(const std::vector<BOOL>& values) const;
 
 		void toString(std::string& out) const;
 

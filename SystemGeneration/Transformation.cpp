@@ -48,3 +48,18 @@ void Transformation::operator() (const Transformation& F_inner, Transformation& 
 
 	trans_builder >> G_result;
 }
+
+void Transformation::substitute(const vector<BOOL>& in, vector<BOOL>& out)
+{
+	size_t n = size();
+
+	out.clear();
+	if (in.size() != n) return;
+
+	for (int i = 0; i < n; i++)
+	{
+		BOOL b = coordinates[i].substitute(in);
+		out.push_back(b);
+	}
+}
+

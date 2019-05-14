@@ -41,7 +41,6 @@ namespace matrixes
 
 		inline _T get(size_t index) const
 		{
-			//return (_T)elements[index];
 			return elements[index];
 		}
 

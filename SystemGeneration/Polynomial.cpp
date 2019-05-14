@@ -19,7 +19,7 @@ void Polynomial::toString(string& out) const
 	}
 }
 
-BOOL Polynomial::substitute(const vector<BOOL> values) const
+BOOL Polynomial::substitute(const vector<BOOL>& values) const
 {
 	BOOL result = FALSE;
 	size_t s = size();

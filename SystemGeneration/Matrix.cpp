@@ -57,8 +57,8 @@ void Matrix<_T>::initInverse(const Matrix<_T>& matrix)
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < n; j++)
-			data[i]->set(j, matrix[i]->get(j));
-		data[i]->set(i + n, 1);
+			get(i)->set(j, matrix[i]->get(j));
+		get(i)->set(i + n, 1);
 	}
 
 	// построение верхнетреугольной матрицы
@@ -83,8 +83,8 @@ void Matrix<_T>::initInverse(const Matrix<_T>& matrix)
 		r0 = data[offset];
 		for (size_t i = offset + 1; i < n; i++)
 		{
-			if (data[i]->get(offset) == TRUE)
-				data[i]->operator^=(r0);
+			if (get(i)->get(offset) == TRUE)
+				get(i)->operator^=(r0);
 		}
 
 		// теперь проделаем то же самое для матрицы, полученной путем вычеркивания из текущей верхней строки и верхнего столбца
@@ -112,7 +112,7 @@ void Matrix<_T>::initInverse(const Matrix<_T>& matrix)
 	// взятие "правой половины" матрицы
 	for (int i = 0; i < n; i++)
 	{
-		*data[i] = Row<_T>(vector<_T>(data[i]->begin() + n, data[i]->end()));
+		*get(i) = Row<_T>(vector<_T>(get(i)->begin() + n, get(i)->end()));
 	}
 
 }

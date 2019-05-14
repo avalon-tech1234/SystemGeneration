@@ -41,7 +41,7 @@ bool Monomial::operator<(const Monomial& m2) const
 }
 
 
-BOOL Monomial::substitute(const vector<BOOL> values) const
+BOOL Monomial::substitute(const vector<BOOL>& values) const
 {
 	size_t s = size();
 	for (size_t i = 0; i < s; i++)
