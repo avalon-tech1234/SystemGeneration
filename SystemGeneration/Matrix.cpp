@@ -115,8 +115,6 @@ void Matrix<_T>::initInverse(const Matrix<_T>& matrix)
 		*data[i] = Row<_T>(vector<_T>(data[i]->begin() + n, data[i]->end()));
 	}
 
-	print();
-
 }
 
 template <typename _T>

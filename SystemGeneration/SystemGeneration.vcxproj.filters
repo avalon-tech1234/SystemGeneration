@@ -49,6 +49,12 @@
     <Filter Include="Заголовочные файлы\matrixes">
       <UniqueIdentifier>{4b42ee8a-47c3-45ba-9c37-6378069e7759}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Заголовочные файлы\testing">
+      <UniqueIdentifier>{b439dbaf-3136-473e-ad10-5c6e77d809a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\testing">
+      <UniqueIdentifier>{7eb976b3-62ba-469c-a778-6d817384ef07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h">
@@ -62,9 +68,6 @@
     </ClInclude>
     <ClInclude Include="Row.h">
       <Filter>Заголовочные файлы\matrixes</Filter>
-    </ClInclude>
-    <ClInclude Include="speedtest.h">
-      <Filter>Заголовочные файлы\service</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Заголовочные файлы\service</Filter>
@@ -102,9 +105,6 @@
     <ClInclude Include="DNFBuilder.h">
       <Filter>Заголовочные файлы\polynomials</Filter>
     </ClInclude>
-    <ClInclude Include="MainTesting.h">
-      <Filter>Заголовочные файлы\service</Filter>
-    </ClInclude>
     <ClInclude Include="Writer.h">
       <Filter>Заголовочные файлы\IO</Filter>
     </ClInclude>
@@ -126,13 +126,16 @@
     <ClInclude Include="Parser.h">
       <Filter>Заголовочные файлы\IO</Filter>
     </ClInclude>
+    <ClInclude Include="MainTesting.h">
+      <Filter>Заголовочные файлы\testing</Filter>
+    </ClInclude>
+    <ClInclude Include="speedtest.h">
+      <Filter>Заголовочные файлы\testing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="speedtest.cpp">
-      <Filter>Файлы исходного кода\service</Filter>
     </ClCompile>
     <ClCompile Include="Matrix.cpp">
       <Filter>Файлы исходного кода\matrixes</Filter>
@@ -164,9 +167,6 @@
     <ClCompile Include="Transformation.cpp">
       <Filter>Файлы исходного кода\transformations</Filter>
     </ClCompile>
-    <ClCompile Include="MainTesting.cpp">
-      <Filter>Файлы исходного кода\service</Filter>
-    </ClCompile>
     <ClCompile Include="Reader.cpp">
       <Filter>Файлы исходного кода\IO</Filter>
     </ClCompile>
@@ -175,6 +175,12 @@
     </ClCompile>
     <ClCompile Include="Parser.cpp">
       <Filter>Файлы исходного кода\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="MainTesting.cpp">
+      <Filter>Файлы исходного кода\testing</Filter>
+    </ClCompile>
+    <ClCompile Include="speedtest.cpp">
+      <Filter>Файлы исходного кода\testing</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

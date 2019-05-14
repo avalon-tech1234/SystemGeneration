@@ -1,7 +1,6 @@
 #include "Reader.h"
 
 #include <sstream>
-#include "Utility.h"
 #include "MatrixBuilder.h"
 
 #include "Parser.h"
@@ -18,7 +17,6 @@ void Reader::read(matrixes::MatrixB& matr, std::string filename)
 	in.open(foldername + filename);
 
 	string cur;
-	Utility util;
 
 	// по первой строке (зная, что матрица квадратная) узнаем размерность матрицы
 	getline(in, cur);
@@ -62,6 +60,21 @@ void Reader::read(transformations::Transformation& trans, std::string filename)
 
 }
 
+void Reader::read(matrixes::RowB& row, std::string filename)
+{
+	in.open(foldername + filename);
+	string cur;
+	getline(in, cur);
+	util.trim2(cur);
+	std::stringstream ss(cur);
+	vector<BOOL> vect;
+	// разбираем CSV
+	while (getline(ss, cur, ',')) {
+		util.trim(cur);
+		vect.push_back(stoi(cur));
+	}
+	row = vect;
+}
 
 
 

@@ -2,6 +2,8 @@
 #include "Matrix.h"
 #include "Transformation.h"
 #include <fstream>
+#include "Utility.h"
+
 
 namespace IO
 {
@@ -10,6 +12,7 @@ namespace IO
 	private:
 		std::string foldername;
 		std::ifstream in;
+		Utility util;
 
 
 	public:
@@ -18,6 +21,8 @@ namespace IO
 		void read(matrixes::MatrixB& matr, std::string filename);
 
 		void read(transformations::Transformation& trans, std::string filename);
+
+		void read(matrixes::RowB& row, std::string filename);
 
 	};
 

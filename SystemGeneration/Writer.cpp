@@ -58,3 +58,14 @@ void Writer::print(const transformations::Transformation& trans, std::string fil
 
 	out.close();
 }
+
+void Writer::print(const matrixes::RowB& row, std::string filename)
+{
+	out.open(foldername + filename);
+
+	string cur;
+	row.toString(cur, " {", ", ", "}");
+	out << cur << endl;
+
+	out.close();
+}

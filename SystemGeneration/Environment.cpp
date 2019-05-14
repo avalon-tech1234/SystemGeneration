@@ -84,13 +84,15 @@ string Environment::run() const
 	cout << "finished" << endl << "Printing into files... ";
 
 	Writer writer;
+	writer.print(v1, "v1.txt"); // тестим
+	writer.print(v2, "v2.txt"); // тестим
 	writer.print(m1, "M1.txt");
 	writer.print(m2, "M2.txt");
 	writer.print(S, "S.txt");
 	writer.print(T, "T.txt");
 	writer.print(F, "F.txt");
 	writer.print(FT, "FoT.txt");
-	writer.print(P, "P as SoFoT.txt");
+	writer.print(P, "P.txt");
 
 	cout << "finished" << endl;
 

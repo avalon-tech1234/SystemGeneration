@@ -21,6 +21,8 @@ namespace IO {
 
 		void print(const transformations::Transformation& trans, std::string filename);
 
+		void print(const matrixes::RowB& row, std::string filename);
+
 		std::string getFoldername()
 		{
 			return foldername;
