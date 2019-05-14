@@ -2,8 +2,17 @@
 #include <cstdlib>
 
 #include "Reader.h"
+#include "Transformation.h"
+
+#include "Parser.h"
+#include "TransformationBuilder.h"
 
 using namespace std;
+using namespace IO;
+using namespace transformations;
+
+using namespace polynomials;
+
 
 int main()
 {
@@ -11,11 +20,16 @@ int main()
 	Environment env(n);
 	string str = env.run();
 
-	IO::Reader rw(str);
+	// тестим "типичный" случай
+	Reader reader(str);
+	Transformation F;
+	reader.read(F, "F.txt");
 
-	matrixes::MatrixB m;
-	rw.read(m, "M1.txt");
-	m.print();
+	// тестим крайние случаи
+	Parser parser;
+	Polynomial p1, p2;
+	parser.read("1", p1);
+	parser.read("", p2);
 
 	system("pause");
 

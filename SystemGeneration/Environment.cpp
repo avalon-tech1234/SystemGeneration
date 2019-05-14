@@ -94,8 +94,6 @@ string Environment::run() const
 
 	cout << "finished" << endl;
 
-	m1.print();
-
 	return writer.getFoldername();
 
 }

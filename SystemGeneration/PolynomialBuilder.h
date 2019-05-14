@@ -2,6 +2,7 @@
 #include "MonomialBuilder.h"
 #include "Polynomial.h"
 
+
 namespace polynomials
 {
 	class PolynomialBuilder : public MonomialBuilder

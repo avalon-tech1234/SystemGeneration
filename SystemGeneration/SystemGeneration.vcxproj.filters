@@ -118,7 +118,13 @@
       <Filter>Заголовочные файлы\service</Filter>
     </ClInclude>
     <ClInclude Include="MatrixBuilder.h">
-      <Filter>Заголовочные файлы</Filter>
+      <Filter>Заголовочные файлы\matrixes</Filter>
+    </ClInclude>
+    <ClInclude Include="ParserBackground.h">
+      <Filter>Заголовочные файлы\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser.h">
+      <Filter>Заголовочные файлы\IO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="Environment.cpp">
       <Filter>Файлы исходного кода\service</Filter>
+    </ClCompile>
+    <ClCompile Include="Parser.cpp">
+      <Filter>Файлы исходного кода\IO</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

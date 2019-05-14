@@ -121,6 +121,8 @@
     <ClInclude Include="MatrixBuilder.h" />
     <ClInclude Include="Monomial.h" />
     <ClInclude Include="MonomialBuilder.h" />
+    <ClInclude Include="Parser.h" />
+    <ClInclude Include="ParserBackground.h" />
     <ClInclude Include="Polynomial.h" />
     <ClInclude Include="PolynomialBuilder.h" />
     <ClInclude Include="RandomEngine.h" />
@@ -142,6 +144,7 @@
     <ClCompile Include="MainTesting.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Monomial.cpp" />
+    <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Polynomial.cpp" />
     <ClCompile Include="RandomEngine.cpp" />
     <ClCompile Include="RandomMatrixFactory.cpp" />
