@@ -21,7 +21,7 @@ namespace matrixes
 		Row(size_t length) : elements(length) {};
 		Row(std::vector<_T> v) : elements(v) {};
 
-		void toVector(std::vector<BOOL>& res)
+		void toVector(std::vector<BOOL>& res) const
 		{
 			res.clear();
 			size_t n = size();

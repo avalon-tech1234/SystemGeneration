@@ -6,6 +6,6 @@
 class MainTesting
 {
 public:
-	void test();
+	void test(size_t n, int init_value);
 };
 

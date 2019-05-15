@@ -22,12 +22,18 @@ using namespace random;
 using namespace polynomials;
 
 
-
-
-void MainTesting::test()
+void sleepcp(int milliseconds) // Cross-platform sleep function
 {
-	size_t n = 5;
+	clock_t time_end;
+	time_end = clock() + milliseconds * CLOCKS_PER_SEC / 1000;
+	while (clock() < time_end)
+	{
+	}
+}
 
+
+void MainTesting::test(size_t n, int init_value)
+{
 	Environment env(n);
 	string foldername = env.run(false);
 
@@ -45,47 +51,60 @@ void MainTesting::test()
 	reader.read(FT, "FoT.txt");
 	reader.read(P_result, "P.txt");
 
-	// обратные к М1 и М2 соотв
+	// генерим матрицы, обратные к М1 и М2
 	MatrixB invM1, invM2;
 	invM1.initInverse(M1);
 	invM2.initInverse(M2);
 
+	// генерим преобразование, обратное к F
+	vector<Polynomial> trans;
+	trans.push_back(F[0]);
+	Polynomial cur;
+	for (size_t i = 1; i < n; i++)
+	{
+		Polynomial f_i = F[i];
+		f_i += {i}; // теперь здесь хранится полином g_i
+		Transformation part = vector<Polynomial>{ f_i };
+		Transformation x_prev = trans;
+		Transformation g_i_x; // g_i (x0, x1, ..., i-1)
+		part(x_prev, g_i_x);
+
+		cur = g_i_x[0];
+		cur += { i };
+		trans.push_back(cur);
+	}
+	Transformation invF = trans;
+
 	Writer writer(foldername);
 	writer.print(invM1, "invM1.txt");
 	writer.print(invM2, "invM2.txt");
+	writer.print(invF, "invF.txt");
+
+	//cout << "Foldername: " << foldername << endl;
 
 	for (int t = 0; t < 5; t++) {
 
 		// генерим рандомный вектор-строку х и c - результат преобразования
 		vector<BOOL> x(n);
 		RandomMatrixFactory<BOOL> fact(RandomEngine().getRandomEngine());
-		//fact.getRandomRow(x, n);
+		switch (init_value)
+		{
+		case 0: break;
+		case 1: x = vector<BOOL>(n, TRUE); break;
+		default: 
+			sleepcp(1000);
+			fact.getRandomRow(x, n); 
+			break;
+		}
+		
 		vector<BOOL> c(n);
 		P_result.substitute(x, c);
-
-		// генерим преобразование, обратное к F
-		vector<Polynomial> trans;
-		trans.push_back({ 0 });
-		Polynomial cur;
-		for (size_t i = 1; i < n; i++)
-		{
-			Polynomial f_i = F[i];
-			f_i += {i}; // теперь здесь хранится полином g_i
-			Transformation part = vector<Polynomial>{ f_i };
-			Transformation x_prev = trans;
-			Transformation g_i_x; // g_i (x0, x1, ..., i-1)
-			part(x_prev, g_i_x);
-
-			cur = g_i_x[0];
-			cur += { i };
-			trans.push_back(cur);
-		}
-		Transformation invF = trans;
 
 		// строим вектор - результат преобразования, обратного к FoS
 		RowB S_back(n), FoS_back(n);
 		v1 ^= c;
 		invM1.multiply(v1, S_back);
+		v1 ^= c; // больше он не нужен, возвращаем его в исходное состояние
 		vector<BOOL> Sb, FSb;
 		S_back.toVector(Sb);
 		FoS_back.toVector(FSb);
@@ -102,11 +121,12 @@ void MainTesting::test()
 		{
 			if (x[i] != x2.get(i))
 			{
-				cout << "Bad result for x = " + RowB(x).toString() << " and folder " << foldername << endl;
+				cout << " Bad result for x = " + RowB(x).toString();
 				return;
 			}
 		}
-		cout << "Success for x = " + RowB(x).toString() << endl;
+		//cout << "Success for x = " + RowB(x).toString() << endl;
+		cout << "-";
 	}
 
 

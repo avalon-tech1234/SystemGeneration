@@ -3,25 +3,23 @@
 #include <iostream>
 #include <ctime>
 
-void sleepcp(int milliseconds) // Cross-platform sleep function
-{
-	clock_t time_end;
-	time_end = clock() + milliseconds * CLOCKS_PER_SEC / 1000;
-	while (clock() < time_end)
-	{
-	}
-}
+using namespace std;
 
 int main()
 {
 	MainTesting letstest;
 
+	size_t n = 5;
 	for (int i = 0; i < 10; i++)
 	{
-		letstest.test();
-		sleepcp(1000);
+		cout << endl << i << " ";
+		letstest.test(n, 1); // тестим для единичного вектора
+		cout << " ";
+		letstest.test(n, 0); // тестим для нулевого вектора
+		cout << " ";
+		letstest.test(n, -1); // тестим для произвольного вектора
 	}
-
+	cout << endl;
 
 
 	system("pause");

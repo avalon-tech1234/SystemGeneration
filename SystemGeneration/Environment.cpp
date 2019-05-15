@@ -30,7 +30,7 @@ string Environment::run(bool print_or_not) const
 		return "";
 	}
 
-	if(print_or_not) cout << "Performing preparations... ";
+	if (print_or_not) cout << "Performing preparations... ";
 
 	std::mt19937 gen = RandomEngine().getRandomEngine();
 	RandomMatrixFactory<BOOL> matr_factory(gen);
@@ -62,14 +62,17 @@ string Environment::run(bool print_or_not) const
 		pol_factory.getQuadraticPolynomial(cur, i);
 		cur += Monomial(i);
 		builder << cur;
-		if (i % 10 == 0)
-		{
-			for (int i = 0; i < prev_num; i++) cout << '\b';
-			cout << i << '/' << n;
-			prev_num = to_string(i).length() + to_string(n).length() + 1;
+		if (print_or_not) {
+			if (i % 10 == 0)
+			{
+				for (int i = 0; i < prev_num; i++) cout << '\b';
+				cout << i << '/' << n;
+				prev_num = to_string(i).length() + to_string(n).length() + 1;
+			}
 		}
 	}
-	for (int i = 0; i < prev_num; i++) cout << '\b';
+	if (print_or_not)
+		for (int i = 0; i < prev_num; i++) cout << '\b';
 	Transformation F;
 	builder >> F;
 

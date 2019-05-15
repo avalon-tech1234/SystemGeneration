@@ -48,7 +48,7 @@ void Transformation::operator() (const Transformation& F_inner, Transformation& 
 	trans_builder >> G_result;
 }
 
-void Transformation::substitute(const vector<BOOL>& in, vector<BOOL>& out)
+void Transformation::substitute(const vector<BOOL>& in, vector<BOOL>& out) const
 {
 	size_t n = size();
 

@@ -15,9 +15,6 @@ using namespace transformations;
 void Reader::read(matrixes::MatrixB& matr, std::string filename)
 {
 	in.open(foldername + filename);
-	if (in.is_open())
-	{
-
 		string cur;
 
 		// по первой строке (зная, что матрица квадратная) узнаем размерность матрицы
@@ -42,7 +39,7 @@ void Reader::read(matrixes::MatrixB& matr, std::string filename)
 		builder.operator>>(matr);
 
 		in.close();
-	}
+	
 
 }
 
