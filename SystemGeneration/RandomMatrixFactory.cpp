@@ -5,14 +5,6 @@ using namespace random;
 
 
 template <class _T>
-void RandomMatrixFactory<_T>::getRandomRow(Row<_T>& output)
-{
-	size_t sz = output.size();
-	for (size_t i = 0; i < sz; i++)
-		output.set(i, gen() % 2);
-}
-
-template <class _T>
 void RandomMatrixFactory<_T>::getRandomMatrix(Matrix <_T>& output, size_t dimension)
 {
 
@@ -41,7 +33,7 @@ void RandomMatrixFactory<_T>::getRandomMatrix(Matrix <_T>& output, size_t dimens
 
 		if (i1 != i2)
 		{
-			r1->operator^=(r2);
+			r1->operator^=(*r2);
 
 			output.swap(i1, i2);
 		}

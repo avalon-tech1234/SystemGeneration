@@ -9,8 +9,7 @@ using namespace std;
 void Transformation::operator() (const Transformation& F_inner, Transformation& G_result) const
 {
 
-	if (size() != F_inner.size())
-		throw exception("For composition transformations must be co-dimensional");
+	// if (size() != F_inner.size()) throw exception("For composition transformations must be co-dimensional");
 
 	DNFBuilder pol_builder;
 	TransformationBuilder trans_builder;

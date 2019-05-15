@@ -21,15 +21,25 @@ namespace matrixes
 		Row(size_t length) : elements(length) {};
 		Row(std::vector<_T> v) : elements(v) {};
 
-		void operator^=(const Row<_T>* second)
+		void toVector(std::vector<BOOL>& res)
+		{
+			res.clear();
+			size_t n = size();
+			for (size_t i = 0; i < n; i++)
+			{
+				res.push_back(get(i));
+			}
+		}
+		
+		void operator^=(const Row<_T>& second)
 		{
 			size_t sz = size();
-			if (sz != second->size())
+			if (sz != second.size())
 				throw std::exception("For operation XOR vectors must have same dimension");
 
 			for (size_t i = 0; i < sz; i++)
 			{
-				_T res = elements[i] ^ second->get(i);
+				_T res = elements[i] ^ second.get(i);
 				elements[i] = res;
 			}
 		}

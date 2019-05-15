@@ -22,7 +22,7 @@ using namespace polynomials;
 
 
 
-string Environment::run() const
+string Environment::run(bool print_or_not) const
 {
 	if (n == 0)
 	{
@@ -30,13 +30,13 @@ string Environment::run() const
 		return "";
 	}
 
-	cout << "Performing preparations... ";
+	if(print_or_not) cout << "Performing preparations... ";
 
 	std::mt19937 gen = RandomEngine().getRandomEngine();
 	RandomMatrixFactory<BOOL> matr_factory(gen);
 	RandomPolynomialFactory pol_factory(gen);
 
-	cout << "finished" << endl
+	if (print_or_not) cout << "finished" << endl
 		<< "Generating random matrixes M1 and M2 and random vectors v1 and v2... ";
 
 	MatrixB m1, m2;
@@ -46,13 +46,13 @@ string Environment::run() const
 	matr_factory.getRandomRow(v1);
 	matr_factory.getRandomRow(v2);
 
-	cout << "finished" << endl << "Generating affine transformation S... ";
+	if (print_or_not) cout << "finished" << endl << "Generating affine transformation S... ";
 
 	AffineTransformation S = AffineTransformation(m1, v1);
-	cout << " finished" << endl << "Generating affine transformation T... ";
+	if (print_or_not) cout << " finished" << endl << "Generating affine transformation T... ";
 	AffineTransformation T = AffineTransformation(m2, v2);
 
-	cout << " finished" << endl << "Generating random transformation F... ";
+	if (print_or_not) cout << " finished" << endl << "Generating random transformation F... ";
 
 	TransformationBuilder builder;
 	Polynomial cur;
@@ -73,7 +73,7 @@ string Environment::run() const
 	Transformation F;
 	builder >> F;
 
-	cout << "finished" << endl << "Building composition SoFoT... ";
+	if (print_or_not) cout << "finished" << endl << "Building composition SoFoT... ";
 
 	Transformation FT;
 	F(T, FT);
@@ -81,7 +81,7 @@ string Environment::run() const
 	Transformation P;
 	S(FT, P);
 
-	cout << "finished" << endl << "Printing into files... ";
+	if (print_or_not) cout << "finished" << endl << "Printing into files... ";
 
 	Writer writer;
 	writer.print(v1, "v1.txt"); // тестим
@@ -94,7 +94,7 @@ string Environment::run() const
 	writer.print(FT, "FoT.txt");
 	writer.print(P, "P.txt");
 
-	cout << "finished" << endl;
+	if (print_or_not) cout << "finished" << endl;
 
 	return writer.getFoldername();
 

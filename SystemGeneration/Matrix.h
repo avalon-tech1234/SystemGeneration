@@ -64,7 +64,7 @@ namespace matrixes
 			data.clear();
 		}
 
-		void multiply(const Row<_T>& r, Row<_T>& result)
+		void multiply(const Row<_T>& r, Row<_T>& result) const
 		{
 			size_t n = size();
 			if (n != r.size()) return;
@@ -75,7 +75,7 @@ namespace matrixes
 			{
 				b = 0;
 				for (size_t j = 0; j < n; j++)
-					b += get(i)->get(j) * r.get(j);
+					b ^= data[i]->get(j) * r.get(j);
 				result.set(i, b);
 			}
 		}

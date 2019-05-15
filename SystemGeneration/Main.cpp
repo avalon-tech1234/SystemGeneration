@@ -1,16 +1,28 @@
 #include "Environment.h"
 #include "MainTesting.h"
+#include <iostream>
+#include <ctime>
+
+void sleepcp(int milliseconds) // Cross-platform sleep function
+{
+	clock_t time_end;
+	time_end = clock() + milliseconds * CLOCKS_PER_SEC / 1000;
+	while (clock() < time_end)
+	{
+	}
+}
 
 int main()
 {
-	
-	int n = 5;
-	Environment env(n);
-	env.run();
-	
-
 	MainTesting letstest;
-	letstest.test();
+
+	for (int i = 0; i < 10; i++)
+	{
+		letstest.test();
+		sleepcp(1000);
+	}
+
+
 
 	system("pause");
 
