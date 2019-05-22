@@ -9,9 +9,9 @@ void RandomPolynomialFactory::getQuadraticPolynomial(Polynomial& out, size_t n)
 {
 	PolynomialBuilder builder;
 
-	for (int i = 0; i < n; i++)
+	for (size_t i = 0; i < n; i++)
 	{
-		for (int j = 0; j < i; j++)
+		for (size_t j = 0; j < i; j++)
 		{
 			if (gen() % 2 == TRUE)
 			{
@@ -22,7 +22,7 @@ void RandomPolynomialFactory::getQuadraticPolynomial(Polynomial& out, size_t n)
 		}
 	}
 
-	for (int i = 0; i < n; i++)
+	for (size_t i = 0; i < n; i++)
 	{
 		if (gen() % 2 == TRUE)
 		{

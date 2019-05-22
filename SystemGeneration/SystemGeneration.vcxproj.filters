@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Файлы исходного кода\service">
-      <UniqueIdentifier>{664f6bb8-0541-4f44-a213-1e323eec203d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Заголовочные файлы\service">
       <UniqueIdentifier>{a47cd4dc-11c2-42b9-9223-c4cabc26252f}</UniqueIdentifier>
     </Filter>
@@ -54,6 +51,12 @@
     </Filter>
     <Filter Include="Файлы исходного кода\testing">
       <UniqueIdentifier>{7eb976b3-62ba-469c-a778-6d817384ef07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\environment">
+      <UniqueIdentifier>{e0d1e0a8-7acb-4d34-aaf0-4067d3dc9254}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\environment">
+      <UniqueIdentifier>{ffca9510-e8d8-46f8-9b17-14e13585a03b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -111,9 +114,6 @@
     <ClInclude Include="Reader.h">
       <Filter>Заголовочные файлы\IO</Filter>
     </ClInclude>
-    <ClInclude Include="Environment.h">
-      <Filter>Заголовочные файлы\service</Filter>
-    </ClInclude>
     <ClInclude Include="Utility.h">
       <Filter>Заголовочные файлы\service</Filter>
     </ClInclude>
@@ -131,6 +131,9 @@
     </ClInclude>
     <ClInclude Include="speedtest.h">
       <Filter>Заголовочные файлы\testing</Filter>
+    </ClInclude>
+    <ClInclude Include="Environment.h">
+      <Filter>Заголовочные файлы\environment</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -170,9 +173,6 @@
     <ClCompile Include="Reader.cpp">
       <Filter>Файлы исходного кода\IO</Filter>
     </ClCompile>
-    <ClCompile Include="Environment.cpp">
-      <Filter>Файлы исходного кода\service</Filter>
-    </ClCompile>
     <ClCompile Include="Parser.cpp">
       <Filter>Файлы исходного кода\IO</Filter>
     </ClCompile>
@@ -181,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="speedtest.cpp">
       <Filter>Файлы исходного кода\testing</Filter>
+    </ClCompile>
+    <ClCompile Include="Environment.cpp">
+      <Filter>Файлы исходного кода\environment</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

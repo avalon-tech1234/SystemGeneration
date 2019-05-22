@@ -9,7 +9,7 @@ namespace transformations
 
 	public:
 
-		AffineTransformation(const matrixes::MatrixB& M, const matrixes::RowB& v);
+		AffineTransformation(const matrixes::MatrixB& M, const matrixes::RowB& v, bool print_or_not = true);
 
 	};
 }

@@ -8,7 +8,7 @@ using namespace matrixes;
 using namespace polynomials;
 using namespace transformations;
 
-AffineTransformation::AffineTransformation(const MatrixB& M, const RowB& v)
+AffineTransformation::AffineTransformation(const MatrixB& M, const RowB& v, bool print_or_not)
 {
 	size_t n = M.size();
 	if (v.size() != n)
@@ -35,15 +35,15 @@ AffineTransformation::AffineTransformation(const MatrixB& M, const RowB& v)
 		builder >> cur;
 		coordinates.push_back(cur);
 
-		if (i % 50 == 0)
+		if (i % 50 == 0 && print_or_not)
 		{
-			for (int i = 0; i < prev_num; i++) cout << '\b';
+			for (size_t i = 0; i < prev_num; i++) cout << '\b';
 			cout << i << '/' << n;
 			prev_num = to_string(i).length() + to_string(n).length() + 1;
 		}
 
 	}
-	for (int i = 0; i < prev_num; i++) cout << '\b';
+	for (size_t i = 0; i < prev_num; i++) cout << '\b';
 
 }
 

@@ -55,7 +55,7 @@ void Transformation::substitute(const vector<BOOL>& in, vector<BOOL>& out) const
 	out.clear();
 	if (in.size() != n) return;
 
-	for (int i = 0; i < n; i++)
+	for (size_t i = 0; i < n; i++)
 	{
 		BOOL b = coordinates[i].substitute(in);
 		out.push_back(b);

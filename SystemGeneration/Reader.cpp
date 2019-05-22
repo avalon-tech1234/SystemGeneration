@@ -24,7 +24,7 @@ void Reader::read(matrixes::MatrixB& matr, std::string filename)
 		MatrixBuilder builder(n);
 
 		// для каждой строки
-		for (int i = 0; i < n; i++)
+		for (size_t i = 0; i < n; i++)
 		{
 			if (i != 0) getline(in, cur);
 			util.trim2(cur); // оставляем все между фигурными скобками

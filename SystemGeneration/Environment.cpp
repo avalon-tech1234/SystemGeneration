@@ -48,9 +48,9 @@ string Environment::run(bool print_or_not) const
 
 	if (print_or_not) cout << "finished" << endl << "Generating affine transformation S... ";
 
-	AffineTransformation S = AffineTransformation(m1, v1);
+	AffineTransformation S = AffineTransformation(m1, v1, print_or_not);
 	if (print_or_not) cout << " finished" << endl << "Generating affine transformation T... ";
-	AffineTransformation T = AffineTransformation(m2, v2);
+	AffineTransformation T = AffineTransformation(m2, v2, print_or_not);
 
 	if (print_or_not) cout << " finished" << endl << "Generating random transformation F... ";
 
@@ -65,14 +65,14 @@ string Environment::run(bool print_or_not) const
 		if (print_or_not) {
 			if (i % 10 == 0)
 			{
-				for (int i = 0; i < prev_num; i++) cout << '\b';
+				for (size_t i = 0; i < prev_num; i++) cout << '\b';
 				cout << i << '/' << n;
 				prev_num = to_string(i).length() + to_string(n).length() + 1;
 			}
 		}
 	}
 	if (print_or_not)
-		for (int i = 0; i < prev_num; i++) cout << '\b';
+		for (size_t i = 0; i < prev_num; i++) cout << '\b';
 	Transformation F;
 	builder >> F;
 

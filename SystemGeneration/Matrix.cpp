@@ -54,9 +54,9 @@ void Matrix<_T>::initInverse(const Matrix<_T>& matrix)
 
 	// слева исходная матрица, справа единичная. По окончании работы метода слева будет единичная матрица, а справа обратная к исходной, что и требуется
 	init_zeros(n, 2 * n);
-	for (int i = 0; i < n; i++)
+	for (size_t i = 0; i < n; i++)
 	{
-		for (int j = 0; j < n; j++)
+		for (size_t j = 0; j < n; j++)
 			get(i)->set(j, matrix[i]->get(j));
 		get(i)->set(i + n, 1);
 	}
@@ -110,7 +110,7 @@ void Matrix<_T>::initInverse(const Matrix<_T>& matrix)
 	}
 
 	// взятие "правой половины" матрицы
-	for (int i = 0; i < n; i++)
+	for (size_t i = 0; i < n; i++)
 	{
 		*get(i) = Row<_T>(vector<_T>(get(i)->begin() + n, get(i)->end()));
 	}

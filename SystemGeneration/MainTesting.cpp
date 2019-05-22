@@ -7,7 +7,6 @@
 #include "Writer.h"
 
 #include "Matrix.h"
-#include "AffineTransformation.h"
 #include "Polynomial.h"
 
 #include <iostream>
@@ -32,11 +31,8 @@ void sleepcp(int milliseconds) // Cross-platform sleep function
 }
 
 
-void MainTesting::test(size_t n, int init_value)
+void MainTesting::test_system_generation(BOOL b) const
 {
-	Environment env(n);
-	string foldername = env.run(false);
-
 	Reader reader(foldername);
 	RowB v1(n), v2(n);
 	MatrixB M1, M2;
@@ -80,54 +76,59 @@ void MainTesting::test(size_t n, int init_value)
 	writer.print(invM2, "invM2.txt");
 	writer.print(invF, "invF.txt");
 
-	//cout << "Foldername: " << foldername << endl;
-
-	for (int t = 0; t < 5; t++) {
-
-		// генерим рандомный вектор-строку х и c - результат преобразования
-		vector<BOOL> x(n);
+	// генерим вектор-строку х и c - результат преобразования
+	vector<BOOL> x;
+	switch (b)
+	{
+	case TRUE:
+		cout << "Testing for unit vector...";
+		x = vector<BOOL>(n, b);
+		break;
+	case FALSE:
+		cout << "Testing for zero vector...";
+		x = vector<BOOL>(n, b);
+		break;
+	default:
+		cout << "Testing for x = { ";
+		sleepcp(1000);
+		x = vector<BOOL>(n, 0);
 		RandomMatrixFactory<BOOL> fact(RandomEngine().getRandomEngine());
-		switch (init_value)
-		{
-		case 0: break;
-		case 1: x = vector<BOOL>(n, TRUE); break;
-		default: 
-			sleepcp(1000);
-			fact.getRandomRow(x, n); 
-			break;
-		}
-		
-		vector<BOOL> c(n);
-		P_result.substitute(x, c);
-
-		// строим вектор - результат преобразования, обратного к FoS
-		RowB S_back(n), FoS_back(n);
-		v1 ^= c;
-		invM1.multiply(v1, S_back);
-		v1 ^= c; // больше он не нужен, возвращаем его в исходное состояние
-		vector<BOOL> Sb, FSb;
-		S_back.toVector(Sb);
-		FoS_back.toVector(FSb);
-		invF.substitute(Sb, FSb);
-		FoS_back = FSb;
-
-		FoS_back ^= v2;
-		RowB x2(n);
-		invM2.multiply(FoS_back, x2);
-
-		// Итак, в данный момент получены х и х2=invP(c)=invP(P(x))
-
-		for (size_t i = 0; i < n; i++)
-		{
-			if (x[i] != x2.get(i))
-			{
-				cout << " Bad result for x = " + RowB(x).toString();
-				return;
-			}
-		}
-		//cout << "Success for x = " + RowB(x).toString() << endl;
-		cout << "-";
+		fact.getRandomRow(x, n);
+		for (auto i = x.begin(); i != x.end(); ++i)
+			std::cout << *i << ' ';
+		cout << "}...";
+		break;
 	}
+	vector<BOOL> c(n);
+	P_result.substitute(x, c);
+
+	// строим вектор - результат преобразования, обратного к FoS
+	RowB S_back(n), FoS_back(n);
+	v1 ^= c;
+	invM1.multiply(v1, S_back);
+	v1 ^= c; // больше он не нужен, возвращаем его в исходное состояние
+	vector<BOOL> Sb, FSb;
+	S_back.toVector(Sb);
+	FoS_back.toVector(FSb);
+	invF.substitute(Sb, FSb);
+	FoS_back = FSb;
+
+	FoS_back ^= v2;
+	RowB x2(n);
+	invM2.multiply(FoS_back, x2);
+
+	// Итак, в данный момент получены х и х2=invP(c)=invP(P(x))
+
+	for (size_t i = 0; i < n; i++)
+	{
+		if (x[i] != x2.get(i))
+		{
+			cout << " fail!" << endl;
+			return;
+		}
+	}
+	cout << " success!" << endl;
+
 
 
 }

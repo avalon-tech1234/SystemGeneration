@@ -38,8 +38,8 @@ namespace matrixes
 			size_t n = size();
 			if (n != other.size()) return false;
 
-			for (int i = 0; i < n; i++)
-				for (int j = 0; j < n; j++)
+			for (size_t i = 0; i < n; i++)
+				for (size_t j = 0; j < n; j++)
 					if (get(i)->get(j) != other.get(i)->get(j)) return false;
 
 			return true;
