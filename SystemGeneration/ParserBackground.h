@@ -31,14 +31,22 @@ namespace IO
 
 	inline SymbolTypes what_type(char symb)
 	{
-		if (symb == '+') return SymbolTypes::sign;
-		if (symb == '\0') return SymbolTypes::trail;
-		if (symb == '^') return SymbolTypes::cap;
-		if (isdigit(symb) != 0) return SymbolTypes::digit;
-		if (isalpha(symb) != 0) return SymbolTypes::letter;
-		if (isblank(symb) != 0) return SymbolTypes::empty;
-		if (symb == '[') return SymbolTypes::open_comment;
-		if (symb == ']') return SymbolTypes::close_comment;
+		if (symb == '+')
+			return SymbolTypes::sign;
+		if (symb == '\0' || symb == '=' || symb == ';')
+			return SymbolTypes::trail;
+		if (symb == '^')
+			return SymbolTypes::cap;
+		if (isdigit(symb) != 0)
+			return SymbolTypes::digit;
+		if (isalpha(symb) != 0)
+			return SymbolTypes::letter;
+		if (isblank(symb) != 0)
+			return SymbolTypes::empty;
+		if (symb == '[')
+			return SymbolTypes::open_comment;
+		if (symb == ']')
+			return SymbolTypes::close_comment;
 		return SymbolTypes::unknown;
 	}
 

@@ -21,7 +21,7 @@ namespace random
 				output.set(i, gen() % 2);
 		}
 		
-		void getRandomRow(std::vector<BOOL>& output, size_t n)
+		void getRandomRow(std::vector<BOOL>& output)
 		{
 			size_t sz = output.size();
 			for (size_t i = 0; i < sz; i++)

@@ -53,7 +53,6 @@ void Reader::read(transformations::Transformation& trans, std::string filename)
 	Polynomial p;
 	while (getline(in, cur))
 	{
-		cur = cur.substr(cur.find('=') + 2);
 		parser.read(cur, p);
 		builder << p;
 	}

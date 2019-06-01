@@ -15,7 +15,6 @@ namespace IO {
 
 	public:
 
-		Writer();
 		Writer(std::string foldername) : foldername(foldername) {}
 
 		void print(const matrixes::MatrixB& matr, std::string filename);
