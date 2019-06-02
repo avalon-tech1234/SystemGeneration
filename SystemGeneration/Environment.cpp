@@ -8,16 +8,14 @@
 #include "speedtest.h"
 
 #include "file_system.h"
-
-
 #include "Reader.h"
 #include "Writer.h"
 
-
+#include <cstdio>
 #include <iostream>
 #include <string>
 #include <ctime>
-
+#include <direct.h>
 
 using namespace std;
 using namespace matrixes;
@@ -63,6 +61,25 @@ void Environment::check(const vector<BOOL>& v, const string& text)
 	solveSystem(res, res);
 	if (v == res) cout << "OK for " << text << endl;
 	else cout << "Bad for " << text << endl;
+}
+
+void Environment::clean()
+{
+	remove((foldername + "pre_rand/v1.txt").c_str());
+	remove((foldername + "pre_rand/v2.txt").c_str());
+	remove((foldername + "pre_rand/M1.txt").c_str());
+	remove((foldername + "pre_rand/M2.txt").c_str());
+	remove((foldername + "inv/invM1.txt").c_str());
+	remove((foldername + "inv/invM2.txt").c_str());
+	remove((foldername + "pre_gen/S.txt").c_str());
+	remove((foldername + "pre_gen/T.txt").c_str());
+	remove((foldername + "pre_gen/F.txt").c_str());
+	remove((foldername + "pre_gen/FoT.txt").c_str());
+	remove((foldername + "inv/invF.txt").c_str());
+
+	_rmdir((foldername + "inv").c_str());
+	_rmdir((foldername + "pre_gen").c_str());
+	_rmdir((foldername + "pre_rand").c_str());
 }
 
 void Environment::run(bool print_or_not)
