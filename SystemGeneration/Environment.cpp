@@ -25,16 +25,14 @@ using namespace transformations;
 using namespace IO;
 using namespace random;
 using namespace polynomials;
+using namespace filesystem;
 
-// код проверки на утечки памяти вынесен в speedtest
-
-Environment::Environment(size_t n)
-	: n(n), reader(""), writer("")
+Environment::Environment(size_t n, string _foldername) : n(n), foldername(_foldername)
 {
 	if (n == 0)
 		throw std::exception("Attempt to create equation system with 0 equations. Forbidden");
 
-	foldername = "../results/";
+	create_folder(foldername);
 
 	time_t t = time(0);
 	struct tm now;
@@ -53,50 +51,62 @@ Environment::Environment(size_t n)
 	create_folder(foldername + "pre_rand/");
 	create_folder(foldername + "pre_gen/");
 
-	reader = Reader(foldername);
-	writer = Writer(foldername);
 }
 
 void Environment::check(const vector<BOOL>& v, const string& text)
 {
 	std::vector<BOOL> res;
+	Reader reader(foldername);
+	Transformation P;
+	reader.read(P, "P.txt");
 	P.substitute(v, res);
 	solveSystem(res, res);
 	if (v == res) cout << "OK for " << text << endl;
 	else cout << "Bad for " << text << endl;
 }
 
+void Environment::run(bool print_or_not)
+{
+	cout << "Generating system..." << endl;
+	generateSystem(print_or_not);
+	cout << " ...generating system finished" << endl;
+	cout << "Solving system...";
+	solveSystem(std::vector<BOOL>(n, FALSE), vector<BOOL>{ FALSE });
+	cout << " finished" << endl;
+}
+
 void Environment::test()
 {
-	generateSystem(false);
+	cout << "Generating system..." << endl;
+	generateSystem(true);
+	cout << " ...generating system finished" << endl;
+
+
+	cout << "Solving system...";
 	solveSystem(std::vector<BOOL>(n, FALSE), vector<BOOL>{ FALSE });
+	cout << " finished" << endl;
 
 	check(std::vector<BOOL>(n, FALSE), "zero vector");
 	check(std::vector<BOOL>(n, TRUE), "unit vector");
 
+	std::vector<BOOL> v(n);
+	RandomMatrixFactory<BOOL> factory(RandomEngine().getRandomEngine());
 	for (int i = 0; i < 10; i++)
 	{
-		// пауза на 1000 мс
-		clock_t time_end;
-		time_end = clock() + 1000 * CLOCKS_PER_SEC / 1000;
-		while (clock() < time_end) { }
-
-		// рандомно генерим v
-		std::vector<BOOL> v(n);
-		RandomMatrixFactory<BOOL>(RandomEngine().getRandomEngine())
-			.getRandomRow(v);
-
+		factory.getRandomRow(v);
 		string text;
 		RowB(v).toString(text, "{", ", ", "}");
 
 		check(v, text);
 	}
+
 }
 
 void Environment::generateSystem(bool print_or_not)
 {
 	if (print_or_not) cout << "Performing preparations... ";
 
+	IO::Writer writer(foldername);
 	std::mt19937 gen = RandomEngine().getRandomEngine();
 	RandomMatrixFactory<BOOL> matr_factory(gen);
 	RandomPolynomialFactory pol_factory(gen);
@@ -124,6 +134,7 @@ void Environment::generateSystem(bool print_or_not)
 
 	if (print_or_not) cout << " finished" << endl << "Generating random transformation F... ";
 
+	// Строим преобразование F
 	TransformationBuilder builder;
 	Polynomial cur;
 	size_t prev_num = 0;
@@ -133,60 +144,26 @@ void Environment::generateSystem(bool print_or_not)
 		cur += Monomial(i);
 		builder << cur;
 		if (print_or_not) {
-			if (i % 10 == 0)
+			if ((i + 1) % 10 == 0)
 			{
 				for (size_t i = 0; i < prev_num; i++) cout << '\b';
-				cout << i << '/' << n;
-				prev_num = to_string(i).length() + to_string(n).length() + 1;
+				cout << (i + 1) << '/' << n;
+				prev_num = to_string(i + 1).length() + to_string(n).length() + 1;
 			}
 		}
 	}
 	if (print_or_not)
-		for (size_t i = 0; i < prev_num; i++) cout << '\b';
+		for (size_t i = 0; i < prev_num; i++)
+			cout << '\b';
+	prev_num = 0;
 	Transformation F;
 	builder >> F;
+	if (print_or_not) cout << "finished" << endl << "Building inverted F... ";
 
-	if (print_or_not) cout << "finished" << endl << "Building composition SoFoT... ";
-
-	Transformation FT;
-	F(T, FT);
-
-	//Transformation P;
-	S(FT, P);
-
-	if (print_or_not) cout << "finished" << endl << "Printing into files... ";
-
-	Writer writer(foldername);
-	writer.print(v1, "pre_rand/v1.txt");
-	writer.print(v2, "pre_rand/v2.txt");
-	writer.print(m1, "pre_rand/M1.txt");
-	writer.print(m2, "pre_rand/M2.txt");
-	writer.print(invM1, "inv/invM1.txt");
-	writer.print(invM2, "inv/invM2.txt");
-	writer.print(S, "pre_gen/S.txt");
-	writer.print(T, "pre_gen/T.txt");
-	writer.print(F, "pre_gen/F.txt");
-	writer.print(FT, "pre_gen/FoT.txt");
-	writer.print(P, "P.txt");
-
-	if (print_or_not) cout << "finished" << endl;
-}
-
-void Environment::solveSystem(const std::vector<BOOL>& c, std::vector<BOOL>& out, bool print_or_not)
-{
-	RowB v1(n), v2(n);
-	MatrixB invM1, invM2;
-	Transformation F, invF;
-	reader.read(v1, "pre_rand/v1.txt");
-	reader.read(v2, "pre_rand/v2.txt");
-	reader.read(invM1, "inv/invM1.txt");
-	reader.read(invM2, "inv/invM2.txt");
-	reader.read(F, "pre_gen/F.txt");
-
-	// генерим преобразование, обратное к F
+	// не отходя от кассы, генерим преобразование, обратное к F
+	Transformation invF;
 	vector<Polynomial> trans;
 	trans.push_back(F[0]);
-	Polynomial cur;
 	for (size_t i = 1; i < n; i++)
 	{
 		Polynomial f_i = F[i];
@@ -199,11 +176,57 @@ void Environment::solveSystem(const std::vector<BOOL>& c, std::vector<BOOL>& out
 		cur = g_i_x[0];
 		cur += { i };
 		trans.push_back(cur);
+		if (print_or_not) {
+			for (size_t i = 0; i < prev_num; i++)
+				cout << '\b';
+			cout << (i + 1) << '/' << n;
+			prev_num = to_string(i + 1).length() + to_string(n).length() + 1;
+		}
 	}
+	if (print_or_not)
+		for (size_t i = 0; i < prev_num; i++) cout << '\b';
 	invF = trans;
 
-	Writer writer(foldername);
+	if (print_or_not) cout << "finished" << endl << "Building composition P = SoFoT... ";
+
+	// строим итоговое преобразование P
+	Transformation FT, P;
+	F(T, FT);
+	S(FT, P);
+
+	if (print_or_not) cout << "finished" << endl << "Printing into files... ";
+
+	writer.print(v1, "pre_rand/v1.txt");
+	writer.print(v2, "pre_rand/v2.txt");
+	writer.print(m1, "pre_rand/M1.txt");
+	writer.print(m2, "pre_rand/M2.txt");
+	writer.print(invM1, "inv/invM1.txt");
+	writer.print(invM2, "inv/invM2.txt");
+	writer.print(S, "pre_gen/S.txt");
+	writer.print(T, "pre_gen/T.txt");
+	writer.print(F, "pre_gen/F.txt");
+	writer.print(FT, "pre_gen/FoT.txt");
+	writer.print(P, "P.txt");
 	writer.print(invF, "inv/invF.txt");
+
+	if (print_or_not) cout << "finished" << endl;
+}
+
+void Environment::solveSystem(const std::vector<BOOL>& c, std::vector<BOOL>& out, bool print_or_not)
+{
+	RowB v1(n), v2(n);
+	MatrixB invM1, invM2;
+	Transformation invF;
+	IO::Reader reader(foldername);
+	IO::Writer writer(foldername);
+	reader.read(v1, "pre_rand/v1.txt");
+	if (v1.size() == 0)
+		throw exception("Cannot read files");
+	reader.read(v2, "pre_rand/v2.txt");
+	reader.read(invM1, "inv/invM1.txt");
+	reader.read(invM2, "inv/invM2.txt");
+	reader.read(invF, "inv/invF.txt");
+
 
 	/* Далее находим решение уравнения Р(х) = 0
 	 *
@@ -244,4 +267,7 @@ void Environment::solveSystem(const std::vector<BOOL>& c, std::vector<BOOL>& out
 	}
 
 	x.toVector(out);
+
+
+
 }

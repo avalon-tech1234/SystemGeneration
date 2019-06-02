@@ -6,6 +6,8 @@ Debug/
 x64/
 SystemGeneration/Debug/
 SystemGeneration/x64/
+results/
+res/
 
 
 # Compiled Object files

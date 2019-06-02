@@ -14,11 +14,6 @@ private:
 	size_t n; // количество уравнений, равно количеству переменнных
 	std::string foldername; // имя папки, куда пишем
 
-	IO::Reader reader;
-	IO::Writer writer;
-
-	transformations::Transformation P;
-
 	void generateSystem(bool print_or_not = true);
 	void solveSystem(const std::vector<BOOL>& c, std::vector<BOOL>& out, bool print_or_not = true);
 	void check(const std::vector<BOOL>& v, const std::string& text);
@@ -26,18 +21,9 @@ private:
 
 public:
 
-	Environment(size_t n);
+	Environment(size_t n, std::string foldername);
 
-	std::string getFoldername()
-	{
-		return foldername;
-	}
-
-	void run(bool print_or_not = true)
-	{
-		generateSystem(print_or_not);
-		solveSystem(std::vector<BOOL>(n, FALSE), std::vector<BOOL>(n, FALSE), print_or_not);
-	}
+	void run(bool print_or_not = true);
 
 	void test();
 
