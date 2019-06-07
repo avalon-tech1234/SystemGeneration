@@ -224,6 +224,8 @@ void Environment::generateSystem(bool print_or_not)
 	writer.print(F, "pre_gen/F.txt");
 	writer.print(FT, "pre_gen/FoT.txt");
 	writer.print(P, "P.txt");
+	P.normalize();
+	writer.print(P, "P_norm.txt");
 	writer.print(invF, "inv/invF.txt");
 
 	if (print_or_not) cout << "finished" << endl;

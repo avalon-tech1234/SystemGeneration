@@ -13,17 +13,18 @@ void Monomial::simplify()
 		sort(temp.begin(), temp.end());
 
 		vars.push_back(temp[0]);
-		size_t i = 1, sz = temp.size();
-		while (i < sz)
+		size_t sz = temp.size();
+		for (size_t i = 1; i < sz; i++)
 		{
 			if (temp[i] != vars.back())
 				vars.push_back(temp[i]);
-			i++;
 		}
 
 		temp.clear();
 
 	}
+	n_max = *std::max_element(vars.begin(), vars.end());
+
 
 }
 

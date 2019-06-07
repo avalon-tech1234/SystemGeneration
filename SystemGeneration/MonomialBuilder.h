@@ -13,8 +13,15 @@ namespace polynomials
 	protected:
 
 		void create(Monomial& out) {
-			out = Monomial(gr);
-			gr.clear();
+			if (gr.size() > 0)
+			{
+				out = Monomial(gr);
+				gr.clear();
+			}
+			else
+			{
+				out = FREE_MEMBER;
+			}
 		}
 
 

@@ -12,7 +12,7 @@ AffineTransformation::AffineTransformation(const MatrixB& M, const RowB& v, bool
 {
 	size_t n = M.size();
 	if (v.size() != n)
-		throw exception("Matrix M and vector v for affine transformation must be commensurate");
+		throw exception("Matrix M and vector v for affine transformation have same dimension");
 
 	PolynomialBuilder builder;
 	RowB* cur_vec;
@@ -30,7 +30,9 @@ AffineTransformation::AffineTransformation(const MatrixB& M, const RowB& v, bool
 			}
 		}
 		if (v.get(i) == TRUE)
+		{
 			builder.push();
+		}
 
 		builder >> cur;
 		coordinates.push_back(cur);

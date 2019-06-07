@@ -6,7 +6,11 @@
 #include <vector>
 #include <iterator>
 
+#include "Transformation.h"
+#include "Polynomial.h"
+
 using namespace std;
+using namespace polynomials;
 
 std::vector<std::string> split(const std::string &s, char delim) {
 	std::vector<std::string> elems;
@@ -57,12 +61,13 @@ vector<string> parse(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
-	string help_text = string("First argument should contain number of equations, or /h for help\n") + 
-		string("If first argument is number, the second one can be:\n") + 
+	
+	string help_text = string("First argument should contain number of equations, or /h for help\n") +
+		string("If first argument is number, the second one can be:\n") +
 			string("- /s - silent run (only the result) - default \n") +
-			string("- /r - sumple run\n") + 
+			string("- /r - sumple run\n") +
 			string("- /t - for testing\n") +
-			string("Third argument is a name of folder where files will be printed. Default folder is 'results'");
+			string("Third argument is a name of folder where files will be printed. Default folder is 'results'\n");
 	string help = "/h";
 	string debug = "/t";
 	string run = "/r";
@@ -76,6 +81,7 @@ int main(int argc, char *argv[])
 		if (argc == 0 || args[0] == help)
 		{
 			cout << help_text;
+			system("pause");
 			return 0;
 		}
 
@@ -121,5 +127,5 @@ int main(int argc, char *argv[])
 		cout << "Error occupied: " << e.what() << endl << "Program terminated" << endl;
 		system("pause");
 	}
-
+	
 }
