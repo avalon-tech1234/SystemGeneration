@@ -17,12 +17,12 @@ void Transformation::operator() (const Transformation& F_inner, Transformation& 
 	const Monomial* cur_mon;
 
 	size_t sz1 = size();
-	for(size_t i1 = 0; i1<sz1; i1++)
+	for (size_t i1 = 0; i1 < sz1; i1++)
 	{
 		cur_pol = &operator[](i1);
 
 		size_t sz2 = cur_pol->size();
-		for(size_t i2 = 0; i2 < sz2; i2++)
+		for (size_t i2 = 0; i2 < sz2; i2++)
 		{
 			cur_mon = &cur_pol->operator[](i2);
 
@@ -30,7 +30,7 @@ void Transformation::operator() (const Transformation& F_inner, Transformation& 
 			if (sz3 == 0)
 				pol_builder << FREE_MEMBER;
 			else
-				for(size_t i3 = 0; i3 < sz3; i3++)
+				for (size_t i3 = 0; i3 < sz3; i3++)
 				{
 					size_t pol_num = cur_mon->operator[](i3);
 					pol_builder << F_inner[pol_num];
@@ -79,12 +79,12 @@ void transformations::Transformation::normalize()
 	{
 		Polynomial Lr;
 		auto beg = coordinates[i].begin();
-		auto mark = beg;
+		auto mark = beg; // указывает на последний добавленный моном (сразу же добавим)
 
-		while (
-			mark < coordinates[i].begin() + coordinates[i].size() - 1 
-			&& *mark != FREE_MEMBER
-			&& !coordinates[i].is_standard())
+		while
+			(mark < coordinates[i].begin() + coordinates[i].size() - 1
+				&& !(mark == coordinates[i].begin() + coordinates[i].size() - 2 && *(mark + 1) == FREE_MEMBER)
+				&& !coordinates[i].is_standard())
 		{
 			Lr += *mark;
 			Lr += Monomial(z);

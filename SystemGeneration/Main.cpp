@@ -61,7 +61,7 @@ vector<string> parse(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
-	
+
 	string help_text = string("First argument should contain number of equations, or /h for help\n") +
 		string("If first argument is number, the second one can be:\n") +
 			string("- /s - silent run (only the result) - default \n") +
@@ -127,5 +127,4 @@ int main(int argc, char *argv[])
 		cout << "Error occupied: " << e.what() << endl << "Program terminated" << endl;
 		system("pause");
 	}
-	
 }
