@@ -23,7 +23,15 @@ void Monomial::simplify()
 		temp.clear();
 
 	}
-	n_max = *std::max_element(vars.begin(), vars.end());
+
+	n_max = 0;
+	std::vector<size_t>::iterator it = std::max_element(vars.begin(), vars.end());
+	if (it != vars.end())
+		n_max = *it;
+	else {
+		//_ASSERT(FALSE);
+	}
+
 
 
 }
