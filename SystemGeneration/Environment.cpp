@@ -82,14 +82,31 @@ void Environment::clean()
 	_rmdir((foldername + "pre_rand").c_str());
 }
 
+void Environment::normalizeSystem()
+{
+	Reader reader(foldername);
+	Writer writer(foldername);
+	Transformation P;
+	reader.read(P, "P.txt");
+	P.normalize();
+	writer.print(P, "P_norm.txt");
+
+}
+
 void Environment::run(bool print_or_not)
 {
 	cout << "Generating system..." << endl;
 	generateSystem(print_or_not);
 	cout << " ...generating system finished" << endl;
+
 	cout << "Solving system...";
 	solveSystem(std::vector<BOOL>(n, FALSE), vector<BOOL>{ FALSE });
 	cout << " finished" << endl;
+
+	cout << "Normalizing system...";
+	normalizeSystem();
+	cout << " finished" << endl;
+
 }
 
 void Environment::test()
@@ -224,8 +241,6 @@ void Environment::generateSystem(bool print_or_not)
 	writer.print(F, "pre_gen/F.txt");
 	writer.print(FT, "pre_gen/FoT.txt");
 	writer.print(P, "P.txt");
-	P.normalize();
-	writer.print(P, "P_norm.txt");
 	writer.print(invF, "inv/invF.txt");
 
 	if (print_or_not) cout << "finished" << endl;
