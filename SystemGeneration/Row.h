@@ -24,8 +24,8 @@ namespace matrixes
 		void toVector(std::vector<BOOL>& res) const
 		{
 			res.clear();
-			int n = size();
-			for (int i = 0; i < n; i++)
+			int sz = size();
+			for (int i = 0; i < sz; i++)
 			{
 				res.push_back(get(i));
 			}

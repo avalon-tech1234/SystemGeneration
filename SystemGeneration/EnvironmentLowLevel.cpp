@@ -192,7 +192,8 @@ void EnvironmentLowLevel::solveSystem(const std::vector<BOOL>& c, std::vector<BO
 	/* Далее находим решение уравнения Р(х) = 0
 	 *
 	 * Пользуемся формулой:
-	 * x = invP(0) = invM2 * [ invF( invM1*(c + v1) ) + v2 ], c = 0
+	 * x = invP(0) = invM2 * [ invF( invM1*(c + v1) ) + v2 ],
+	 * где c = 0 (если решаем; если проверяем, то рандомное)
 	 */
 
 	RowB S_back(n);

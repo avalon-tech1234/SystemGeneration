@@ -1,11 +1,7 @@
 #include "Environment.h"
 
-#include "RandomMatrixFactory.h"
-#include "RandomPolynomialFactory.h"
 #include "RandomEngine.h"
-#include "AffineTransformation.h"
-#include "TransformationBuilder.h"
-#include "speedtest.h"
+#include "RandomMatrixFactory.h"
 
 #include "file_system.h"
 #include "Reader.h"
