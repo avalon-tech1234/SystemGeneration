@@ -132,6 +132,9 @@
     <ClInclude Include="file_system.h">
       <Filter>Заголовочные файлы\service</Filter>
     </ClInclude>
+    <ClInclude Include="EnvironmentLowLevel.h">
+      <Filter>Заголовочные файлы\environment</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -177,6 +180,9 @@
       <Filter>Файлы исходного кода\testing</Filter>
     </ClCompile>
     <ClCompile Include="Environment.cpp">
+      <Filter>Файлы исходного кода\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="EnvironmentLowLevel.cpp">
       <Filter>Файлы исходного кода\environment</Filter>
     </ClCompile>
   </ItemGroup>

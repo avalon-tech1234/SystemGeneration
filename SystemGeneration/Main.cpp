@@ -65,10 +65,10 @@ int main(int argc, char *argv[])
 	string help_text = string("First argument should contain number of equations, or /h for help\n") +
 		"If first argument is number, the second one can be:\n" +
 			"- /s - silent run (only the result) - default \n" +
-			"- /r - sumple run\n" +
-			"- /t - for testing\n" +
+			"- /r - simple run\n" +
+			"- /t - for testing (all files) \n" +
 			"Third argument is a name of folder where files will be printed. Default folder is 'results'\n" +
-			"Press any key to continue...\n";
+			"Press Enter to continue...\n";
 	string help = "/h";
 	string debug = "/t";
 	string run = "/r";
