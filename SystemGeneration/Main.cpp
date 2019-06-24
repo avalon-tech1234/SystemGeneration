@@ -121,12 +121,12 @@ int main(int argc, char *argv[])
 			throw exception("Unknown command!");
 		}
 
-		cout << "Press any key to continue...";
+		cout << "Press Enter to continue...";
 		cin.get();
 	}
 	catch (std::exception e)
 	{
-		cout << "Error occupied: " << e.what() << "\nProgram terminated\n" << "Press any key to continue...";
+		cout << "Error occupied: " << e.what() << "\nProgram terminated\n" << "Press Enter to continue...";
 		cin.get();
 	}
 }
