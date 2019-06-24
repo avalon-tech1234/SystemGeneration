@@ -133,7 +133,6 @@
     <ClInclude Include="Reader.h" />
     <ClInclude Include="Row.h" />
     <ClInclude Include="speedtest.h" />
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="Transformation.h" />
     <ClInclude Include="TransformationBuilder.h" />
     <ClInclude Include="Utility.h" />

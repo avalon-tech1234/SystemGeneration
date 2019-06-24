@@ -22,7 +22,7 @@ namespace polynomials
 				// если убрать это условие, то, если factors пуст, к полиному прибавится единичка
 			{
 				Polynomial product = FREE_MEMBER;
-				int sz = factors.size();
+				int sz = (int)factors.size();
 				for (int i = 0; i < sz; i++)
 				{
 					product *= factors[i];

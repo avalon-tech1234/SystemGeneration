@@ -72,9 +72,6 @@
     <ClInclude Include="Row.h">
       <Filter>Заголовочные файлы\matrixes</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Заголовочные файлы\service</Filter>
-    </ClInclude>
     <ClInclude Include="Monomial.h">
       <Filter>Заголовочные файлы\polynomials</Filter>
     </ClInclude>

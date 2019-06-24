@@ -14,7 +14,6 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-#include "stdafx.h"
 #include <experimental/filesystem>
 using namespace std;
 using namespace matrixes;
@@ -99,7 +98,8 @@ void Environment::run(bool print_or_not)
 	cout << " ...generating system finished" << endl;
 
 	cout << "Solving system...";
-	solveSystem(std::vector<BOOL>(n, FALSE), vector<BOOL>{ FALSE });
+	std::vector<BOOL> tmp(1, FALSE);
+	solveSystem(std::vector<BOOL>(n, FALSE), tmp);
 	cout << " finished" << endl;
 
 	cout << "Normalizing system...";
@@ -116,7 +116,8 @@ void Environment::test()
 
 
 	cout << "Solving system...";
-	solveSystem(std::vector<BOOL>(n, FALSE), vector<BOOL>{ FALSE });
+	std::vector<BOOL> tmp(1, FALSE);
+	solveSystem(std::vector<BOOL>(n, FALSE), tmp);
 	cout << " finished" << endl;
 
 	check(std::vector<BOOL>(n, FALSE), "zero vector");
@@ -179,14 +180,14 @@ void Environment::generateSystem(bool print_or_not)
 		if (print_or_not) {
 			if ((i + 1) % 10 == 0)
 			{
-				for (int i = 0; i < prev_num; i++) cout << '\b';
+				for (size_t i2 = 0; i2 < prev_num; i2++) cout << '\b';
 				cout << (i + 1) << '/' << n;
 				prev_num = to_string(i + 1).length() + to_string(n).length() + 1;
 			}
 		}
 	}
 	if (print_or_not)
-		for (int i = 0; i < prev_num; i++)
+		for (size_t i = 0; i < prev_num; i++)
 			cout << '\b';
 	prev_num = 0;
 	Transformation F;
@@ -201,7 +202,8 @@ void Environment::generateSystem(bool print_or_not)
 	{
 		Polynomial f_i = F[i];
 		f_i += {i}; // теперь здесь хранится полином g_i
-		Transformation part = vector<Polynomial>{ f_i };
+		vector<Polynomial> tmp(1, f_i);
+		Transformation part = tmp;
 		Transformation x_prev = trans;
 		Transformation g_i_x; // g_i (x0, x1, ..., i-1)
 		part(x_prev, g_i_x);
@@ -210,14 +212,14 @@ void Environment::generateSystem(bool print_or_not)
 		cur += { i };
 		trans.push_back(cur);
 		if (print_or_not) {
-			for (int i = 0; i < prev_num; i++)
+			for (size_t i2 = 0; i2 < prev_num; i2++)
 				cout << '\b';
 			cout << (i + 1) << '/' << n;
 			prev_num = to_string(i + 1).length() + to_string(n).length() + 1;
 		}
 	}
 	if (print_or_not)
-		for (int i = 0; i < prev_num; i++) cout << '\b';
+		for (size_t i = 0; i < prev_num; i++) cout << '\b';
 	invF = trans;
 
 	if (print_or_not) cout << "finished" << endl << "Building composition P = SoFoT... ";

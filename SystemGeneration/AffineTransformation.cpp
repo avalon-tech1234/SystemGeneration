@@ -39,13 +39,13 @@ AffineTransformation::AffineTransformation(const MatrixB& M, const RowB& v, bool
 
 		if (i % 50 == 0 && print_or_not)
 		{
-			for (int i = 0; i < prev_num; i++) cout << '\b';
+			for (size_t i = 0; i < prev_num; i++) cout << '\b';
 			cout << i << '/' << n;
 			prev_num = to_string(i).length() + to_string(n).length() + 1;
 		}
 
 	}
-	for (int i = 0; i < prev_num; i++) cout << '\b';
+	for (size_t i = 0; i < prev_num; i++) cout << '\b';
 
 }
 

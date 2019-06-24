@@ -71,7 +71,7 @@ namespace matrixes
 
 
 
-		void Row::toString(
+		void toString(
 			std::string& output,
 			std::string left_border = "{",
 			std::string delimiter = ",",

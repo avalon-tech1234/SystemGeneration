@@ -4,7 +4,7 @@ using namespace matrixes;
 using namespace std;
 
 template <class _T>
-void Row<_T>::toString(string& output, string left_border = " {", string delimiter = ",", string right_border = "}") const
+void Row<_T>::toString(string& output, string left_border, string delimiter, string right_border) const
 {
 	output = left_border;
 	output.reserve(size() * (1 + delimiter.length()) + left_border.length() + right_border.length());

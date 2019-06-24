@@ -8,7 +8,6 @@
 
 #include "Transformation.h"
 #include "Polynomial.h"
-#include "stdafx.h"
 
 using namespace std;
 using namespace polynomials;

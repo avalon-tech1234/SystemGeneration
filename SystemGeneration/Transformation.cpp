@@ -63,7 +63,7 @@ void Transformation::substitute(const vector<BOOL>& in, vector<BOOL>& out) const
 
 void transformations::Transformation::normalize()
 {
-	int n_core = coordinates.size();
+	int n_core = (int)coordinates.size();
 
 
 	// z - номер переменнной к добавлению
@@ -93,7 +93,7 @@ void transformations::Transformation::normalize()
 			{
 				coordinates.push_back(Lr);
 				Lr += Monomial(z);
-				int sz = coordinates.size() - 1; // без последнего
+				int sz = (int)coordinates.size() - 1; // без последнего
 				for (int j = 0; j < sz; j++)
 					coordinates[j].replace(Lr, z);
 				z++;

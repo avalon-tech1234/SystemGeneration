@@ -61,7 +61,7 @@ namespace polynomials {
 			simplify();
 		}
 
-		bool Monomial::operator<(const Monomial& m2) const;
+		bool operator<(const Monomial& m2) const;
 
 		inline bool operator> (const Monomial& m2) const {
 			return m2 < *this;
