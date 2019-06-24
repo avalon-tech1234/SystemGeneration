@@ -11,12 +11,11 @@
 #include "Reader.h"
 #include "Writer.h"
 
-#include <cstdio>
 #include <iostream>
 #include <string>
 #include <ctime>
-#include <direct.h>
-
+#include "stdafx.h"
+#include <experimental/filesystem>
 using namespace std;
 using namespace matrixes;
 using namespace transformations;
@@ -25,7 +24,7 @@ using namespace random;
 using namespace polynomials;
 using namespace filesystem;
 
-Environment::Environment(size_t n, string _foldername) : n(n), foldername(_foldername)
+Environment::Environment(int n, string _foldername) : n(n), foldername(_foldername)
 {
 	if (n == 0)
 		throw std::exception("Attempt to create equation system with 0 equations. Forbidden");
@@ -77,9 +76,9 @@ void Environment::clean()
 	remove((foldername + "pre_gen/FoT.txt").c_str());
 	remove((foldername + "inv/invF.txt").c_str());
 
-	_rmdir((foldername + "inv").c_str());
-	_rmdir((foldername + "pre_gen").c_str());
-	_rmdir((foldername + "pre_rand").c_str());
+	std::experimental::filesystem::remove((foldername + "inv"));
+	std::experimental::filesystem::remove((foldername + "pre_gen"));
+	std::experimental::filesystem::remove((foldername + "pre_rand"));
 }
 
 void Environment::normalizeSystem()
@@ -172,7 +171,7 @@ void Environment::generateSystem(bool print_or_not)
 	TransformationBuilder builder;
 	Polynomial cur;
 	size_t prev_num = 0;
-	for (size_t i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		pol_factory.getQuadraticPolynomial(cur, i);
 		cur += Monomial(i);
@@ -180,14 +179,14 @@ void Environment::generateSystem(bool print_or_not)
 		if (print_or_not) {
 			if ((i + 1) % 10 == 0)
 			{
-				for (size_t i = 0; i < prev_num; i++) cout << '\b';
+				for (int i = 0; i < prev_num; i++) cout << '\b';
 				cout << (i + 1) << '/' << n;
 				prev_num = to_string(i + 1).length() + to_string(n).length() + 1;
 			}
 		}
 	}
 	if (print_or_not)
-		for (size_t i = 0; i < prev_num; i++)
+		for (int i = 0; i < prev_num; i++)
 			cout << '\b';
 	prev_num = 0;
 	Transformation F;
@@ -198,7 +197,7 @@ void Environment::generateSystem(bool print_or_not)
 	Transformation invF;
 	vector<Polynomial> trans;
 	trans.push_back(F[0]);
-	for (size_t i = 1; i < n; i++)
+	for (int i = 1; i < n; i++)
 	{
 		Polynomial f_i = F[i];
 		f_i += {i}; // теперь здесь хранится полином g_i
@@ -211,14 +210,14 @@ void Environment::generateSystem(bool print_or_not)
 		cur += { i };
 		trans.push_back(cur);
 		if (print_or_not) {
-			for (size_t i = 0; i < prev_num; i++)
+			for (int i = 0; i < prev_num; i++)
 				cout << '\b';
 			cout << (i + 1) << '/' << n;
 			prev_num = to_string(i + 1).length() + to_string(n).length() + 1;
 		}
 	}
 	if (print_or_not)
-		for (size_t i = 0; i < prev_num; i++) cout << '\b';
+		for (int i = 0; i < prev_num; i++) cout << '\b';
 	invF = trans;
 
 	if (print_or_not) cout << "finished" << endl << "Building composition P = SoFoT... ";
@@ -282,12 +281,11 @@ void Environment::solveSystem(const std::vector<BOOL>& c, std::vector<BOOL>& out
 	FoS_back ^= v2;
 	RowB x(n);
 	invM2.multiply(FoS_back, x); // FoS_back = invP
-
-	if (c == vector<BOOL>(n, FALSE))
+	if (c == std::vector<BOOL>(n, FALSE))
 	{
 		// форматируем решение (х)
 		TransformationBuilder builder;
-		for (size_t i = 0; i < n; i++)
+		for (int i = 0; i < n; i++)
 		{
 			if (x.get(i) == TRUE)
 				builder << vector<Monomial> { i, FREE_MEMBER };

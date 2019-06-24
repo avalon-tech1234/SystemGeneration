@@ -59,7 +59,7 @@ void Testing::test()
 
 void Testing::test2()
 {
-	size_t sz = 3000;
+	int sz = 3000;
 	std::mt19937 gen = RandomEngine().getRandomEngine();
 
 
@@ -155,9 +155,9 @@ void Testing::test3()
 
 	gen.seed(ticks.LowPart ^ ticks.HighPart);
 
-	size_t cnZero = 0;
-	size_t sz = 100000ui64;
-	for (size_t i = 0;i < sz; i++) {
+	int cnZero = 0;
+	int sz = 100000ui64;
+	for (int i = 0;i < sz; i++) {
 		if (gen() % 2)
 			cnZero++;
 	}

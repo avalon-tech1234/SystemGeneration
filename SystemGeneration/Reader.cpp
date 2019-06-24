@@ -20,11 +20,11 @@ void Reader::read(matrixes::MatrixB& matr, std::string filename)
 		// по первой строке (зная, что матрица квадратная) узнаем размерность матрицы
 		getline(in, cur);
 		util.trim2(cur);
-		size_t n = std::count(cur.cbegin(), cur.cend(), ' ') + 1;
+		int n = (int) std::count(cur.cbegin(), cur.cend(), ' ') + 1;
 		MatrixBuilder builder(n);
 
 		// для каждой строки
-		for (size_t i = 0; i < n; i++)
+		for (int i = 0; i < n; i++)
 		{
 			if (i != 0) getline(in, cur);
 			util.trim2(cur); // оставляем все между фигурными скобками

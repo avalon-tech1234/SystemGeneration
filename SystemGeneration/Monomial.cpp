@@ -9,12 +9,12 @@ void Monomial::simplify()
 {
 	if (!vars.empty())
 	{
-		vector<size_t> temp = move(vars);
+		vector<int> temp = move(vars);
 		sort(temp.begin(), temp.end());
 
 		vars.push_back(temp[0]);
-		size_t sz = temp.size();
-		for (size_t i = 1; i < sz; i++)
+		int sz = (int) temp.size();
+		for (int i = 1; i < sz; i++)
 		{
 			if (temp[i] != vars.back())
 				vars.push_back(temp[i]);
@@ -25,7 +25,7 @@ void Monomial::simplify()
 	}
 
 	n_max = 0;
-	std::vector<size_t>::iterator it = std::max_element(vars.begin(), vars.end());
+	std::vector<int>::iterator it = std::max_element(vars.begin(), vars.end());
 	if (it != vars.end())
 		n_max = *it;
 	else {
@@ -41,7 +41,7 @@ bool Monomial::operator<(const Monomial& m2) const
 {
 	if (size() > m2.size()) return true;
 	if (size() < m2.size()) return false;
-	for (size_t i = 0; i < size(); i++)
+	for (int i = 0; i < size(); i++)
 	{
 		if (vars[i] > m2[i]) return false;
 		if (vars[i] < m2[i]) return true;
@@ -52,8 +52,8 @@ bool Monomial::operator<(const Monomial& m2) const
 
 BOOL Monomial::substitute(const vector<BOOL>& values) const
 {
-	size_t s = size();
-	for (size_t i = 0; i < s; i++)
+	int s = size();
+	for (int i = 0; i < s; i++)
 	{
 		if (values[vars[i]] == FALSE)
 			return FALSE;
@@ -63,7 +63,7 @@ BOOL Monomial::substitute(const vector<BOOL>& values) const
 
 void Monomial::toString(string& out) const
 {
-	size_t size_beg = out.size();
+	int size_beg = (int)out.size();
 	for (auto it = vars.begin(); it != vars.end(); it++)
 	{
 		out += "x" + to_string(*it);

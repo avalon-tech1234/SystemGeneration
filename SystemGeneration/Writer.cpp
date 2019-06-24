@@ -9,9 +9,9 @@ void Writer::print(const matrixes::MatrixB& matr, std::string filename)
 {
 	out.open(foldername + filename);
 
-	size_t sz = matr.size();
+	int sz = matr.size();
 	string cur;
-	for (size_t i = 0; i < sz - 1; i++)
+	for (int i = 0; i < sz - 1; i++)
 	{
 		matr[i]->toString(cur, " {", ", ", "},");
 		out << cur << endl;
@@ -26,9 +26,9 @@ void Writer::print(const transformations::Transformation& trans, std::string fil
 {
 	out.open(foldername + filename);
 
-	size_t sz = trans.size();
+	int sz = trans.size();
 	string cur;
-	for (size_t i = 0; i < sz; i++)
+	for (int i = 0; i < sz; i++)
 	{
 		trans[i].toString(cur);
 		//out << "y" << i << " = " << cur << endl;

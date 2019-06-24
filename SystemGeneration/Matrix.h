@@ -13,7 +13,7 @@ namespace matrixes
 		std::vector<Row <_T> *> data;
 
 		// эта функци€ используетс€ при построении обратной матрицы, извне матрица всегда квадратна€ 
-		BOOL init_zeros(size_t dimension, size_t dimension2);
+		BOOL init_zeros(int dimension, int dimension2);
 
 	public:
 
@@ -35,18 +35,18 @@ namespace matrixes
 
 		bool operator==(Matrix& other)
 		{
-			size_t n = size();
+			int n = size();
 			if (n != other.size()) return false;
 
-			for (size_t i = 0; i < n; i++)
-				for (size_t j = 0; j < n; j++)
+			for (int i = 0; i < n; i++)
+				for (int j = 0; j < n; j++)
 					if (get(i)->get(j) != other.get(i)->get(j)) return false;
 
 			return true;
 		}
 
 		// устанавливает размеры матрицы как dimension*dimension и заполн€ет еЄ нул€ми
-		BOOL init_zeros(size_t dimension)
+		BOOL init_zeros(int dimension)
 		{
 			return init_zeros(dimension, dimension);
 		}
@@ -58,7 +58,7 @@ namespace matrixes
 
 		~Matrix()
 		{
-			for (size_t i = 0; i < data.size(); i++)
+			for (int i = 0; i < data.size(); i++)
 				delete data[i];
 
 			data.clear();
@@ -66,36 +66,36 @@ namespace matrixes
 
 		void multiply(const Row<_T>& r, Row<_T>& result) const
 		{
-			size_t n = size();
+			int n = size();
 			if (n != r.size()) return;
 
 			result = Row<_T>(n);
 			BOOL b;
-			for (size_t i = 0; i < n; i++)
+			for (int i = 0; i < n; i++)
 			{
 				b = 0;
-				for (size_t j = 0; j < n; j++)
+				for (int j = 0; j < n; j++)
 					b ^= data[i]->get(j) * r.get(j);
 				result.set(i, b);
 			}
 		}
 
-		inline Row <_T>* get(size_t n)
+		inline Row <_T>* get(int n)
 		{
 			return data[n];
 		}
 
-		inline Row <_T>* const operator[](size_t n) const
+		inline Row <_T>* const operator[](int n) const
 		{
 			return data[n];
 		}
 
-		inline void swap(size_t index1, size_t index2);
+		inline void swap(int index1, int index2);
 
 		// ¬озвращает количество строк (оно же количество столбцов) в матрице
-		inline size_t size() const
+		inline int size() const
 		{
-			return data.size();
+			return (int)data.size();
 		}
 
 		// используетс€ в тестовых цел€х

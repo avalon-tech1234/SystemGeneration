@@ -16,14 +16,14 @@ namespace transformations
 			: coordinates(coordinates) {}
 		Transformation() {}
 
-		inline const polynomials::Polynomial& operator[] (size_t i) const
+		inline const polynomials::Polynomial& operator[] (int i) const
 		{
 			return coordinates[i];
 		}
 
-		inline size_t size() const
+		inline int size() const
 		{
-			return coordinates.size();
+			return (int)coordinates.size();
 		}
 
 		// вычисление композиции отображений GoF = G(F(x))

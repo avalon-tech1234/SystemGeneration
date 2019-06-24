@@ -1,6 +1,6 @@
 #include "Environment.h"
 #include <iostream>
-#include <ctime>
+
 #include <string>
 #include <sstream>
 #include <vector>
@@ -8,6 +8,7 @@
 
 #include "Transformation.h"
 #include "Polynomial.h"
+#include "stdafx.h"
 
 using namespace std;
 using namespace polynomials;
@@ -25,16 +26,16 @@ std::vector<std::string> split(const std::string &s, char delim) {
 	return elems;
 }
 
-size_t convert_n(const string& str)
+int convert_n(const std::string& str)
 {
 	try
 	{
-		size_t n = stoull(str, nullptr);
+		int n = stoi(str, nullptr);
 		return n;
 	}
 	catch (const std::out_of_range&)
 	{
-		throw exception("First parameter is too big number");
+		throw std::exception("First parameter is too big number");
 	}
 	catch (const std::invalid_argument&)
 	{
@@ -63,11 +64,12 @@ int main(int argc, char *argv[])
 {
 
 	string help_text = string("First argument should contain number of equations, or /h for help\n") +
-		string("If first argument is number, the second one can be:\n") +
-			string("- /s - silent run (only the result) - default \n") +
-			string("- /r - sumple run\n") +
-			string("- /t - for testing\n") +
-			string("Third argument is a name of folder where files will be printed. Default folder is 'results'\n");
+		"If first argument is number, the second one can be:\n" +
+			"- /s - silent run (only the result) - default \n" +
+			"- /r - sumple run\n" +
+			"- /t - for testing\n" +
+			"Third argument is a name of folder where files will be printed. Default folder is 'results'\n" +
+			"Press any key to continue...\n";
 	string help = "/h";
 	string debug = "/t";
 	string run = "/r";
@@ -81,12 +83,12 @@ int main(int argc, char *argv[])
 		if (argc == 0 || args[0] == help)
 		{
 			cout << help_text;
-			system("pause");
+			std::cin.get();
 			return 0;
 		}
 
 		string foldername = "../results/";
-		size_t n = convert_n(args[0]);
+		int n = convert_n(args[0]);
 		if (argc == 3)
 			foldername = "../" + args[2] + "/";
 		Environment env(n, foldername);
@@ -120,11 +122,12 @@ int main(int argc, char *argv[])
 			throw exception("Unknown command!");
 		}
 
-		system("pause");
+		cout << "Press any key to continue...";
+		cin.get();
 	}
 	catch (std::exception e)
 	{
-		cout << "Error occupied: " << e.what() << endl << "Program terminated" << endl;
-		system("pause");
+		cout << "Error occupied: " << e.what() << "\nProgram terminated\n" << "Press any key to continue...";
+		cin.get();
 	}
 }

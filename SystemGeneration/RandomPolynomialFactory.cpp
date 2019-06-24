@@ -5,13 +5,13 @@ using namespace random;
 using namespace polynomials;
 using namespace std;
 
-void RandomPolynomialFactory::getQuadraticPolynomial(Polynomial& out, size_t n)
+void RandomPolynomialFactory::getQuadraticPolynomial(Polynomial& out, int n)
 {
 	PolynomialBuilder builder;
 
-	for (size_t i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
-		for (size_t j = 0; j < i; j++)
+		for (int j = 0; j < i; j++)
 		{
 			if (gen() % 2 == TRUE)
 			{
@@ -22,7 +22,7 @@ void RandomPolynomialFactory::getQuadraticPolynomial(Polynomial& out, size_t n)
 		}
 	}
 
-	for (size_t i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		if (gen() % 2 == TRUE)
 		{

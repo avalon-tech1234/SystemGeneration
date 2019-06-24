@@ -1,7 +1,7 @@
 #pragma once
 #include "PolynomialBuilder.h"
-#include <cctype>
 #include <string>
+#include <locale>
 
 // в данном файле описан класс ParserBackground и отдельные функции, используемые в классе Parser
 
@@ -37,11 +37,11 @@ namespace IO
 			return SymbolTypes::trail;
 		if (symb == '^')
 			return SymbolTypes::cap;
-		if (isdigit(symb) != 0)
+		if (std::isdigit(symb, std::locale()) != 0) 
 			return SymbolTypes::digit;
-		if (isalpha(symb) != 0)
+		if (std::isalpha(symb, std::locale()) != 0)
 			return SymbolTypes::letter;
-		if (isblank(symb) != 0)
+		if (std::isblank(symb, std::locale()) != 0)
 			return SymbolTypes::empty;
 		if (symb == '[')
 			return SymbolTypes::open_comment;

@@ -18,14 +18,14 @@ namespace matrixes
 
 	public:
 
-		Row(size_t length) : elements(length) {};
+		Row(int length) : elements(length) {};
 		Row(std::vector<_T> v) : elements(v) {};
 
 		void toVector(std::vector<BOOL>& res) const
 		{
 			res.clear();
-			size_t n = size();
-			for (size_t i = 0; i < n; i++)
+			int n = size();
+			for (int i = 0; i < n; i++)
 			{
 				res.push_back(get(i));
 			}
@@ -33,30 +33,30 @@ namespace matrixes
 		
 		void operator^=(const Row<_T>& second)
 		{
-			size_t sz = size();
+			int sz = size();
 			if (sz != second.size())
 				throw std::exception("For operation XOR vectors must have same dimension");
 
-			for (size_t i = 0; i < sz; i++)
+			for (int i = 0; i < sz; i++)
 			{
 				_T res = elements[i] ^ second.get(i);
 				elements[i] = res;
 			}
 		}
 
-		inline void set(size_t index, _T value)
+		inline void set(int index, _T value)
 		{
 			elements[index] = value;
 		}
 
-		inline _T get(size_t index) const
+		inline _T get(int index) const
 		{
 			return elements[index];
 		}
 
-		inline size_t size() const
+		inline int size() const
 		{
-			return elements.size();
+			return (int)elements.size();
 		}
 
 		auto begin() const

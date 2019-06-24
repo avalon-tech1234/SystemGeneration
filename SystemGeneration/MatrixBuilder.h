@@ -7,12 +7,12 @@ namespace matrixes {
 
 	private:
 		MatrixB matr;
-		size_t n;
-		size_t i;
+		int n;
+		int i;
 
 	public:
 
-		MatrixBuilder(size_t n) : n(n), i(0)
+		MatrixBuilder(int n) : n(n), i(0)
 		{
 			matr.init_zeros(n);
 		}

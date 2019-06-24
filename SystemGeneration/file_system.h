@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
-#include <sys/types.h>
-#include <sys/stat.h>
+//#include <sys/types.h>
+//#include <sys/stat.h>
 
 namespace filesystem
 {
@@ -12,7 +12,7 @@ namespace filesystem
 	}
 
 	struct stat info;
-
+/*
 	// функции folder_exists не используются
 	bool folder_exists(const char* foldername)
 	{
@@ -27,5 +27,5 @@ namespace filesystem
 	{
 		return folder_exists(foldername.c_str());
 	}
-
+*/
 }

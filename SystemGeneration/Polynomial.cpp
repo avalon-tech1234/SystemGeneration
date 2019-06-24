@@ -23,8 +23,8 @@ void Polynomial::toString(string& out) const
 BOOL Polynomial::substitute(const vector<BOOL>& values) const
 {
 	BOOL result = FALSE;
-	size_t s = size();
-	for (size_t i = 0; i < s; i++)
+	int s = size();
+	for (int i = 0; i < s; i++)
 	{
 		result ^= terms[i].substitute(values);
 	}
@@ -40,7 +40,7 @@ void Polynomial::simplify()
 		sort(temp.begin(), temp.end());
 
 		terms.push_back(temp[0]);
-		size_t i = 1, sz = temp.size();
+		int i = 1, sz = (int)temp.size();
 		while (i < sz)
 		{
 			if (!terms.empty() && temp[i] == terms.back())
@@ -54,8 +54,8 @@ void Polynomial::simplify()
 	}
 
 	// обновляем максимальный номер переменной
-	size_t sz = terms.size();
-	for (size_t i = 0; i < sz; i++)
+	int sz = (int)terms.size();
+	for (int i = 0; i < sz; i++)
 	{
 		if (terms[i].get_n_max() > n_max)
 			n_max = terms[i].get_n_max();
@@ -76,8 +76,8 @@ void Polynomial::operator*=(const Polynomial& p2)
 	if (this->size() == 1 && (*this)[0] == FREE_MEMBER)
 	{
 		terms.clear();
-		size_t sz = p2.size();
-		for (size_t i = 0; i < sz; i++)
+		int sz = p2.size();
+		for (int i = 0; i < sz; i++)
 		{
 			terms.push_back(p2[i]);
 		}
@@ -85,12 +85,12 @@ void Polynomial::operator*=(const Polynomial& p2)
 	}
 
 	std::vector<Monomial> temp = move(terms);
-	size_t sz1 = temp.size(), sz2 = p2.size();
+	int sz1 = (int)temp.size(), sz2 = (int)p2.size();
 	Monomial cur;
 
-	for (size_t i = 0; i < sz1; i++)
+	for (int i = 0; i < sz1; i++)
 	{
-		for (size_t j = 0; j < sz2; j++)
+		for (int j = 0; j < sz2; j++)
 		{
 			cur = temp[i];
 			cur *= p2[j]; //// !!!!!!?????
@@ -103,7 +103,7 @@ void Polynomial::operator*=(const Polynomial& p2)
 
 void Polynomial::operator+=(const Polynomial& p2)
 {
-	size_t sz = p2.size(), i = 0;
+	int sz = p2.size(), i = 0;
 	while (i < sz)
 		terms.push_back(p2[i++]);
 

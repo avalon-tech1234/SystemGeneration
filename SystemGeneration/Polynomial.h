@@ -18,7 +18,7 @@ namespace polynomials {
 
 		std::vector <Monomial> terms;
 		void simplify();
-		size_t n_max;
+		int n_max;
 
 	public:
 		Polynomial(const std::vector <Monomial>& in_monomials) : n_max(0)
@@ -28,11 +28,11 @@ namespace polynomials {
 		}
 
 		// для тестирования
-		Polynomial(const std::vector <std::vector <size_t>> input) : n_max(0)
+		Polynomial(const std::vector <std::vector <int>> input) : n_max(0)
 		{
-			for (size_t i = 0; i < input.size(); i++)
+			for (int i = 0; i < input.size(); i++)
 			{
-				std::vector <size_t> cur = input[i];
+				std::vector <int> cur = input[i];
 				terms.push_back(Monomial(cur));
 			}
 			simplify();
@@ -45,7 +45,7 @@ namespace polynomials {
 
 		Polynomial() : n_max(0) {}
 
-		inline size_t get_n_max() const
+		inline int get_n_max() const
 		{
 			return n_max;
 		}
@@ -59,14 +59,14 @@ namespace polynomials {
 		void operator+=(const Polynomial& p2);
 		void operator*=(const Polynomial& p2);
 
-		inline const Monomial& operator[](size_t i) const
+		inline const Monomial& operator[](int i) const
 		{
 			return terms[i];
 		}
 
-		inline size_t size() const
+		inline int size() const
 		{
-			return terms.size();
+			return (int)terms.size();
 		}
 
 		inline auto begin() const
@@ -79,9 +79,9 @@ namespace polynomials {
 		void toString(std::string& out) const;
 
 		// ищет в полиноме шаблонный полином Lr и, если находит, заменяет на новую переменную x_z
-		void replace(Polynomial Lr, size_t z)
+		void replace(Polynomial Lr, int z)
 		{
-			size_t sz = Lr.size();
+			int sz = Lr.size();
 
 			for (int i = 0; i < sz; i++)
 			{

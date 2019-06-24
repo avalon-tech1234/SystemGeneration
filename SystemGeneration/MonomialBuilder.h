@@ -8,7 +8,7 @@ namespace polynomials
 	class MonomialBuilder
 	{
 	private:
-		std::vector<size_t> gr; // номера переменных в мономе
+		std::vector<int> gr; // номера переменных в мономе
 
 	protected:
 
@@ -27,7 +27,7 @@ namespace polynomials
 
 	public:
 
-		void operator<<(size_t grade) {
+		void operator<<(int grade) {
 			gr.push_back(grade);
 		}
 

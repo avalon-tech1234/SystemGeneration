@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"
 #include <string>
 #include "BOOL.h"
 #include <vector>
@@ -11,7 +12,7 @@ class Environment
 {
 private:
 
-	size_t n; // количество уравнений, равно количеству переменнных
+	int n; // количество уравнений, равно количеству переменнных
 	std::string foldername; // имя папки, куда пишем
 
 	void generateSystem(bool print_or_not = true);
@@ -22,7 +23,7 @@ private:
 
 public:
 
-	Environment(size_t n, std::string foldername);
+	Environment(int n, std::string foldername);
 
 	void run(bool print_or_not = true);
 	void test();

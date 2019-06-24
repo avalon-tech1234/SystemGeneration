@@ -16,23 +16,23 @@ void Transformation::operator() (const Transformation& F_inner, Transformation& 
 	const Polynomial* cur_pol;
 	const Monomial* cur_mon;
 
-	size_t sz1 = size();
-	for (size_t i1 = 0; i1 < sz1; i1++)
+	int sz1 = size();
+	for (int i1 = 0; i1 < sz1; i1++)
 	{
 		cur_pol = &operator[](i1);
 
-		size_t sz2 = cur_pol->size();
-		for (size_t i2 = 0; i2 < sz2; i2++)
+		int sz2 = cur_pol->size();
+		for (int i2 = 0; i2 < sz2; i2++)
 		{
 			cur_mon = &cur_pol->operator[](i2);
 
-			size_t sz3 = cur_mon->size();
+			int sz3 = cur_mon->size();
 			if (sz3 == 0)
 				pol_builder << FREE_MEMBER;
 			else
-				for (size_t i3 = 0; i3 < sz3; i3++)
+				for (int i3 = 0; i3 < sz3; i3++)
 				{
-					size_t pol_num = cur_mon->operator[](i3);
+					int pol_num = cur_mon->operator[](i3);
 					pol_builder << F_inner[pol_num];
 				}
 
@@ -49,12 +49,12 @@ void Transformation::operator() (const Transformation& F_inner, Transformation& 
 
 void Transformation::substitute(const vector<BOOL>& in, vector<BOOL>& out) const
 {
-	size_t n = size();
+	int n = size();
 
 	out.clear();
 	if (in.size() != n) return;
 
-	for (size_t i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		BOOL b = coordinates[i].substitute(in);
 		out.push_back(b);
@@ -63,11 +63,11 @@ void Transformation::substitute(const vector<BOOL>& in, vector<BOOL>& out) const
 
 void transformations::Transformation::normalize()
 {
-	size_t n_core = coordinates.size();
+	int n_core = coordinates.size();
 
 
 	// z - номер переменнной к добавлению
-	size_t z = 0;
+	int z = 0;
 	for (int i = 0; i < n_core; i++)
 	{
 		if (coordinates[i].get_n_max() > z)
@@ -75,7 +75,7 @@ void transformations::Transformation::normalize()
 	}
 	z++;
 
-	for (size_t i = 0; i < n_core; i++)
+	for (int i = 0; i < n_core; i++)
 	{
 		Polynomial Lr;
 		auto beg = coordinates[i].begin();
@@ -93,7 +93,7 @@ void transformations::Transformation::normalize()
 			{
 				coordinates.push_back(Lr);
 				Lr += Monomial(z);
-				size_t sz = coordinates.size() - 1; // без последнего
+				int sz = coordinates.size() - 1; // без последнего
 				for (int j = 0; j < sz; j++)
 					coordinates[j].replace(Lr, z);
 				z++;
