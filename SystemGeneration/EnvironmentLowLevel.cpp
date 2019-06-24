@@ -22,11 +22,12 @@ using namespace polynomials;
 void EnvironmentLowLevel::check(const vector<BOOL>& v, const string& text)
 {
 	std::vector<BOOL> res;
+	std::vector<BOOL> res2;
 	Reader reader(foldername);
 	Transformation P;
 	reader.read(P, "P.txt");
 	P.substitute(v, res);
-	solveSystem(res, res);
+	solveSystem(res, res2);
 	if (v == res) cout << "OK for " << text << endl;
 	else cout << "Bad for " << text << endl;
 }
