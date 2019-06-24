@@ -247,6 +247,7 @@ void Environment::generateSystem(bool print_or_not)
 
 void Environment::solveSystem(const std::vector<BOOL>& c, std::vector<BOOL>& out, bool print_or_not)
 {
+	
 	RowB v1(n), v2(n);
 	MatrixB invM1, invM2;
 	Transformation invF;
@@ -299,7 +300,5 @@ void Environment::solveSystem(const std::vector<BOOL>& c, std::vector<BOOL>& out
 	}
 
 	x.toVector(out);
-
-
 
 }
