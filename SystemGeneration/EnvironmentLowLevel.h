@@ -7,7 +7,7 @@ class EnvironmentLowLevel
 
 private:
 	// Получение результата обратного преобразования
-	void getInvert(const std::vector<BOOL>& in, std::vector<BOOL>& out, bool print_or_not = true);
+	void getInvert(const std::vector<BOOL>& in, std::vector<BOOL>& out, bool print_to_file_or_not);
 
 protected:
 

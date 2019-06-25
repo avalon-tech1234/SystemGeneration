@@ -26,7 +26,7 @@ void EnvironmentLowLevel::checkYourself(const vector<BOOL>& v, const string& tex
 	Transformation P;
 	reader.read(P, "P.txt");
 	P.substitute(v, res); // res = P(v)
-	getInvert(res, res2); // res2 = invP(res) = invP(P(v))
+	getInvert(res, res2, true); // res2 = invP(res) = invP(P(v))
 	if (v == res2) cout << "OK for " << text << endl;
 	else cout << "Bad for " << text << endl;
 }
@@ -156,10 +156,10 @@ void EnvironmentLowLevel::solveSystem(bool print_or_not)
 {
 	std::vector<BOOL> zero(n, FALSE);
 	std::vector<BOOL> tmp(1, FALSE);
-	getInvert(zero, tmp);
+	getInvert(zero, tmp, false);
 }
 
-void EnvironmentLowLevel::getInvert(const std::vector<BOOL>& in, std::vector<BOOL>& out, bool print_or_not)
+void EnvironmentLowLevel::getInvert(const std::vector<BOOL>& in, std::vector<BOOL>& out, bool print_to_file_or_not)
 {
 
 	RowB v1(n), v2(n);
@@ -183,27 +183,28 @@ void EnvironmentLowLevel::getInvert(const std::vector<BOOL>& in, std::vector<BOO
 	 * где c = 0 (если решаем; если проверяем, то рандомное)
 	 */
 
-	RowB S_back(n);
+	RowB invS(n); // invS(c) = invM1*(c + v1)
+	RowB invFS(n); // invF(invS(c))
+	RowB invTFS(n);  // invP = invT(invF(invS(c))) = invM2*(invF(invS(c)) + v2)
+
 	v1.xor(in);
-	invM1.multiply(v1, S_back); // S_back = invS = invM1*(c + v1)
+	invM1.multiply(v1, invS); 
 
-	RowB FoS_back(n);
-	vector<BOOL> Sb, FSb;
-	S_back.toVector(Sb);
-	FoS_back.toVector(FSb);
-	invF.substitute(Sb, FSb);
-	FoS_back = FSb; // FoS_back = inv(SoF) = invF( invM1*(c + v1) )
+	vector<BOOL> invS2, res;
+	invS.toVector(invS2);
+	invF.substitute(invS2, res);
+	invFS = res;
 
-	FoS_back.xor(v2);
-	RowB x(n);
-	invM2.multiply(FoS_back, x); // FoS_back = invP
-	if (in == std::vector<BOOL>(n, FALSE))
+	invFS.xor(v2);
+	invM2.multiply(invFS, invTFS);
+
+	if (print_to_file_or_not)
 	{
 		// форматируем решение (х)
 		TransformationBuilder builder;
 		for (int i = 0; i < n; i++)
 		{
-			if (x.get(i) == TRUE)
+			if (invTFS.get(i) == TRUE)
 				builder << vector<Monomial> { i, FREE_MEMBER };
 			else
 				builder << vector<Monomial> { i };
@@ -214,6 +215,6 @@ void EnvironmentLowLevel::getInvert(const std::vector<BOOL>& in, std::vector<BOO
 		writer.print(solution, "P_sol.txt");
 	}
 
-	x.toVector(out);
+	invTFS.toVector(out);
 
 }
