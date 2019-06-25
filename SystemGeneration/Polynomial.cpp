@@ -33,8 +33,10 @@ BOOL Polynomial::substitute(const vector<BOOL>& values) const
 
 void Polynomial::simplify()
 {
+	if (terms.empty())
+		n_max = 0;
 
-	if (!terms.empty())
+	else
 	{
 		vector<Monomial> temp = move(terms);
 		sort(temp.begin(), temp.end());
@@ -51,15 +53,17 @@ void Polynomial::simplify()
 		}
 
 		temp.clear();
+
+		// обновляем максимальный номер переменной
+		sz = (int)terms.size();
+		for (int i = 0; i < sz; i++)
+		{
+			if (terms[i].get_n_max() > n_max)
+				n_max = terms[i].get_n_max();
+		}
 	}
 
-	// обновляем максимальный номер переменной
-	int sz = (int)terms.size();
-	for (int i = 0; i < sz; i++)
-	{
-		if (terms[i].get_n_max() > n_max)
-			n_max = terms[i].get_n_max();
-	}
+
 }
 
 
@@ -93,7 +97,7 @@ void Polynomial::operator*=(const Polynomial& p2)
 		for (int j = 0; j < sz2; j++)
 		{
 			cur = temp[i];
-			cur *= p2[j]; //// !!!!!!?????
+			cur *= p2[j];
 			terms.push_back(cur);
 		}
 	}

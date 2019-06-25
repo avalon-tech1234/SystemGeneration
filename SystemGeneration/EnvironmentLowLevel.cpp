@@ -25,9 +25,9 @@ void EnvironmentLowLevel::checkYourself(const vector<BOOL>& v, const string& tex
 	Reader reader(foldername);
 	Transformation P;
 	reader.read(P, "P.txt");
-	P.substitute(v, res);
-	getInvert(res, res2);
-	if (v == res) cout << "OK for " << text << endl;
+	P.substitute(v, res); // res = P(v)
+	getInvert(res, res2); // res2 = invP(res) = invP(P(v))
+	if (v == res2) cout << "OK for " << text << endl;
 	else cout << "Bad for " << text << endl;
 }
 
@@ -102,21 +102,19 @@ void EnvironmentLowLevel::generateSystem(bool print_or_not)
 
 	// не отходя от кассы, генерим преобразование, обратное к F
 	Transformation invF;
-	vector<Polynomial> trans;
-	trans.push_back(F[0]);
+	vector<Polynomial> trans = vector<Polynomial>(1, F[0]); // текущее состояние обратного преобразования
 	for (int i = 1; i < n; i++)
 	{
-		Polynomial f_i = F[i];
-		f_i += {i}; // теперь здесь хранится полином g_i
-		vector<Polynomial> tmp(1, f_i);
-		Transformation part = tmp;
-		Transformation x_prev = trans;
-		Transformation g_i_x; // g_i (x0, x1, ..., i-1)
-		part(x_prev, g_i_x);
+		Polynomial g_i = F[i]; // зависит от t0..t(i-1)
+		g_i += {i};
 
-		cur = g_i_x[0];
-		cur += { i };
+		Transformation g_i_x; // g_i (x0, x1, ..., x(i-1))
+		g_i_x.initComposition(trans, g_i);
+		g_i = g_i_x[0]; // зависит уже от x0..x(i-1)
+
+		g_i += { i }; // теперь это x_i
 		trans.push_back(cur);
+
 		if (print_or_not) {
 			for (size_t i2 = 0; i2 < prev_num; i2++)
 				cout << '\b';
@@ -132,8 +130,8 @@ void EnvironmentLowLevel::generateSystem(bool print_or_not)
 
 	// строим итоговое преобразование P
 	Transformation FT, P;
-	F(T, FT);
-	S(FT, P);
+	FT.initComposition(T, F);
+	P.initComposition(FT, S);
 
 	if (print_or_not) cout << "finished" << endl << "Printing into files... ";
 

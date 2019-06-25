@@ -6,33 +6,31 @@ using namespace transformations;
 using namespace polynomials;
 using namespace std;
 
-void Transformation::operator() (const Transformation& F_inner, Transformation& G_result) const
+void Transformation::initComposition(const Transformation& F_inner, const Transformation& G_outer)
 {
-
-	// if (size() != F_inner.size()) throw exception("For composition transformations must be co-dimensional");
 
 	DNFBuilder pol_builder;
 	TransformationBuilder trans_builder;
-	const Polynomial* cur_pol;
-	const Monomial* cur_mon;
+	Polynomial cur_pol;
+	Monomial cur_mon;
 
-	int sz1 = size();
+	int sz1 = G_outer.size();
 	for (int i1 = 0; i1 < sz1; i1++)
 	{
-		cur_pol = &operator[](i1);
+		cur_pol = G_outer[i1];
 
-		int sz2 = cur_pol->size();
+		int sz2 = cur_pol.size();
 		for (int i2 = 0; i2 < sz2; i2++)
 		{
-			cur_mon = &cur_pol->operator[](i2);
+			cur_mon = cur_pol[i2];
 
-			int sz3 = cur_mon->size();
+			int sz3 = cur_mon.size();
 			if (sz3 == 0)
 				pol_builder << FREE_MEMBER;
 			else
 				for (int i3 = 0; i3 < sz3; i3++)
 				{
-					int pol_num = cur_mon->operator[](i3);
+					int pol_num = cur_mon[i3];
 					pol_builder << F_inner[pol_num];
 				}
 
@@ -44,7 +42,9 @@ void Transformation::operator() (const Transformation& F_inner, Transformation& 
 		trans_builder << built;
 	}
 
-	trans_builder >> G_result;
+	trans_builder >> *this;
+
+
 }
 
 void Transformation::substitute(const vector<BOOL>& in, vector<BOOL>& out) const
