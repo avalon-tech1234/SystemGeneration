@@ -15,12 +15,7 @@ protected:
 	std::string foldername; // им€ папки, куда пишем
 
 	void generateSystem(bool print_or_not);
-	void solveSystem(bool print_or_not = true)
-	{
-		std::vector<BOOL> zero(n, FALSE);
-		std::vector<BOOL> tmp(1, FALSE);
-		getInvert(zero, tmp);
-	}
+	void solveSystem(bool print_or_not);
 	void normalizeSystem();
 
 	// ѕроверка дл€ конкретного вектора v - поиск invP(P(v)) и сравнение его с v

@@ -101,6 +101,7 @@ void EnvironmentLowLevel::generateSystem(bool print_or_not)
 	if (print_or_not) cout << "finished" << endl << "Building inverted F... ";
 
 	// не отходя от кассы, генерим преобразование, обратное к F
+	// ti = gi(x0..x(i-1)) + xi => xi = gi(t0..t(i-1)) + ti
 	Transformation invF;
 	vector<Polynomial> trans = vector<Polynomial>(1, F[0]); // текущее состояние обратного преобразования
 	for (int i = 1; i < n; i++)
@@ -112,7 +113,7 @@ void EnvironmentLowLevel::generateSystem(bool print_or_not)
 		g_i_x.initComposition(trans, g_i);
 		g_i = g_i_x[0]; // зависит уже от x0..x(i-1)
 
-		g_i += { i }; // теперь это x_i
+		g_i += { i }; // теперь это выражение для x_i
 		trans.push_back(cur);
 
 		if (print_or_not) {
@@ -149,6 +150,13 @@ void EnvironmentLowLevel::generateSystem(bool print_or_not)
 	writer.print(invF, "inv/invF.txt");
 
 	if (print_or_not) cout << "finished" << endl;
+}
+
+void EnvironmentLowLevel::solveSystem(bool print_or_not)
+{
+	std::vector<BOOL> zero(n, FALSE);
+	std::vector<BOOL> tmp(1, FALSE);
+	getInvert(zero, tmp);
 }
 
 void EnvironmentLowLevel::getInvert(const std::vector<BOOL>& in, std::vector<BOOL>& out, bool print_or_not)
