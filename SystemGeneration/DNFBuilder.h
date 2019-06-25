@@ -27,8 +27,7 @@ namespace polynomials
 				{
 					product *= factors[i];
 				}
-				if (!(product.size() == 1 && product[0] == FREE_MEMBER))
-					cur += product;
+				cur += product;
 				factors.clear();
 			}
 		}
