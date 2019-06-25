@@ -23,11 +23,11 @@ namespace matrixes
 
 		void toVector(std::vector<BOOL>& res) const
 		{
-			res.clear();
 			int sz = size();
+			res = vector<BOOL>(sz);
 			for (int i = 0; i < sz; i++)
 			{
-				res.push_back(get(i));
+				res[i] = get(i);
 			}
 		}
 		

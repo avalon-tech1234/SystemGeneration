@@ -51,13 +51,15 @@ void Transformation::substitute(const vector<BOOL>& in, vector<BOOL>& out) const
 {
 	int n = size();
 
-	out.clear();
-	if (in.size() != n) return;
+	// можно улучшить
+	if (in.size() != n) 
+		throw std::exception("Too few variables substituted into system of equations");
 
+	out = vector<BOOL>(n);
 	for (int i = 0; i < n; i++)
 	{
 		BOOL b = coordinates[i].substitute(in);
-		out.push_back(b);
+		out[i] = b;
 	}
 }
 

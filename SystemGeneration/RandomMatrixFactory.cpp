@@ -32,21 +32,21 @@ void RandomMatrixFactory<_T>::getRandomMatrix(Matrix <_T>& output, int dimension
 		}
 	}
 
-	// перемешивание без потери обратимости
-	for (int i = 0; i < dimension; i++)
-	{
-		int i1, i2;
-		i1 = gen() % dimension;
-		do i2 = gen() % dimension;
-		while (i1 == i2);
+	if (dimension > 1)
+		// перемешивание без потери обратимости
+		for (int i = 0; i < dimension; i++)
+		{
+			int i1, i2;
+			i1 = gen() % dimension;
+			do i2 = gen() % dimension;
+			while (i1 == i2);
 
-		Row<_T>* r1 = output[i1];
-		Row<_T>* r2 = output[i2];
+			Row<_T>* r1 = output[i1];
+			Row<_T>* r2 = output[i2];
 
-		r1-> xor (*r2);
-		output.swap(i1, i2);
-	}
-
+			r1-> xor (*r2);
+			output.swap(i1, i2);
+		}
 
 }
 

@@ -200,7 +200,6 @@ void EnvironmentLowLevel::getInvert(const std::vector<BOOL>& in, std::vector<BOO
 
 	if (print_to_file_or_not)
 	{
-		// форматируем решение (х)
 		TransformationBuilder builder;
 		for (int i = 0; i < n; i++)
 		{
