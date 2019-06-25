@@ -10,7 +10,3 @@ typedef int BOOL;
 #endif
 
 BOOL toBOOL(int a);
-BOOL toBOOL(size_t a);
-BOOL toBOOL(long a);
-BOOL toBOOL(double a);
-BOOL toBOOL(bool a);

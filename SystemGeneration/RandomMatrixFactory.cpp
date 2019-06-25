@@ -25,9 +25,9 @@ void RandomMatrixFactory<_T>::getRandomMatrix(Matrix <_T>& output, int dimension
 				cur_row->set(j, 1);
 			else if (j > i)
 			{
-				int cur = gen();
+				int cur = gen() % 2;
 				//std::cout << cur << " " << cur % 2 << std::endl;
-				cur_row->set(j, toBOOL(cur % 2));
+				cur_row->set(j, toBOOL(cur));
 			}
 		}
 	}

@@ -16,18 +16,18 @@ namespace random
 		// на выходе строка заполнена случайными числами (0 и 1)
 		void getRandomRow(matrixes::Row<_T>& output)
 		{
-			int sz = output.size();
+			int sz = (int)output.size();
 			for (int i = 0; i < sz; i++)
-				output.set(i, gen() % 2);
+				output.set(i, toBOOL(gen() % 2));
 		}
-		
+
 		void getRandomRow(std::vector<BOOL>& output)
 		{
 			int sz = (int)output.size();
 			for (int i = 0; i < sz; i++)
-				output[i]= gen() % 2;
+				output[i] = toBOOL(gen() % 2);
 		}
-		
+
 
 		// принимает квадратную матрицу, заполненную нулями
 		// на выходе матрица заполнена случайными числами (0 и 1). Гарантируется, что она обратима

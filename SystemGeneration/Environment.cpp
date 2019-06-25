@@ -13,10 +13,8 @@
 
 using namespace std;
 using namespace matrixes;
-using namespace transformations;
 using namespace IO;
 using namespace random;
-using namespace polynomials;
 using namespace filesystem;
 
 Environment::Environment(int _n, string _foldername)
