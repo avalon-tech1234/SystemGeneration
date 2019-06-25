@@ -36,11 +36,8 @@ void RandomMatrixFactory<_T>::getRandomMatrix(Matrix <_T>& output, int dimension
 	for (int i = 0; i < dimension; i++)
 	{
 		int i1, i2;
-		do
-		{
-			i1 = gen() % dimension;
-			i2 = gen() % dimension;
-		} 
+		i1 = gen() % dimension;
+		do i2 = gen() % dimension;
 		while (i1 == i2);
 
 		Row<_T>* r1 = output[i1];
@@ -55,9 +52,4 @@ void RandomMatrixFactory<_T>::getRandomMatrix(Matrix <_T>& output, int dimension
 
 template class RandomMatrixFactory<bool>;
 template class RandomMatrixFactory<BOOL>;
-
-
-
-
-
 
