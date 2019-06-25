@@ -114,7 +114,7 @@ void EnvironmentLowLevel::generateSystem(bool print_or_not)
 		g_i = g_i_x[0]; // зависит уже от x0..x(i-1)
 
 		g_i += { i }; // теперь это выражение для x_i
-		trans.push_back(cur);
+		trans.push_back(g_i);
 
 		if (print_or_not) {
 			for (size_t i2 = 0; i2 < prev_num; i2++)
@@ -156,7 +156,7 @@ void EnvironmentLowLevel::solveSystem(bool print_or_not)
 {
 	std::vector<BOOL> zero(n, FALSE);
 	std::vector<BOOL> tmp(1, FALSE);
-	getInvert(zero, tmp, false);
+	getInvert(zero, tmp, true);
 }
 
 void EnvironmentLowLevel::getInvert(const std::vector<BOOL>& in, std::vector<BOOL>& out, bool print_to_file_or_not)

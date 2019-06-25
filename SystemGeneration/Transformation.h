@@ -14,10 +14,8 @@ namespace transformations
 
 		Transformation(std::vector<polynomials::Polynomial>& coordinates)
 			: coordinates(coordinates) {}
-		Transformation(polynomials::Polynomial& p)
-		{
-			coordinates = std::vector<polynomials::Polynomial>(1, p);
-		}
+		Transformation(polynomials::Polynomial& p) : 
+			coordinates(std::vector<polynomials::Polynomial>(1, p)) {}
 		Transformation() {}
 
 		inline const polynomials::Polynomial& operator[] (int i) const
