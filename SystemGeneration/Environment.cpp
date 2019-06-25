@@ -46,37 +46,32 @@ Environment::Environment(int _n, string _foldername)
 
 }
 
-void Environment::run(bool print_or_not)
+void Environment::run(bool test_or_not, bool clean_or_not, bool print_or_not)
 {
 	cout << "Generating system..." << endl;
 	generateSystem(print_or_not);
 	cout << " ...generating system finished" << endl;
 
 	cout << "Solving system...";
-	std::vector<BOOL> tmp(1, FALSE);
-	solveSystem(std::vector<BOOL>(n, FALSE), tmp);
+	solveSystem(true);
 	cout << " finished" << endl;
+
+	if (test_or_not)
+		test();
 
 	cout << "Normalizing system...";
 	normalizeSystem();
 	cout << " finished" << endl;
 
+	if (clean_or_not)
+		clean();
+
 }
 
 void Environment::test()
 {
-	cout << "Generating system..." << endl;
-	generateSystem(true);
-	cout << " ...generating system finished" << endl;
-
-
-	cout << "Solving system...";
-	std::vector<BOOL> tmp(1, FALSE);
-	solveSystem(std::vector<BOOL>(n, FALSE), tmp);
-	cout << " finished" << endl;
-
-	check(std::vector<BOOL>(n, FALSE), "zero vector");
-	check(std::vector<BOOL>(n, TRUE), "unit vector");
+	checkYourself(std::vector<BOOL>(n, FALSE), "zero vector");
+	checkYourself(std::vector<BOOL>(n, TRUE), "unit vector");
 
 	std::vector<BOOL> v(n);
 	RandomMatrixFactory<BOOL> factory(RandomEngine().getRandomEngine());
@@ -86,7 +81,26 @@ void Environment::test()
 		string text;
 		RowB(v).toString(text, "{", ", ", "}");
 
-		check(v, text);
+		checkYourself(v, text);
 	}
 
+}
+
+void Environment::clean()
+{
+	remove((foldername + "pre_rand/v1.txt").c_str());
+	remove((foldername + "pre_rand/v2.txt").c_str());
+	remove((foldername + "pre_rand/M1.txt").c_str());
+	remove((foldername + "pre_rand/M2.txt").c_str());
+	remove((foldername + "inv/invM1.txt").c_str());
+	remove((foldername + "inv/invM2.txt").c_str());
+	remove((foldername + "pre_gen/S.txt").c_str());
+	remove((foldername + "pre_gen/T.txt").c_str());
+	remove((foldername + "pre_gen/F.txt").c_str());
+	remove((foldername + "pre_gen/FoT.txt").c_str());
+	remove((foldername + "inv/invF.txt").c_str());
+
+	std::experimental::filesystem::remove((foldername + "inv"));
+	std::experimental::filesystem::remove((foldername + "pre_gen"));
+	std::experimental::filesystem::remove((foldername + "pre_rand"));
 }

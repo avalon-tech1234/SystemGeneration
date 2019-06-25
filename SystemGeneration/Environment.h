@@ -13,16 +13,14 @@
 class Environment : EnvironmentLowLevel
 {
 
+private:
+	void test();
+	void clean();
+
 public:
 
 	Environment(int n, std::string foldername);
 
-	void run(bool print_or_not = true);
-	void test();
-	void silent_run()
-	{
-		run(true);
-		clean();
-	}
+	void run(bool test_or_not, bool clean_or_not, bool print_or_not);
 
 };

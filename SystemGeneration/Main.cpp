@@ -95,24 +95,24 @@ int main(int argc, char *argv[])
 		{
 		case 1:
 			// тихий запуск
-			env.silent_run();
+			env.run(false, true, true);
 			break;
 		case 2:
 		case 3:
 			if (args[1] == silent)
 			{
 				// тоже тихий запуск
-				env.silent_run();
+				env.run(false, true, true);
 			}
 			else if (args[1] == run)
 			{
 				// запуск в пользовательском режиме
-				env.run(true);
+				env.run(false, false, true);
 			}
 			else if (args[1] == debug)
 			{
 				// запуск в режиме тестирования
-				env.test();
+				env.run(true, false, true);
 			}
 			else throw exception("Unknown command!");
 			break;

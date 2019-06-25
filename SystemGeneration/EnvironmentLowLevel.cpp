@@ -10,7 +10,6 @@
 #include "Writer.h"
 
 #include <iostream>
-#include <experimental/filesystem>
 
 using namespace std;
 using namespace matrixes;
@@ -19,7 +18,7 @@ using namespace IO;
 using namespace random;
 using namespace polynomials;
 
-void EnvironmentLowLevel::check(const vector<BOOL>& v, const string& text)
+void EnvironmentLowLevel::checkYourself(const vector<BOOL>& v, const string& text)
 {
 	std::vector<BOOL> res;
 	std::vector<BOOL> res2;
@@ -27,28 +26,9 @@ void EnvironmentLowLevel::check(const vector<BOOL>& v, const string& text)
 	Transformation P;
 	reader.read(P, "P.txt");
 	P.substitute(v, res);
-	solveSystem(res, res2);
+	getInvert(res, res2);
 	if (v == res) cout << "OK for " << text << endl;
 	else cout << "Bad for " << text << endl;
-}
-
-void EnvironmentLowLevel::clean()
-{
-	remove((foldername + "pre_rand/v1.txt").c_str());
-	remove((foldername + "pre_rand/v2.txt").c_str());
-	remove((foldername + "pre_rand/M1.txt").c_str());
-	remove((foldername + "pre_rand/M2.txt").c_str());
-	remove((foldername + "inv/invM1.txt").c_str());
-	remove((foldername + "inv/invM2.txt").c_str());
-	remove((foldername + "pre_gen/S.txt").c_str());
-	remove((foldername + "pre_gen/T.txt").c_str());
-	remove((foldername + "pre_gen/F.txt").c_str());
-	remove((foldername + "pre_gen/FoT.txt").c_str());
-	remove((foldername + "inv/invF.txt").c_str());
-
-	std::experimental::filesystem::remove((foldername + "inv"));
-	std::experimental::filesystem::remove((foldername + "pre_gen"));
-	std::experimental::filesystem::remove((foldername + "pre_rand"));
 }
 
 void EnvironmentLowLevel::normalizeSystem()
@@ -173,7 +153,7 @@ void EnvironmentLowLevel::generateSystem(bool print_or_not)
 	if (print_or_not) cout << "finished" << endl;
 }
 
-void EnvironmentLowLevel::solveSystem(const std::vector<BOOL>& c, std::vector<BOOL>& out, bool print_or_not)
+void EnvironmentLowLevel::getInvert(const std::vector<BOOL>& in, std::vector<BOOL>& out, bool print_or_not)
 {
 
 	RowB v1(n), v2(n);
@@ -198,7 +178,7 @@ void EnvironmentLowLevel::solveSystem(const std::vector<BOOL>& c, std::vector<BO
 	 */
 
 	RowB S_back(n);
-	v1.xor(c);
+	v1.xor(in);
 	invM1.multiply(v1, S_back); // S_back = invS = invM1*(c + v1)
 
 	RowB FoS_back(n);
@@ -211,7 +191,7 @@ void EnvironmentLowLevel::solveSystem(const std::vector<BOOL>& c, std::vector<BO
 	FoS_back.xor(v2);
 	RowB x(n);
 	invM2.multiply(FoS_back, x); // FoS_back = invP
-	if (c == std::vector<BOOL>(n, FALSE))
+	if (in == std::vector<BOOL>(n, FALSE))
 	{
 		// форматируем решение (х)
 		TransformationBuilder builder;
