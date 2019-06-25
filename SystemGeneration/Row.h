@@ -31,7 +31,7 @@ namespace matrixes
 			}
 		}
 		
-		void operator^=(const Row<_T>& second)
+		void xor(const Row<_T>& second)
 		{
 			int sz = size();
 			if (sz != second.size())

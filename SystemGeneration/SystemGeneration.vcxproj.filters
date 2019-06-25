@@ -58,6 +58,9 @@
     <Filter Include="Файлы исходного кода\environment">
       <UniqueIdentifier>{ffca9510-e8d8-46f8-9b17-14e13585a03b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы исходного кода\service">
+      <UniqueIdentifier>{cdc806eb-9e2c-4386-a466-5305568c99e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h">
@@ -184,6 +187,9 @@
     </ClCompile>
     <ClCompile Include="EnvironmentLowLevel.cpp">
       <Filter>Файлы исходного кода\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="BOOL.cpp">
+      <Filter>Файлы исходного кода\service</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

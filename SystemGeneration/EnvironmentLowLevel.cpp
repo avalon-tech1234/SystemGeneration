@@ -198,7 +198,7 @@ void EnvironmentLowLevel::solveSystem(const std::vector<BOOL>& c, std::vector<BO
 	 */
 
 	RowB S_back(n);
-	v1 ^= c;
+	v1.xor(c);
 	invM1.multiply(v1, S_back); // S_back = invS = invM1*(c + v1)
 
 	RowB FoS_back(n);
@@ -208,7 +208,7 @@ void EnvironmentLowLevel::solveSystem(const std::vector<BOOL>& c, std::vector<BO
 	invF.substitute(Sb, FSb);
 	FoS_back = FSb; // FoS_back = inv(SoF) = invF( invM1*(c + v1) )
 
-	FoS_back ^= v2;
+	FoS_back.xor(v2);
 	RowB x(n);
 	invM2.multiply(FoS_back, x); // FoS_back = invP
 	if (c == std::vector<BOOL>(n, FALSE))

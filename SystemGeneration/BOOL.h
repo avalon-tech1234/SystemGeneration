@@ -9,3 +9,8 @@ typedef int BOOL;
 #define TRUE                1
 #endif
 
+BOOL toBOOL(int a);
+BOOL toBOOL(size_t a);
+BOOL toBOOL(long a);
+BOOL toBOOL(double a);
+BOOL toBOOL(bool a);

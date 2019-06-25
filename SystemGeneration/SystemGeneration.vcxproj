@@ -141,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AffineTransformation.cpp" />
+    <ClCompile Include="BOOL.cpp" />
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="EnvironmentLowLevel.cpp" />
     <ClCompile Include="Main.cpp" />

@@ -11,11 +11,11 @@ void RandomMatrixFactory<_T>::getRandomMatrix(Matrix <_T>& output, int dimension
 
 	output.init_zeros(dimension);
 
+	// генерация обратимой матрицы
 	Row <_T>* cur_row;
 	for (int i = 0; i < dimension; i++)
 	{
 		cur_row = output.get(i);
-
 
 		for (int j = 0; j < dimension; j++)
 		{
@@ -27,27 +27,29 @@ void RandomMatrixFactory<_T>::getRandomMatrix(Matrix <_T>& output, int dimension
 			{
 				int cur = gen();
 				//std::cout << cur << " " << cur % 2 << std::endl;
-				cur_row->set(j, cur % 2);
+				cur_row->set(j, toBOOL(cur % 2));
 			}
 		}
 	}
-	
-	for (int i = 0; i < 5*dimension; i++)
+
+	// перемешивание без потери обратимости
+	for (int i = 0; i < 2 * dimension; i++)
 	{
-		int i1 = gen() % dimension;
-		int i2 = gen() % dimension;
+		int i1, i2;
+		do
+		{
+			i1 = gen() % dimension;
+			i2 = gen() % dimension;
+		} 
+		while (i1 != i2);
 
 		Row<_T>* r1 = output[i1];
 		Row<_T>* r2 = output[i2];
 
-		if (i1 != i2)
-		{
-			r1->operator^=(*r2);
-
-			output.swap(i1, i2);
-		}
+		r1-> xor (*r2);
+		output.swap(i1, i2);
 	}
-	
+
 
 }
 

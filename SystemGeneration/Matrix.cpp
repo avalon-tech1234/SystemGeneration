@@ -84,7 +84,7 @@ void Matrix<_T>::initInverse(const Matrix<_T>& matrix)
 		for (int i = offset + 1; i < n; i++)
 		{
 			if (get(i)->get(offset) == TRUE)
-				get(i)->operator^=(*r0);
+				get(i)->xor(*r0);
 		}
 
 		// теперь проделаем то же самое для матрицы, полученной путем вычеркивания из текущей верхней строки и верхнего столбца
@@ -102,7 +102,7 @@ void Matrix<_T>::initInverse(const Matrix<_T>& matrix)
 		while (row_num + 1 >= 1)
 		{
 			if (data[row_num]->get(offset) == TRUE)
-				data[row_num]->operator^=(*r0);
+				data[row_num]->xor(*r0);
 			row_num--;
 		}
 
