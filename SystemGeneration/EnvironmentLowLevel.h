@@ -15,7 +15,7 @@ protected:
 	std::string foldername; // им€ папки, куда пишем
 
 	void generateSystem(bool print_or_not);
-	void solveSystem(bool print_or_not);
+	void solveSystem();
 	void normalizeSystem();
 
 	// ѕроверка дл€ конкретного вектора v - поиск invP(P(v)) и сравнение его с v

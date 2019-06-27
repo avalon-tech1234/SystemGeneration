@@ -43,6 +43,7 @@ Environment::Environment(int _n, string _foldername)
 	create_folder(foldername + "inv/");
 	create_folder(foldername + "pre_rand/");
 	create_folder(foldername + "pre_gen/");
+	create_folder(foldername + "test/");
 
 }
 
@@ -53,7 +54,7 @@ void Environment::run(bool test_or_not, bool clean_or_not, bool print_or_not)
 	cout << " ...generating system finished" << endl;
 
 	cout << "Solving system...";
-	solveSystem(true);
+	solveSystem();
 	cout << " finished" << endl;
 
 	if (test_or_not)

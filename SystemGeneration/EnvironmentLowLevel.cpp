@@ -26,7 +26,7 @@ void EnvironmentLowLevel::checkYourself(const vector<BOOL>& v, const string& tex
 	Transformation P;
 	reader.read(P, "P.txt");
 	P.substitute(v, res); // res = P(v)
-	getInvert(res, res2, true); // res2 = invP(res) = invP(P(v))
+	getInvert(res, res2, false); // res2 = invP(res) = invP(P(v))
 	if (v == res2) cout << "OK for " << text << endl;
 	else cout << "Bad for " << text << endl;
 }
@@ -152,7 +152,7 @@ void EnvironmentLowLevel::generateSystem(bool print_or_not)
 	if (print_or_not) cout << "finished" << endl;
 }
 
-void EnvironmentLowLevel::solveSystem(bool print_or_not)
+void EnvironmentLowLevel::solveSystem()
 {
 	std::vector<BOOL> zero(n, FALSE);
 	std::vector<BOOL> tmp(1, FALSE);
@@ -174,7 +174,6 @@ void EnvironmentLowLevel::getInvert(const std::vector<BOOL>& in, std::vector<BOO
 	reader.read(invM1, "inv/invM1.txt");
 	reader.read(invM2, "inv/invM2.txt");
 	reader.read(invF, "inv/invF.txt");
-
 
 	/* Далее находим решение уравнения Р(х) = 0
 	 *
