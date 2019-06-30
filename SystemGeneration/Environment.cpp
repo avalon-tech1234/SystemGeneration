@@ -43,7 +43,6 @@ Environment::Environment(int _n, string _foldername)
 	create_folder(foldername + "inv/");
 	create_folder(foldername + "pre_rand/");
 	create_folder(foldername + "pre_gen/");
-	create_folder(foldername + "test/");
 
 }
 
