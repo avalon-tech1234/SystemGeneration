@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="MyArray" Collapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Array.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utility" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgIgAAAAAQAAAAAAgAAAAAAAIEAA=</HashCode>
+      <FileName>Utility.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Testing" Collapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAABAAAAAIAAAAAAAAAIA=</HashCode>
+      <FileName>speedtest.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Environment" Collapsed="true">
+    <Position X="3.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgACAAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAA=</HashCode>
+      <FileName>Environment.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnvironmentLowLevel" Collapsed="true">
+    <Position X="3.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABBAAAAgAAAAAAAAAAAAAgAAAEAIABAAAAAA=</HashCode>
+      <FileName>EnvironmentLowLevel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="polynomials::DNFBuilder" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAgAAAAAAACAAgAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>DNFBuilder.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="polynomials::Monomial" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIIADQAAEAEAEAAAAAAgIAAAACA=</HashCode>
+      <FileName>Monomial.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="polynomials::MonomialBuilder">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAIAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>MonomialBuilder.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="polynomials::Polynomial" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAIAAAAAgAAAAAAIIIDQAQAAEAEAAAAAAAIABAAAA=</HashCode>
+      <FileName>Polynomial.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="polynomials::PolynomialBuilder">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <InheritanceLine Type="polynomials::MonomialBuilder" FixedToPoint="true">
+      <Path>
+        <Point X="1.25" Y="3.247" />
+        <Point X="1.25" Y="3.45" />
+        <Point X="1.188" Y="3.45" />
+        <Point X="1.188" Y="3.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAIIAAACAA=</HashCode>
+      <FileName>PolynomialBuilder.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="transformations::TransformationBuilder" Collapsed="true">
+    <Position X="15.25" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAgAAAABAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>TransformationBuilder.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IO::Parser" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IO::ParserBackground">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQBCAEBAIAiBRAIAACAAAAgAAAAgAiAEBAQAAAAAIAA=</HashCode>
+      <FileName>ParserBackground.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IO::Reader" Collapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAABAAAAAAAACAAAAAAAAAAAAAAAJAAAAAAAAA=</HashCode>
+      <FileName>Reader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IO::Writer" Collapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAABAAAAAAAAAAAAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Writer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="random::RandomEngine" Collapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>RandomEngine.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="random::RandomMatrixFactory&lt;_T&gt;" Collapsed="true">
+    <Position X="15.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACgAAAAAAQAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>RandomMatrixFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="random::RandomPolynomialFactory" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AECAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RandomPolynomialFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="matrixes::Matrix&lt;_T&gt;">
+    <Position X="4" Y="8" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAAAAAAAAAAJAAQQAAAQEgAAAAAQAwAAAAAAI=</HashCode>
+      <FileName>Matrix.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="matrixes::MatrixBuilder" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAACAAgAAAAAAAAAAMAAEAAAAAAA=</HashCode>
+      <FileName>MatrixBuilder.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="matrixes::Row&lt;_T&gt;">
+    <Position X="6.5" Y="2.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAABAAAIQARASQAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Row.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="transformations::AffineTransformation">
+    <Position X="14.25" Y="5" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AffineTransformation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="transformations::Transformation">
+    <Position X="14.25" Y="6.75" Width="5.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAIIgAAAAAAkAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Transformation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Typedef Name="BOOL" Collapsed="true">
+    <Position X="10" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\minwindef.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="matrixes::MatrixB" Collapsed="true">
+    <Position X="4.25" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Matrix.h</FileName>
+    </TypeIdentifier>
+    <AliasOfLine Type="matrixes::Matrix&lt;_T&gt;" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.188" Y="8" />
+        <Point X="7.188" Y="7.438" />
+        <Point X="6.25" Y="7.438" />
+      </Path>
+    </AliasOfLine>
+  </Typedef>
+  <Typedef Name="matrixes::RowB" Collapsed="true">
+    <Position X="6.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Matrix.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="IO::AddMode" Collapsed="true">
+    <Position X="10" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>ParserBackground.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="IO::SymbolTypes" Collapsed="true">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAFAAAAAAAAAAAIAAQAAACAAABIEAAACAAAAAAAIA=</HashCode>
+      <FileName>ParserBackground.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
